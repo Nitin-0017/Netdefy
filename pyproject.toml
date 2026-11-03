@@ -97,6 +97,8 @@ module = [
     "torch.*",
     "sklearn.*",
     "mlflow.*",
+    "joblib.*",
+    "pyarrow.*",
 ]
 ignore_missing_imports = true
 
