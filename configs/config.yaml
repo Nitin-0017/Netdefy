@@ -1,0 +1,85 @@
+project:
+  name: "NETDEFY"
+  full_name: "Network Defense Intelligence"
+  version: "0.1.0"
+  tagline: "Detect Anomalies. Understand Network Behaviour."
+  environment: "development"
+
+system:
+  seed: 42
+  deterministic: true
+  device:
+    preference: "auto"        # "auto", "mps", "cuda", or "cpu"
+    fallback_to_cpu: true
+    benchmark: false
+
+data:
+  raw_dir: "data/raw"
+  interim_dir: "data/interim"
+  processed_dir: "data/processed"
+  dataset_name: "CICIDS2017"
+  label_column: "Label"
+  benign_label_value: "BENIGN"
+  chunk_size: 50000
+  float_precision: "float32"
+
+preprocessing:
+  scaler_type: "standard"      # "standard", "robust", or "minmax"
+  handle_infinite: "nan_then_impute" # "nan_then_impute", "clip", or "drop"
+  imputation_strategy: "median"
+  remove_duplicate_records: true
+  drop_identifier_columns:
+    - "Flow ID"
+    - "Source IP"
+    - "Destination IP"
+    - "Timestamp"
+    - "Source Port"
+  low_variance_threshold: 0.0
+
+models:
+  autoencoder:
+    latent_dim: 16
+    hidden_dims:
+      - 64
+      - 32
+    activation: "relu"
+    dropout_rate: 0.1
+    learning_rate: 0.001
+    weight_decay: 1.0e-5
+    batch_size: 256
+    epochs: 25
+    early_stopping_patience: 5
+
+  isolation_forest:
+    n_estimators: 100
+    max_samples: "auto"
+    contamination: 0.01
+    n_jobs: -1
+
+evaluation:
+  threshold_method: "percentile"  # "percentile", "f1_optimal", or "extreme_value"
+  threshold_percentile: 99.0
+  target_metrics:
+    - "precision"
+    - "recall"
+    - "f1"
+    - "pr_auc"
+    - "roc_auc"
+    - "false_alarms_per_1000_flows"
+    - "attack_wise_recall"
+    - "inference_latency_ms"
+    - "peak_memory_mb"
+
+mlflow:
+  tracking_uri: "file:./mlruns"
+  experiment_name: "netdefy-anomaly-detection"
+  log_models: true
+  log_system_metrics: true
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s | %(levelname)-8s | %(name)s:%(funcName)s:%(lineno)d | %(message)s"
+  date_format: "%Y-%m-%d %H:%M:%S"
+  log_to_file: false
+  log_file_path: "reports/netdefy.log"
+
