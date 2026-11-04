@@ -1,0 +1,96 @@
+{
+  "dataset_name": "validation_v1",
+  "total_samples": 20000,
+  "benign_count": 15315,
+  "attack_count": 4685,
+  "roc_auc": 0.829688,
+  "pr_auc": 0.6778,
+  "metrics_by_threshold": {
+    "p95.0": {
+      "threshold_key": "p95.0",
+      "threshold_value": 0.5635585784912109,
+      "true_positives": 2597,
+      "false_positives": 766,
+      "true_negatives": 14549,
+      "false_negatives": 2088,
+      "precision": 0.772227,
+      "recall": 0.554322,
+      "f1": 0.645378,
+      "benign_fpr": 0.050016,
+      "false_alarms_per_1000_benign": 50.0163,
+      "total_samples": 20000,
+      "total_attacks": 4685,
+      "total_benign": 15315
+    },
+    "p99.0": {
+      "threshold_key": "p99.0",
+      "threshold_value": 0.6501826643943787,
+      "true_positives": 996,
+      "false_positives": 154,
+      "true_negatives": 15161,
+      "false_negatives": 3689,
+      "precision": 0.866087,
+      "recall": 0.212593,
+      "f1": 0.341388,
+      "benign_fpr": 0.010056,
+      "false_alarms_per_1000_benign": 10.0555,
+      "total_samples": 20000,
+      "total_attacks": 4685,
+      "total_benign": 15315
+    },
+    "p99.5": {
+      "threshold_key": "p99.5",
+      "threshold_value": 0.6943576335906982,
+      "true_positives": 418,
+      "false_positives": 78,
+      "true_negatives": 15237,
+      "false_negatives": 4267,
+      "precision": 0.842742,
+      "recall": 0.089221,
+      "f1": 0.161359,
+      "benign_fpr": 0.005093,
+      "false_alarms_per_1000_benign": 5.093,
+      "total_samples": 20000,
+      "total_attacks": 4685,
+      "total_benign": 15315
+    }
+  },
+  "attack_wise_recall_by_threshold": {
+    "p95.0": {
+      "DoS GoldenEye": 0.116022,
+      "DoS Hulk": 0.61311,
+      "DoS Slowhttptest": 0.257732,
+      "DoS slowloris": 0.578431,
+      "FTP-Patator": 0.0,
+      "Heartbleed": 1.0,
+      "SSH-Patator": 0.0
+    },
+    "p99.0": {
+      "DoS GoldenEye": 0.0,
+      "DoS Hulk": 0.238048,
+      "DoS Slowhttptest": 0.216495,
+      "DoS slowloris": 0.04902,
+      "FTP-Patator": 0.0,
+      "Heartbleed": 1.0,
+      "SSH-Patator": 0.0
+    },
+    "p99.5": {
+      "DoS GoldenEye": 0.0,
+      "DoS Hulk": 0.102021,
+      "DoS Slowhttptest": 0.0,
+      "DoS slowloris": 0.0,
+      "FTP-Patator": 0.0,
+      "Heartbleed": 1.0,
+      "SSH-Patator": 0.0
+    }
+  },
+  "attack_counts": {
+    "DoS GoldenEye": 181,
+    "DoS Hulk": 4058,
+    "DoS Slowhttptest": 97,
+    "DoS slowloris": 102,
+    "FTP-Patator": 139,
+    "Heartbleed": 4,
+    "SSH-Patator": 104
+  }
+}

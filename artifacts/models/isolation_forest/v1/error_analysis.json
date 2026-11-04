@@ -1,0 +1,313 @@
+{
+  "evaluation_threshold": {
+    "key": "p99.0",
+    "value": 0.6501826643943787
+  },
+  "false_positive_analysis": {
+    "total_benign": 37474,
+    "false_positive_count": 519,
+    "false_positive_rate": 0.01385,
+    "top_false_positives": [
+      {
+        "index": 47405,
+        "anomaly_score": 0.7545985579490662,
+        "features": {
+          "Flow Duration": 2.8213467597961426,
+          "Total Fwd Packets": -0.006996603216975927,
+          "Total Backward Packets": -0.0033226667437702417,
+          "Total Length of Fwd Packets": 1.8492348194122314,
+          "Total Length of Bwd Packets": -0.007165864575654268
+        }
+      },
+      {
+        "index": 46663,
+        "anomaly_score": 0.7466728091239929,
+        "features": {
+          "Flow Duration": 2.732292890548706,
+          "Total Fwd Packets": -0.006996603216975927,
+          "Total Backward Packets": -0.0033226667437702417,
+          "Total Length of Fwd Packets": 1.8492348194122314,
+          "Total Length of Bwd Packets": -0.007165864575654268
+        }
+      },
+      {
+        "index": 11345,
+        "anomaly_score": 0.7457074522972107,
+        "features": {
+          "Flow Duration": 3.528776168823242,
+          "Total Fwd Packets": 3.2180185317993164,
+          "Total Backward Packets": 2.935089588165283,
+          "Total Length of Fwd Packets": 1.9927709102630615,
+          "Total Length of Bwd Packets": 3.1347875595092773
+        }
+      },
+      {
+        "index": 39066,
+        "anomaly_score": 0.7446990609169006,
+        "features": {
+          "Flow Duration": 2.9451370239257812,
+          "Total Fwd Packets": 1.1215500831604004,
+          "Total Backward Packets": 1.159666657447815,
+          "Total Length of Fwd Packets": 1.9239932298660278,
+          "Total Length of Bwd Packets": 1.0787827968597412
+        }
+      },
+      {
+        "index": 45848,
+        "anomaly_score": 0.743095874786377,
+        "features": {
+          "Flow Duration": 2.555508613586426,
+          "Total Fwd Packets": -0.006996603216975927,
+          "Total Backward Packets": -0.0033226667437702417,
+          "Total Length of Fwd Packets": 1.850131869316101,
+          "Total Length of Bwd Packets": -0.007165864575654268
+        }
+      },
+      {
+        "index": 47454,
+        "anomaly_score": 0.7430354356765747,
+        "features": {
+          "Flow Duration": 2.849884510040283,
+          "Total Fwd Packets": -0.004910564981400967,
+          "Total Backward Packets": -0.0033226667437702417,
+          "Total Length of Fwd Packets": 1.8492348194122314,
+          "Total Length of Bwd Packets": -0.007165864575654268
+        }
+      },
+      {
+        "index": 47843,
+        "anomaly_score": 0.7372236847877502,
+        "features": {
+          "Flow Duration": 2.88803768157959,
+          "Total Fwd Packets": -0.004910564981400967,
+          "Total Backward Packets": -0.0033226667437702417,
+          "Total Length of Fwd Packets": 1.8492348194122314,
+          "Total Length of Bwd Packets": -0.007165864575654268
+        }
+      },
+      {
+        "index": 44788,
+        "anomaly_score": 0.7370871305465698,
+        "features": {
+          "Flow Duration": 2.279813289642334,
+          "Total Fwd Packets": -0.006996603216975927,
+          "Total Backward Packets": -0.0033226667437702417,
+          "Total Length of Fwd Packets": 1.8492348194122314,
+          "Total Length of Bwd Packets": -0.007165864575654268
+        }
+      },
+      {
+        "index": 45484,
+        "anomaly_score": 0.7352910041809082,
+        "features": {
+          "Flow Duration": 2.49013614654541,
+          "Total Fwd Packets": -0.006996603216975927,
+          "Total Backward Packets": -0.0033226667437702417,
+          "Total Length of Fwd Packets": 1.8492348194122314,
+          "Total Length of Bwd Packets": -0.007165864575654268
+        }
+      },
+      {
+        "index": 45102,
+        "anomaly_score": 0.7340428829193115,
+        "features": {
+          "Flow Duration": 2.297112226486206,
+          "Total Fwd Packets": -0.005953584332019091,
+          "Total Backward Packets": -0.0033226667437702417,
+          "Total Length of Fwd Packets": 1.850131869316101,
+          "Total Length of Bwd Packets": -0.007165864575654268
+        }
+      }
+    ],
+    "divergent_features": {
+      "Subflow Bwd Bytes": {
+        "fp_mean": 0.08231358230113983,
+        "tn_mean": -0.006193147506564856,
+        "z_difference": 13.056069374084473
+      },
+      "Total Length of Bwd Packets": {
+        "fp_mean": 0.08227626979351044,
+        "tn_mean": -0.006193147506564856,
+        "z_difference": 13.050564765930176
+      },
+      "Idle Std": {
+        "fp_mean": 7.954077243804932,
+        "tn_mean": -0.046214278787374496,
+        "z_difference": 10.572161674499512
+      },
+      "Total Backward Packets": {
+        "fp_mean": 0.10562188923358917,
+        "tn_mean": -0.006753329187631607,
+        "z_difference": 9.658388137817383
+      },
+      "Subflow Bwd Packets": {
+        "fp_mean": 0.10562188923358917,
+        "tn_mean": -0.006753329187631607,
+        "z_difference": 9.658388137817383
+      },
+      "act_data_pkt_fwd": {
+        "fp_mean": 0.07508476823568344,
+        "tn_mean": -0.006098438985645771,
+        "z_difference": 9.001989364624023
+      },
+      "Total Fwd Packets": {
+        "fp_mean": 0.09403758496046066,
+        "tn_mean": -0.006888420321047306,
+        "z_difference": 8.007783889770508
+      },
+      "Subflow Fwd Packets": {
+        "fp_mean": 0.09403758496046066,
+        "tn_mean": -0.006888420321047306,
+        "z_difference": 8.007783889770508
+      }
+    }
+  },
+  "false_negative_analysis": {
+    "total_attacks": 12526,
+    "total_false_negatives": 12361,
+    "overall_miss_rate": 0.986827,
+    "evasion_by_attack_class": {
+      "Bot": {
+        "total_instances": 85,
+        "missed_count": 85,
+        "miss_rate": 1.0,
+        "recall": 0.0,
+        "mean_anomaly_score": 0.364168
+      },
+      "DDoS": {
+        "total_instances": 5508,
+        "missed_count": 5343,
+        "miss_rate": 0.97,
+        "recall": 0.03,
+        "mean_anomaly_score": 0.490693
+      },
+      "Infiltration": {
+        "total_instances": 2,
+        "missed_count": 2,
+        "miss_rate": 1.0,
+        "recall": 0.0,
+        "mean_anomaly_score": 0.505062
+      },
+      "PortScan": {
+        "total_instances": 6837,
+        "missed_count": 6837,
+        "miss_rate": 1.0,
+        "recall": 0.0,
+        "mean_anomaly_score": 0.346409
+      },
+      "Web Attack \ufffd Brute Force": {
+        "total_instances": 65,
+        "missed_count": 65,
+        "miss_rate": 1.0,
+        "recall": 0.0,
+        "mean_anomaly_score": 0.388656
+      },
+      "Web Attack \ufffd Sql Injection": {
+        "total_instances": 1,
+        "missed_count": 1,
+        "miss_rate": 1.0,
+        "recall": 0.0,
+        "mean_anomaly_score": 0.433896
+      },
+      "Web Attack \ufffd XSS": {
+        "total_instances": 28,
+        "missed_count": 28,
+        "miss_rate": 1.0,
+        "recall": 0.0,
+        "mean_anomaly_score": 0.376163
+      }
+    }
+  },
+  "ambiguity_comparison_by_threshold": {
+    "p95.0": {
+      "ambiguous": {
+        "sample_count": 3305,
+        "attack_count": 3256,
+        "benign_count": 49,
+        "true_positives": 0,
+        "false_positives": 0,
+        "true_negatives": 49,
+        "false_negatives": 3256,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "benign_fpr": 0.0,
+        "false_alarms_per_1000": 0.0
+      },
+      "disambiguated": {
+        "sample_count": 46695,
+        "attack_count": 9270,
+        "benign_count": 37425,
+        "true_positives": 1002,
+        "false_positives": 2012,
+        "true_negatives": 35413,
+        "false_negatives": 8268,
+        "precision": 0.332449,
+        "recall": 0.108091,
+        "f1": 0.163139,
+        "benign_fpr": 0.053761,
+        "false_alarms_per_1000": 53.7609
+      }
+    },
+    "p99.0": {
+      "ambiguous": {
+        "sample_count": 3305,
+        "attack_count": 3256,
+        "benign_count": 49,
+        "true_positives": 0,
+        "false_positives": 0,
+        "true_negatives": 49,
+        "false_negatives": 3256,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "benign_fpr": 0.0,
+        "false_alarms_per_1000": 0.0
+      },
+      "disambiguated": {
+        "sample_count": 46695,
+        "attack_count": 9270,
+        "benign_count": 37425,
+        "true_positives": 165,
+        "false_positives": 519,
+        "true_negatives": 36906,
+        "false_negatives": 9105,
+        "precision": 0.241228,
+        "recall": 0.017799,
+        "f1": 0.033153,
+        "benign_fpr": 0.013868,
+        "false_alarms_per_1000": 13.8677
+      }
+    },
+    "p99.5": {
+      "ambiguous": {
+        "sample_count": 3305,
+        "attack_count": 3256,
+        "benign_count": 49,
+        "true_positives": 0,
+        "false_positives": 0,
+        "true_negatives": 49,
+        "false_negatives": 3256,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "benign_fpr": 0.0,
+        "false_alarms_per_1000": 0.0
+      },
+      "disambiguated": {
+        "sample_count": 46695,
+        "attack_count": 9270,
+        "benign_count": 37425,
+        "true_positives": 0,
+        "false_positives": 245,
+        "true_negatives": 37180,
+        "false_negatives": 9270,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "benign_fpr": 0.006546,
+        "false_alarms_per_1000": 6.5464
+      }
+    }
+  }
+}

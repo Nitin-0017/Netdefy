@@ -1,0 +1,42 @@
+{
+  "status": "SUCCESS",
+  "model_artifact": "artifacts/models/isolation_forest/v1/model.joblib",
+  "model_sha256": "807d5b9c3693b3631f447826c442b3000dd8e6a4cb49590f3e6cb6bb9a543846",
+  "train_sample_count": 100000,
+  "validation_sample_count": 20000,
+  "fit_duration_seconds": 0.16,
+  "total_duration_seconds": 0.47,
+  "peak_memory_mb": 449.53,
+  "inference_latency_ms_per_flow": 0.0029,
+  "throughput_flows_per_second": 348755.6,
+  "thresholds": {
+    "p95.0": 0.5635585784912109,
+    "p99.0": 0.6501826643943787,
+    "p99.5": 0.6943576335906982
+  },
+  "validation_roc_auc": 0.829688,
+  "validation_pr_auc": 0.6778,
+  "validation_metrics_summary": {
+    "p95.0": {
+      "precision": 0.772227,
+      "recall": 0.554322,
+      "f1": 0.645378,
+      "benign_fpr": 0.050016,
+      "false_alarms_per_1000": 50.0163
+    },
+    "p99.0": {
+      "precision": 0.866087,
+      "recall": 0.212593,
+      "f1": 0.341388,
+      "benign_fpr": 0.010056,
+      "false_alarms_per_1000": 10.0555
+    },
+    "p99.5": {
+      "precision": 0.842742,
+      "recall": 0.089221,
+      "f1": 0.161359,
+      "benign_fpr": 0.005093,
+      "false_alarms_per_1000": 5.093
+    }
+  }
+}

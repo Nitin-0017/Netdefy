@@ -1,0 +1,196 @@
+{
+  "full_test_report": {
+    "dataset_name": "test_v1_full",
+    "total_samples": 50000,
+    "benign_count": 37474,
+    "attack_count": 12526,
+    "roc_auc": 0.655789,
+    "pr_auc": 0.348695,
+    "metrics_by_threshold": {
+      "p95.0": {
+        "threshold_key": "p95.0",
+        "threshold_value": 0.5635585784912109,
+        "true_positives": 1002,
+        "false_positives": 2012,
+        "true_negatives": 35462,
+        "false_negatives": 11524,
+        "precision": 0.332449,
+        "recall": 0.079994,
+        "f1": 0.128958,
+        "benign_fpr": 0.053691,
+        "false_alarms_per_1000_benign": 53.6906,
+        "total_samples": 50000,
+        "total_attacks": 12526,
+        "total_benign": 37474
+      },
+      "p99.0": {
+        "threshold_key": "p99.0",
+        "threshold_value": 0.6501826643943787,
+        "true_positives": 165,
+        "false_positives": 519,
+        "true_negatives": 36955,
+        "false_negatives": 12361,
+        "precision": 0.241228,
+        "recall": 0.013173,
+        "f1": 0.024981,
+        "benign_fpr": 0.01385,
+        "false_alarms_per_1000_benign": 13.8496,
+        "total_samples": 50000,
+        "total_attacks": 12526,
+        "total_benign": 37474
+      },
+      "p99.5": {
+        "threshold_key": "p99.5",
+        "threshold_value": 0.6943576335906982,
+        "true_positives": 0,
+        "false_positives": 245,
+        "true_negatives": 37229,
+        "false_negatives": 12526,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "benign_fpr": 0.006538,
+        "false_alarms_per_1000_benign": 6.5379,
+        "total_samples": 50000,
+        "total_attacks": 12526,
+        "total_benign": 37474
+      }
+    },
+    "attack_wise_recall_by_threshold": {
+      "p95.0": {
+        "Bot": 0.047059,
+        "DDoS": 0.17992,
+        "Infiltration": 0.5,
+        "PortScan": 0.000293,
+        "Web Attack \ufffd Brute Force": 0.061538,
+        "Web Attack \ufffd Sql Injection": 0.0,
+        "Web Attack \ufffd XSS": 0.0
+      },
+      "p99.0": {
+        "Bot": 0.0,
+        "DDoS": 0.029956,
+        "Infiltration": 0.0,
+        "PortScan": 0.0,
+        "Web Attack \ufffd Brute Force": 0.0,
+        "Web Attack \ufffd Sql Injection": 0.0,
+        "Web Attack \ufffd XSS": 0.0
+      },
+      "p99.5": {
+        "Bot": 0.0,
+        "DDoS": 0.0,
+        "Infiltration": 0.0,
+        "PortScan": 0.0,
+        "Web Attack \ufffd Brute Force": 0.0,
+        "Web Attack \ufffd Sql Injection": 0.0,
+        "Web Attack \ufffd XSS": 0.0
+      }
+    },
+    "attack_counts": {
+      "Bot": 85,
+      "DDoS": 5508,
+      "Infiltration": 2,
+      "PortScan": 6837,
+      "Web Attack \ufffd Brute Force": 65,
+      "Web Attack \ufffd Sql Injection": 1,
+      "Web Attack \ufffd XSS": 28
+    }
+  },
+  "disambiguated_test_report": {
+    "dataset_name": "test_v1_disambiguated",
+    "total_samples": 46695,
+    "benign_count": 37425,
+    "attack_count": 9270,
+    "roc_auc": 0.731662,
+    "pr_auc": 0.34775,
+    "metrics_by_threshold": {
+      "p95.0": {
+        "threshold_key": "p95.0",
+        "threshold_value": 0.5635585784912109,
+        "true_positives": 1002,
+        "false_positives": 2012,
+        "true_negatives": 35413,
+        "false_negatives": 8268,
+        "precision": 0.332449,
+        "recall": 0.108091,
+        "f1": 0.163139,
+        "benign_fpr": 0.053761,
+        "false_alarms_per_1000_benign": 53.7609,
+        "total_samples": 46695,
+        "total_attacks": 9270,
+        "total_benign": 37425
+      },
+      "p99.0": {
+        "threshold_key": "p99.0",
+        "threshold_value": 0.6501826643943787,
+        "true_positives": 165,
+        "false_positives": 519,
+        "true_negatives": 36906,
+        "false_negatives": 9105,
+        "precision": 0.241228,
+        "recall": 0.017799,
+        "f1": 0.033153,
+        "benign_fpr": 0.013868,
+        "false_alarms_per_1000_benign": 13.8677,
+        "total_samples": 46695,
+        "total_attacks": 9270,
+        "total_benign": 37425
+      },
+      "p99.5": {
+        "threshold_key": "p99.5",
+        "threshold_value": 0.6943576335906982,
+        "true_positives": 0,
+        "false_positives": 245,
+        "true_negatives": 37180,
+        "false_negatives": 9270,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "benign_fpr": 0.006546,
+        "false_alarms_per_1000_benign": 6.5464,
+        "total_samples": 46695,
+        "total_attacks": 9270,
+        "total_benign": 37425
+      }
+    },
+    "attack_wise_recall_by_threshold": {
+      "p95.0": {
+        "Bot": 0.048193,
+        "DDoS": 0.17992,
+        "Infiltration": 0.5,
+        "PortScan": 0.000558,
+        "Web Attack \ufffd Brute Force": 0.061538,
+        "Web Attack \ufffd Sql Injection": 0.0,
+        "Web Attack \ufffd XSS": 0.0
+      },
+      "p99.0": {
+        "Bot": 0.0,
+        "DDoS": 0.029956,
+        "Infiltration": 0.0,
+        "PortScan": 0.0,
+        "Web Attack \ufffd Brute Force": 0.0,
+        "Web Attack \ufffd Sql Injection": 0.0,
+        "Web Attack \ufffd XSS": 0.0
+      },
+      "p99.5": {
+        "Bot": 0.0,
+        "DDoS": 0.0,
+        "Infiltration": 0.0,
+        "PortScan": 0.0,
+        "Web Attack \ufffd Brute Force": 0.0,
+        "Web Attack \ufffd Sql Injection": 0.0,
+        "Web Attack \ufffd XSS": 0.0
+      }
+    },
+    "attack_counts": {
+      "Bot": 83,
+      "DDoS": 5508,
+      "Infiltration": 2,
+      "PortScan": 3583,
+      "Web Attack \ufffd Brute Force": 65,
+      "Web Attack \ufffd Sql Injection": 1,
+      "Web Attack \ufffd XSS": 28
+    }
+  },
+  "latency_ms_per_flow": 0.0026,
+  "throughput_flows_per_second": 382771.0
+}

@@ -8,7 +8,7 @@
 **Execution Timestamp:** 2026-11-04T05:20:30Z  
 **Hardware Environment:** Apple Silicon M3 (arm64), macOS 27.2, 8.00 GiB Unified Memory  
 **Model Artifact Path:** `artifacts/models/isolation_forest/v1/model.joblib`  
-**Model SHA-256 Checksum:** `807d5b9c3693245c7ad99b7b9ea327ec263e8aa43048560124fb703083c27ca6`  
+**Model SHA-256 Checksum:** `807d5b9c3693b3631f447826c442b3000dd8e6a4cb49590f3e6cb6bb9a543846`  
 **Thresholds Path:** `artifacts/models/isolation_forest/v1/thresholds.json`  
 
 ---

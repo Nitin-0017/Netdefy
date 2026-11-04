@@ -48,15 +48,20 @@ data/benchmark/*
 !data/benchmark/v1/
 
 # Artifacts & Checkpoints
-artifacts/*
-!artifacts/.gitkeep
-!artifacts/README.md
+# Exclude temporary checkpoints and unversioned scratch model dumps
 checkpoints/
 *.pt
 *.pth
 *.onnx
 *.pkl
-*.joblib
+
+# Preserve versioned model and preprocessing artifacts
+# (Binary .joblib files are tracked via Git LFS in .gitattributes)
+artifacts/*
+!artifacts/.gitkeep
+!artifacts/README.md
+!artifacts/preprocessing/
+!artifacts/models/
 
 # MLflow Experiment Tracking
 mlruns/
