@@ -1,0 +1,10 @@
+{
+  "calibrator_type": "robust_sigmoid",
+  "epsilon": 1e-07,
+  "sample_count": 15315,
+  "reference_name": "benign_validation",
+  "median": 0.3422211706638336,
+  "q25": 0.3292064368724823,
+  "q75": 0.3918137550354004,
+  "iqr": 0.06260731816291809
+}

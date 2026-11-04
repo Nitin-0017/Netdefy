@@ -1,0 +1,15 @@
+{
+  "held_out_classes": [
+    "DoS slowloris",
+    "FTP-Patator"
+  ],
+  "held_out_samples": 241,
+  "known_attack_samples": 4444,
+  "benign_samples": 15315,
+  "held_out_rejection_rate": 0.004149377593360996,
+  "known_attack_rejection_rate": 0.0009000900090009,
+  "benign_rejection_rate": 0.0001958863858961802,
+  "rejection_threshold_tau": 0.5,
+  "min_margin": 0.1,
+  "max_entropy": 2.0
+}

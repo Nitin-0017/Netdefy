@@ -1,0 +1,7 @@
+{
+  "anomaly_threshold": 0.982084333896637,
+  "threshold_tier": "p99.0",
+  "detector_disagreement_threshold": 0.5,
+  "high_classifier_conflict_confidence": 0.85,
+  "benign_label": "BENIGN"
+}

@@ -1,0 +1,10 @@
+{
+  "strategy": "benign_validation_percentile_calibrated_fusion",
+  "frozen_candidate": "mean",
+  "sample_count_benign": 15315,
+  "thresholds": {
+    "p95.0": 0.9370405673980713,
+    "p99.0": 0.982084333896637,
+    "p99.5": 0.9929590821266174
+  }
+}

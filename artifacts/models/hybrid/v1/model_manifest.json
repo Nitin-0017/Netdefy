@@ -1,0 +1,42 @@
+{
+  "pipeline_name": "netdefy_hybrid_intelligence_engine",
+  "version": "v1",
+  "timestamp": "2026-11-04T15:37:15Z",
+  "python_version": "3.12.13",
+  "system": "Darwin",
+  "machine": "arm64",
+  "artifact_hashes": {
+    "isolation_forest": "807d5b9c3693b3631f447826c442b3000dd8e6a4cb49590f3e6cb6bb9a543846",
+    "autoencoder": "5ea72c57213f6ae6c41b0d1f8f8126fd6dadf1a45bc78d7de0f594b0089b5be7",
+    "classifier_metadata": "18a40ca26425321ca601d7769c053acc077011f39b205dc3176a4a4940b64a72",
+    "classifier_booster": "e708242901a9f2088804e72960d1bbce272d1921db559aa1fb93e826f86cf30c",
+    "feature_schema": "a7f83d5a35bdb418dede8a9359a3d054b65c8129db79a3987753287e0159c9a0",
+    "standard_scaler": "6255c7f64886060cb0cd60c5151f87241c51a96a6290b0a519ee655d6b1793cc"
+  },
+  "calibration": {
+    "method": "empirical_percentile",
+    "reference_partition": "validation.parquet",
+    "benign_sample_count": 15315
+  },
+  "fusion": {
+    "strategy": "mean",
+    "weight_if": 0.5,
+    "weight_ae": 0.5,
+    "description": "Equal-weight average of percentile-calibrated Isolation Forest and Autoencoder scores"
+  },
+  "operational_thresholds": {
+    "p95.0": 0.9370405673980713,
+    "p99.0": 0.982084333896637,
+    "p99.5": 0.9929590821266174
+  },
+  "class_mapping": {
+    "0": "BENIGN",
+    "1": "DoS GoldenEye",
+    "2": "DoS Hulk",
+    "3": "DoS Slowhttptest",
+    "4": "DoS slowloris",
+    "5": "FTP-Patator",
+    "6": "Heartbleed",
+    "7": "SSH-Patator"
+  }
+}

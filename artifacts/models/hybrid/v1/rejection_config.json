@@ -1,0 +1,7 @@
+{
+  "min_confidence": 0.5,
+  "min_margin": 0.1,
+  "max_entropy": 2.0,
+  "benign_label": "BENIGN",
+  "unknown_label": "UNKNOWN"
+}

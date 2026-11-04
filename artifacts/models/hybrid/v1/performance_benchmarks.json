@@ -1,0 +1,18 @@
+{
+  "hardware": {
+    "platform": "macOS-27.2-arm64-arm-64bit",
+    "machine": "arm64",
+    "processor": "arm",
+    "python_version": "3.12.13"
+  },
+  "single_flow_latency_ms": {
+    "p50": 4.854541490203701,
+    "p95": 6.306229806796181,
+    "p99": 10.853110738971731,
+    "mean": 5.278606915089767
+  },
+  "batch_throughput_flows_per_sec": 26462.230062151768,
+  "total_test_inference_time_sec": 1.8894854999962263,
+  "total_flows_evaluated": 50000,
+  "peak_rss_memory_mb": 866.296875
+}

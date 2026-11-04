@@ -1,0 +1,33 @@
+pipeline:
+  name: netdefy_hybrid_intelligence_engine
+  version: v1
+  description: Unified hybrid inference pipeline integrating Isolation Forest, Autoencoder,
+    and XGBoost
+model_paths:
+  isolation_forest: artifacts/models/isolation_forest/v1/model.joblib
+  autoencoder: artifacts/models/autoencoder/v1/best_model.pt
+  classifier: artifacts/models/xgboost_classifier/v1/model.json
+calibration:
+  calibrator_type: percentile
+  calibrator_if_file: artifacts/models/hybrid/v1/calibrator_if.json
+  calibrator_ae_file: artifacts/models/hybrid/v1/calibrator_ae.json
+fusion:
+  strategy: mean
+  weight_if: 0.5
+  weight_ae: 0.5
+  description: Equal-weight average of percentile-calibrated Isolation Forest and
+    Autoencoder scores
+rejection:
+  min_confidence: 0.5
+  min_margin: 0.1
+  max_entropy: 2.0
+  benign_label: BENIGN
+  unknown_label: UNKNOWN
+decision_policy:
+  anomaly_threshold: 0.982084333896637
+  threshold_tier: p99.0
+  detector_disagreement_threshold: 0.5
+  high_classifier_conflict_confidence: 0.85
+  benign_label: BENIGN
+device: cpu
+top_k_features_explanation: 5

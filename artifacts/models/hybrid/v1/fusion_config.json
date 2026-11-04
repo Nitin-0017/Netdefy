@@ -1,0 +1,6 @@
+{
+  "strategy": "mean",
+  "weight_if": 0.5,
+  "weight_ae": 0.5,
+  "description": "Equal-weight average of percentile-calibrated Isolation Forest and Autoencoder scores"
+}
