@@ -178,14 +178,23 @@ class TemporalPreprocessingPipeline:
         train_raw_df = pd.concat(train_raw_chunks, ignore_index=True)
         train_dedup_df = pd.concat(train_dedup_chunks, ignore_index=True)
 
-        # FIT Cleaner & Scalers STRICTLY on Monday training data (View B dedup)
-        logger.info("Fitting imputer and scalers exclusively on Monday training data.")
+        # FIT Cleaner strictly on Monday training data (View B dedup)
+        logger.info("Fitting imputer exclusively on Monday training data.")
         cleaner.fit(train_dedup_df, feature_cols)
-        standard_scaler.fit(train_dedup_df, feature_cols)
-        robust_scaler.fit(train_dedup_df, feature_cols)
+        cleaner.save(self.artifacts_dir / "imputer.joblib")
+
+        # Clean training sets
+        train_raw_cleaned = cleaner.transform(train_raw_df, feature_cols, partition_name="train")
+        train_dedup_cleaned = cleaner.transform(
+            train_dedup_df, feature_cols, partition_name="train_dedup"
+        )
+
+        # FIT Scalers strictly on Monday cleaned training data (View B dedup)
+        logger.info("Fitting scalers exclusively on Monday cleaned training data.")
+        standard_scaler.fit(train_dedup_cleaned, feature_cols)
+        robust_scaler.fit(train_dedup_cleaned, feature_cols)
 
         # Save fitted transformer artifacts
-        cleaner.save(self.artifacts_dir / "imputer.joblib")
         standard_scaler.save(self.artifacts_dir / "standard_scaler.joblib")
         robust_scaler.save(self.artifacts_dir / "robust_scaler.joblib")
 
@@ -194,15 +203,11 @@ class TemporalPreprocessingPipeline:
         train_out_dir.mkdir(parents=True, exist_ok=True)
 
         # View A: Raw
-        train_raw_cleaned = cleaner.transform(train_raw_df, feature_cols, partition_name="train")
         train_raw_scaled = standard_scaler.transform(train_raw_cleaned)
         train_raw_scaled["Label"] = train_raw_df["Label"].values
         train_raw_scaled.to_parquet(train_out_dir / "train_raw.parquet", index=False)
 
         # View B: Dedup (Leakage-Controlled)
-        train_dedup_cleaned = cleaner.transform(
-            train_dedup_df, feature_cols, partition_name="train"
-        )
         train_dedup_scaled = standard_scaler.transform(train_dedup_cleaned)
         train_dedup_scaled["Label"] = train_dedup_df["Label"].values
         train_dedup_scaled.to_parquet(train_out_dir / "train_dedup.parquet", index=False)
@@ -236,7 +241,7 @@ class TemporalPreprocessingPipeline:
                 r_clean = cleaner.transform(raw_c, feature_cols, partition_name="validation")
                 r_scaled = standard_scaler.transform(r_clean)
                 r_scaled["Label"] = raw_c["Label"].values
-                r_table = pa.Table.from_pandas(r_scaled)
+                r_table = pa.Table.from_pandas(r_scaled, preserve_index=False)
                 if val_raw_writer is None:
                     val_raw_writer = pq.ParquetWriter(
                         val_out_dir / "validation_raw.parquet", r_table.schema
@@ -245,10 +250,12 @@ class TemporalPreprocessingPipeline:
 
                 # View B transform & stream write
                 if not dedup_c.empty:
-                    d_clean = cleaner.transform(dedup_c, feature_cols, partition_name="validation")
+                    d_clean = cleaner.transform(
+                        dedup_c, feature_cols, partition_name="validation_dedup"
+                    )
                     d_scaled = standard_scaler.transform(d_clean)
                     d_scaled["Label"] = dedup_c["Label"].values
-                    d_table = pa.Table.from_pandas(d_scaled)
+                    d_table = pa.Table.from_pandas(d_scaled, preserve_index=False)
                     if val_dedup_writer is None:
                         val_dedup_writer = pq.ParquetWriter(
                             val_out_dir / "validation_dedup.parquet", d_table.schema
@@ -293,7 +300,7 @@ class TemporalPreprocessingPipeline:
                 r_clean = cleaner.transform(raw_c, feature_cols, partition_name="test")
                 r_scaled = standard_scaler.transform(r_clean)
                 r_scaled["Label"] = raw_c["Label"].values
-                r_table = pa.Table.from_pandas(r_scaled)
+                r_table = pa.Table.from_pandas(r_scaled, preserve_index=False)
                 if test_raw_writer is None:
                     test_raw_writer = pq.ParquetWriter(
                         test_out_dir / "test_raw.parquet", r_table.schema
@@ -302,10 +309,10 @@ class TemporalPreprocessingPipeline:
 
                 # View B transform & stream write
                 if not dedup_c.empty:
-                    d_clean = cleaner.transform(dedup_c, feature_cols, partition_name="test")
+                    d_clean = cleaner.transform(dedup_c, feature_cols, partition_name="test_dedup")
                     d_scaled = standard_scaler.transform(d_clean)
                     d_scaled["Label"] = dedup_c["Label"].values
-                    d_table = pa.Table.from_pandas(d_scaled)
+                    d_table = pa.Table.from_pandas(d_scaled, preserve_index=False)
                     if test_dedup_writer is None:
                         test_dedup_writer = pq.ParquetWriter(
                             test_out_dir / "test_dedup.parquet", d_table.schema

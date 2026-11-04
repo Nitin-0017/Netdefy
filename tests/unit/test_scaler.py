@@ -89,4 +89,3 @@ def test_unfitted_transform_raises_runtime_error() -> None:
     scaler = FeatureScaler()
     with pytest.raises(RuntimeError, match="must be fitted"):
         scaler.transform(pd.DataFrame({"a": [1]}))
-

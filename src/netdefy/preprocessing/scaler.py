@@ -72,7 +72,11 @@ class FeatureScaler:
         scale: dict[str, float] = {}
 
         for col in feature_columns:
-            series = pd.to_numeric(train_df[col], errors="coerce").dropna()
+            series = (
+                pd.to_numeric(train_df[col], errors="coerce")
+                .replace([np.inf, -np.inf], np.nan)
+                .dropna()
+            )
             if series.empty:
                 center[col] = 0.0
                 scale[col] = 1.0

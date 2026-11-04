@@ -40,6 +40,9 @@ data/interim/*
 data/processed/*
 !data/processed/.gitkeep
 !data/processed/README.md
+data/benchmark/*
+!data/benchmark/.gitkeep
+!data/benchmark/README.md
 
 # Artifacts & Checkpoints
 artifacts/*

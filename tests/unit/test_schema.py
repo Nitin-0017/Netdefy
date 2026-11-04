@@ -83,4 +83,3 @@ def test_feature_schema_save_and_load(tmp_path: Path) -> None:
     loaded = FeatureSchema.load(out_file)
     assert loaded.raw_column_count == 5
     assert loaded.retained_features_service_independent == ["FeatA", "FeatB"]
-

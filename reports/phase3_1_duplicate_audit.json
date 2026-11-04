@@ -1,0 +1,1824 @@
+{
+  "conflict_summary": {
+    "train": {
+      "total_rows": 529918,
+      "unique_vectors": 458929,
+      "vectors_with_duplicates": 19601,
+      "duplicate_extra_rows": 70989,
+      "vectors_with_conflicts": 0,
+      "total_rows_in_conflict": 0,
+      "benign_attack_conflicts": 0,
+      "attack_attack_conflicts": 0,
+      "conflict_details": []
+    },
+    "validation": {
+      "total_rows": 1138612,
+      "unique_vectors": 963948,
+      "vectors_with_duplicates": 34449,
+      "duplicate_extra_rows": 174664,
+      "vectors_with_conflicts": 74,
+      "total_rows_in_conflict": 4830,
+      "benign_attack_conflicts": 74,
+      "attack_attack_conflicts": 0,
+      "conflict_details": [
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 8
+          },
+          "total_rows": 9,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 9
+          },
+          "total_rows": 10,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 7
+          },
+          "total_rows": 8,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 1
+          },
+          "total_rows": 2,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "DoS Hulk": 1
+          },
+          "total_rows": 3,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 45
+          },
+          "total_rows": 46,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 1
+          },
+          "total_rows": 2,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 3360
+          },
+          "total_rows": 3361,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 2
+          },
+          "total_rows": 3,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 3
+          },
+          "total_rows": 4,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 14
+          },
+          "total_rows": 15,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 12
+          },
+          "total_rows": 13,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 53
+          },
+          "total_rows": 54,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "DoS Hulk": 21
+          },
+          "total_rows": 23,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 6
+          },
+          "total_rows": 7,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 8
+          },
+          "total_rows": 9,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 24
+          },
+          "total_rows": 25,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 5
+          },
+          "total_rows": 6,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 17
+          },
+          "total_rows": 18,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "DoS Hulk": 22
+          },
+          "total_rows": 24,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 7
+          },
+          "total_rows": 8,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "DoS Hulk": 10
+          },
+          "total_rows": 12,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "DoS Hulk": 21
+          },
+          "total_rows": 23,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "DoS Hulk": 7
+          },
+          "total_rows": 9,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "DoS Hulk": 45
+          },
+          "total_rows": 47,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 33
+          },
+          "total_rows": 34,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 3
+          },
+          "total_rows": 4,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 7
+          },
+          "total_rows": 8,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "DoS Hulk": 9
+          },
+          "total_rows": 11,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 29
+          },
+          "total_rows": 30,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 28
+          },
+          "total_rows": 29,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS slowloris": 1,
+            "BENIGN": 1
+          },
+          "total_rows": 2,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 1
+          },
+          "total_rows": 2,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 1
+          },
+          "total_rows": 2,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 20
+          },
+          "total_rows": 21,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "DoS Hulk": 17
+          },
+          "total_rows": 19,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DoS Hulk": 15
+          },
+          "total_rows": 16,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 351,
+            "BENIGN": 1
+          },
+          "total_rows": 352,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 80,
+            "BENIGN": 1
+          },
+          "total_rows": 81,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 131,
+            "BENIGN": 1
+          },
+          "total_rows": 132,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 15,
+            "BENIGN": 1
+          },
+          "total_rows": 16,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 8,
+            "BENIGN": 1
+          },
+          "total_rows": 9,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 60,
+            "BENIGN": 1
+          },
+          "total_rows": 61,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 35,
+            "BENIGN": 1
+          },
+          "total_rows": 36,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 23,
+            "BENIGN": 1
+          },
+          "total_rows": 24,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 27,
+            "BENIGN": 1
+          },
+          "total_rows": 28,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 20,
+            "BENIGN": 1
+          },
+          "total_rows": 21,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 6,
+            "BENIGN": 1
+          },
+          "total_rows": 7,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 3,
+            "BENIGN": 1
+          },
+          "total_rows": 4,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 3,
+            "BENIGN": 1
+          },
+          "total_rows": 4,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 19,
+            "BENIGN": 1
+          },
+          "total_rows": 20,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 5,
+            "BENIGN": 1
+          },
+          "total_rows": 6,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 13,
+            "BENIGN": 1
+          },
+          "total_rows": 14,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 3,
+            "BENIGN": 1
+          },
+          "total_rows": 4,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 7,
+            "BENIGN": 1
+          },
+          "total_rows": 8,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 8,
+            "BENIGN": 1
+          },
+          "total_rows": 9,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 9,
+            "BENIGN": 1
+          },
+          "total_rows": 10,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 1,
+            "BENIGN": 1
+          },
+          "total_rows": 2,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 4,
+            "BENIGN": 1
+          },
+          "total_rows": 5,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 2,
+            "BENIGN": 1
+          },
+          "total_rows": 3,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 3,
+            "BENIGN": 1
+          },
+          "total_rows": 4,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 7,
+            "BENIGN": 1
+          },
+          "total_rows": 8,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 11,
+            "BENIGN": 1
+          },
+          "total_rows": 12,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 3,
+            "BENIGN": 1
+          },
+          "total_rows": 4,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 3,
+            "BENIGN": 1
+          },
+          "total_rows": 4,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 1,
+            "BENIGN": 1
+          },
+          "total_rows": 2,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 4,
+            "BENIGN": 1
+          },
+          "total_rows": 5,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 1,
+            "BENIGN": 1
+          },
+          "total_rows": 2,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 1,
+            "BENIGN": 1
+          },
+          "total_rows": 2,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 3,
+            "BENIGN": 1
+          },
+          "total_rows": 4,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 1,
+            "BENIGN": 1
+          },
+          "total_rows": 2,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 1,
+            "BENIGN": 1
+          },
+          "total_rows": 2,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 1,
+            "BENIGN": 1
+          },
+          "total_rows": 2,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "DoS Hulk": 1,
+            "BENIGN": 1
+          },
+          "total_rows": 2,
+          "has_benign_and_attack": true
+        }
+      ]
+    },
+    "test": {
+      "total_rows": 1162213,
+      "unique_vectors": 846645,
+      "vectors_with_duplicates": 32833,
+      "duplicate_extra_rows": 315568,
+      "vectors_with_conflicts": 130,
+      "total_rows_in_conflict": 76482,
+      "benign_attack_conflicts": 130,
+      "attack_attack_conflicts": 0,
+      "conflict_details": [
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DDoS": 1
+          },
+          "total_rows": 2,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 3,
+            "Bot": 2
+          },
+          "total_rows": 5,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "Bot": 2
+          },
+          "total_rows": 3,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "Bot": 10
+          },
+          "total_rows": 11,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "Bot": 5
+          },
+          "total_rows": 6,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 10,
+            "PortScan": 6644
+          },
+          "total_rows": 6654,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 12,
+            "PortScan": 198
+          },
+          "total_rows": 210,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 4,
+            "PortScan": 759
+          },
+          "total_rows": 763,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 3,
+            "PortScan": 1083
+          },
+          "total_rows": 1086,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "PortScan": 433
+          },
+          "total_rows": 435,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 67,
+            "PortScan": 1246
+          },
+          "total_rows": 1313,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 3,
+            "PortScan": 421
+          },
+          "total_rows": 424,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 3,
+            "PortScan": 554
+          },
+          "total_rows": 557,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 7,
+            "PortScan": 686
+          },
+          "total_rows": 693,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 9,
+            "PortScan": 885
+          },
+          "total_rows": 894,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 11,
+            "PortScan": 863
+          },
+          "total_rows": 874,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 3,
+            "PortScan": 886
+          },
+          "total_rows": 889,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 15,
+            "PortScan": 2747
+          },
+          "total_rows": 2762,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 36,
+            "PortScan": 1350
+          },
+          "total_rows": 1386,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 5,
+            "PortScan": 806
+          },
+          "total_rows": 811,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 11,
+            "PortScan": 530
+          },
+          "total_rows": 541,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 3,
+            "PortScan": 1197
+          },
+          "total_rows": 1200,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 7,
+            "PortScan": 990
+          },
+          "total_rows": 997,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 5,
+            "PortScan": 468
+          },
+          "total_rows": 473,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 4,
+            "PortScan": 180
+          },
+          "total_rows": 184,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 25,
+            "PortScan": 445
+          },
+          "total_rows": 470,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 26,
+            "PortScan": 2509
+          },
+          "total_rows": 2535,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 7,
+            "PortScan": 238
+          },
+          "total_rows": 245,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 59,
+            "PortScan": 984
+          },
+          "total_rows": 1043,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 4,
+            "PortScan": 197
+          },
+          "total_rows": 201,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 13,
+            "PortScan": 540
+          },
+          "total_rows": 553,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 12,
+            "PortScan": 510
+          },
+          "total_rows": 522,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "PortScan": 717
+          },
+          "total_rows": 719,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 76,
+            "PortScan": 987
+          },
+          "total_rows": 1063,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 15,
+            "PortScan": 295
+          },
+          "total_rows": 310,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 7,
+            "PortScan": 294
+          },
+          "total_rows": 301,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 8,
+            "PortScan": 1125
+          },
+          "total_rows": 1133,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 31,
+            "PortScan": 3735
+          },
+          "total_rows": 3766,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 14,
+            "PortScan": 290
+          },
+          "total_rows": 304,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "PortScan": 528
+          },
+          "total_rows": 530,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 3,
+            "PortScan": 567
+          },
+          "total_rows": 570,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "PortScan": 353
+          },
+          "total_rows": 355,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 8,
+            "PortScan": 211
+          },
+          "total_rows": 219,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 14,
+            "PortScan": 539
+          },
+          "total_rows": 553,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 6,
+            "PortScan": 516
+          },
+          "total_rows": 522,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 3,
+            "PortScan": 619
+          },
+          "total_rows": 622,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 10,
+            "PortScan": 234
+          },
+          "total_rows": 244,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 8,
+            "PortScan": 585
+          },
+          "total_rows": 593,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 3,
+            "PortScan": 889
+          },
+          "total_rows": 892,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 11,
+            "PortScan": 645
+          },
+          "total_rows": 656,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "PortScan": 1052
+          },
+          "total_rows": 1054,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "PortScan": 187
+          },
+          "total_rows": 189,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 4,
+            "PortScan": 506
+          },
+          "total_rows": 510,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 8,
+            "PortScan": 483
+          },
+          "total_rows": 491,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 5,
+            "PortScan": 232
+          },
+          "total_rows": 237,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 44,
+            "PortScan": 1901
+          },
+          "total_rows": 1945,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 13,
+            "PortScan": 654
+          },
+          "total_rows": 667,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 23,
+            "PortScan": 467
+          },
+          "total_rows": 490,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 20,
+            "PortScan": 481
+          },
+          "total_rows": 501,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 6,
+            "PortScan": 640
+          },
+          "total_rows": 646,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 5
+          },
+          "total_rows": 6,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 6,
+            "PortScan": 283
+          },
+          "total_rows": 289,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 6,
+            "PortScan": 544
+          },
+          "total_rows": 550,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 155
+          },
+          "total_rows": 156,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 20,
+            "PortScan": 547
+          },
+          "total_rows": 567,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 4,
+            "PortScan": 662
+          },
+          "total_rows": 666,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 19,
+            "PortScan": 509
+          },
+          "total_rows": 528,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "PortScan": 173
+          },
+          "total_rows": 175,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 6,
+            "PortScan": 902
+          },
+          "total_rows": 908,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 24,
+            "PortScan": 946
+          },
+          "total_rows": 970,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 57
+          },
+          "total_rows": 58,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 6,
+            "PortScan": 514
+          },
+          "total_rows": 520,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 4,
+            "PortScan": 151
+          },
+          "total_rows": 155,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 5,
+            "PortScan": 487
+          },
+          "total_rows": 492,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 9,
+            "PortScan": 515
+          },
+          "total_rows": 524,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 6,
+            "PortScan": 615
+          },
+          "total_rows": 621,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 8,
+            "PortScan": 1213
+          },
+          "total_rows": 1221,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "PortScan": 308
+          },
+          "total_rows": 310,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 13,
+            "PortScan": 286
+          },
+          "total_rows": 299,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 4,
+            "PortScan": 565
+          },
+          "total_rows": 569,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 7,
+            "PortScan": 468
+          },
+          "total_rows": 475,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "PortScan": 636
+          },
+          "total_rows": 638,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 3,
+            "PortScan": 306
+          },
+          "total_rows": 309,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 4,
+            "PortScan": 649
+          },
+          "total_rows": 653,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 15,
+            "PortScan": 828
+          },
+          "total_rows": 843,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 19
+          },
+          "total_rows": 20,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 611
+          },
+          "total_rows": 612,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 4,
+            "PortScan": 339
+          },
+          "total_rows": 343,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 18
+          },
+          "total_rows": 19,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 335
+          },
+          "total_rows": 336,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 4,
+            "PortScan": 2116
+          },
+          "total_rows": 2120,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 20
+          },
+          "total_rows": 21,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 284
+          },
+          "total_rows": 285,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 10,
+            "PortScan": 858
+          },
+          "total_rows": 868,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 28,
+            "PortScan": 1556
+          },
+          "total_rows": 1584,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 360
+          },
+          "total_rows": 361,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 321
+          },
+          "total_rows": 322,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "PortScan": 6
+          },
+          "total_rows": 8,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "PortScan": 673
+          },
+          "total_rows": 675,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 72
+          },
+          "total_rows": 73,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 4
+          },
+          "total_rows": 5,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 3,
+            "PortScan": 231
+          },
+          "total_rows": 234,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 90
+          },
+          "total_rows": 91,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "PortScan": 241
+          },
+          "total_rows": 243,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "PortScan": 895
+          },
+          "total_rows": 897,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 160
+          },
+          "total_rows": 161,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 5715
+          },
+          "total_rows": 5716,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 6
+          },
+          "total_rows": 7,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 12
+          },
+          "total_rows": 13,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 18
+          },
+          "total_rows": 19,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "PortScan": 7
+          },
+          "total_rows": 8,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "Bot": 2
+          },
+          "total_rows": 3,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "Bot": 5
+          },
+          "total_rows": 6,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 3,
+            "Bot": 1
+          },
+          "total_rows": 4,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "Bot": 3
+          },
+          "total_rows": 4,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "Bot": 11
+          },
+          "total_rows": 13,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "Bot": 1
+          },
+          "total_rows": 2,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "Bot": 5
+          },
+          "total_rows": 6,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "Bot": 7
+          },
+          "total_rows": 8,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "Bot": 3
+          },
+          "total_rows": 4,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 2,
+            "Bot": 1
+          },
+          "total_rows": 3,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "Bot": 2
+          },
+          "total_rows": 3,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "Bot": 16
+          },
+          "total_rows": 17,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DDoS": 4
+          },
+          "total_rows": 5,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "Bot": 7,
+            "BENIGN": 1
+          },
+          "total_rows": 8,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "Bot": 17,
+            "BENIGN": 1
+          },
+          "total_rows": 18,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "Bot": 4,
+            "BENIGN": 1
+          },
+          "total_rows": 5,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "BENIGN": 1,
+            "DDoS": 1
+          },
+          "total_rows": 2,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "Bot": 1,
+            "BENIGN": 1
+          },
+          "total_rows": 2,
+          "has_benign_and_attack": true
+        },
+        {
+          "labels": {
+            "Bot": 1,
+            "BENIGN": 1
+          },
+          "total_rows": 2,
+          "has_benign_and_attack": true
+        }
+      ]
+    }
+  },
+  "val_class_table": [
+    {
+      "class": "BENIGN",
+      "raw": 872105,
+      "dedup": 760061,
+      "removed": 112044,
+      "retention": 87.15246443948837
+    },
+    {
+      "class": "DoS Hulk",
+      "raw": 231073,
+      "dedup": 173756,
+      "removed": 57317,
+      "retention": 75.19528460702894
+    },
+    {
+      "class": "DoS GoldenEye",
+      "raw": 10293,
+      "dedup": 10286,
+      "removed": 7,
+      "retention": 99.9319926163412
+    },
+    {
+      "class": "FTP-Patator",
+      "raw": 7938,
+      "dedup": 5933,
+      "removed": 2005,
+      "retention": 74.74174855127235
+    },
+    {
+      "class": "SSH-Patator",
+      "raw": 5897,
+      "dedup": 3219,
+      "removed": 2678,
+      "retention": 54.58707817534339
+    },
+    {
+      "class": "DoS slowloris",
+      "raw": 5796,
+      "dedup": 5385,
+      "removed": 411,
+      "retention": 92.90890269151139
+    },
+    {
+      "class": "DoS Slowhttptest",
+      "raw": 5499,
+      "dedup": 5228,
+      "removed": 271,
+      "retention": 95.071831242044
+    },
+    {
+      "class": "Heartbleed",
+      "raw": 11,
+      "dedup": 11,
+      "removed": 0,
+      "retention": 100.0
+    }
+  ],
+  "test_class_table": [
+    {
+      "class": "BENIGN",
+      "raw": 871074,
+      "dedup": 711935,
+      "removed": 159139,
+      "retention": 81.73071403807253
+    },
+    {
+      "class": "PortScan",
+      "raw": 158930,
+      "dedup": 1852,
+      "removed": 157078,
+      "retention": 1.1652928962436293
+    },
+    {
+      "class": "DDoS",
+      "raw": 128027,
+      "dedup": 128013,
+      "removed": 14,
+      "retention": 99.98906480664235
+    },
+    {
+      "class": "Bot",
+      "raw": 1966,
+      "dedup": 1424,
+      "removed": 542,
+      "retention": 72.43133265513734
+    },
+    {
+      "class": "Web Attack \ufffd Brute Force",
+      "raw": 1507,
+      "dedup": 1470,
+      "removed": 37,
+      "retention": 97.54479097544791
+    },
+    {
+      "class": "Web Attack \ufffd XSS",
+      "raw": 652,
+      "dedup": 652,
+      "removed": 0,
+      "retention": 100.0
+    },
+    {
+      "class": "Infiltration",
+      "raw": 36,
+      "dedup": 36,
+      "removed": 0,
+      "retention": 100.0
+    },
+    {
+      "class": "Web Attack \ufffd Sql Injection",
+      "raw": 21,
+      "dedup": 21,
+      "removed": 0,
+      "retention": 100.0
+    }
+  ],
+  "cross_overlap": {
+    "train_vs_validation": {
+      "exact_matching_vectors": 24807,
+      "total_p2_overlapping_rows": 79686,
+      "same_label_rows": 79025,
+      "conflicting_label_rows": 661,
+      "top_label_pairs": {
+        "BENIGN -> BENIGN": 79025,
+        "BENIGN -> DoS Hulk": 659,
+        "BENIGN -> DoS slowloris": 2
+      }
+    },
+    "train_vs_test": {
+      "exact_matching_vectors": 24792,
+      "total_p2_overlapping_rows": 86479,
+      "same_label_rows": 86372,
+      "conflicting_label_rows": 107,
+      "top_label_pairs": {
+        "BENIGN -> BENIGN": 86372,
+        "BENIGN -> Bot": 106,
+        "BENIGN -> DDoS": 1
+      }
+    },
+    "validation_vs_test": {
+      "exact_matching_vectors": 34478,
+      "total_p2_overlapping_rows": 109495,
+      "same_label_rows": 108453,
+      "conflicting_label_rows": 1042,
+      "top_label_pairs": {
+        "BENIGN -> BENIGN": 108453,
+        "BENIGN -> PortScan": 950,
+        "DoS Hulk -> BENIGN": 88,
+        "BENIGN -> Bot": 18,
+        "DoS slowloris -> BENIGN": 4
+      }
+    }
+  }
+}

@@ -1,0 +1,1665 @@
+{
+  "val_matching_raw": 79686,
+  "val_matching_unique": 24807,
+  "val_dedup_matching": 23885,
+  "test_matching_raw": 86479,
+  "test_matching_unique": 24792,
+  "test_dedup_matching": 23398,
+  "val_conflict_surviving": {
+    "BENIGN": 37,
+    "DoS Hulk": 36,
+    "DoS slowloris": 1
+  },
+  "test_conflict_surviving": {
+    "BENIGN": 124,
+    "PURGED": 1,
+    "Bot": 5
+  },
+  "test_76k_breakdown": {
+    "PortScan": 75372,
+    "BENIGN": 998,
+    "Bot": 106,
+    "DDoS": 6
+  },
+  "cross_107_breakdown": {
+    "Bot": 106,
+    "DDoS": 1
+  },
+  "overlap_both": 19,
+  "val_vector_details": [
+    {
+      "vector_hash": "489c84b3342af0e7",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 351
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "e751b533d6c0d720",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 3360
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "a341d833ff7be9e1",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 131
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "11639a9f266b9ecf",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 23
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "bb35420d1dd275d2",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 1
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "36d621d0dcbc6cb6",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 1
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "ee4faf1a3f025773",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 3
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "abd351f4cdb570b9",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 3
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "995860da807d6cd2",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 1
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "c9b6d3157187681d",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 3
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "d901c4a22c36472a",
+      "raw_labels": {
+        "BENIGN": 2,
+        "DoS Hulk": 1
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "1b850c54e99c20f8",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 1
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "362f1e5da0636289",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 4
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "d10e9b0188f48edf",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 3
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "326b1534ababcc71",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 2
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "c6f13344e867c8ce",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 3
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "1e96cbdded56fbc8",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 3
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "0b04b55b6a161abd",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 1
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "d69cc81d2bb520ac",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 7
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "f3a28dd712644915",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 1
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "d4feca5dd610fcac",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 5
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "2d4b1cd6092cc532",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 4
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "243c0077342257e6",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 5
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "a044fa78c914ca66",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 3
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "fabd905b81a7e763",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 6
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "c5d3d3df8075a962",
+      "raw_labels": {
+        "BENIGN": 2,
+        "DoS Hulk": 7
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "e5b9fd5f429a171d",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 7
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "7bf962845a6f50f2",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 1
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "c01ec9345d38c95a",
+      "raw_labels": {
+        "BENIGN": 2,
+        "DoS Hulk": 10
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "8c0c4564f6448662",
+      "raw_labels": {
+        "BENIGN": 2,
+        "DoS Hulk": 9
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "439f7e84aa1dd22e",
+      "raw_labels": {
+        "BENIGN": 2,
+        "DoS Hulk": 17
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "5f87a2649e0ab3df",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 33
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "a7ce88ab0c964496",
+      "raw_labels": {
+        "BENIGN": 2,
+        "DoS Hulk": 21
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "58e175cb47ae26e6",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 7
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "47800fd2ea4771a9",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 8
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "96726c25910b0cd8",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 17
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "673b811ddfaa1f67",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 20
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "fec3c699091a4374",
+      "raw_labels": {
+        "BENIGN": 2,
+        "DoS Hulk": 21
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "0f52d34b5a54dd28",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 20
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "c727372810dc1952",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 15
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "87837bc80c5613ce",
+      "raw_labels": {
+        "BENIGN": 2,
+        "DoS Hulk": 22
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "a1b8eb7a4f47e217",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 8
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "6d5bb9d363cb4c94",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 29
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "e47a2af510d8abf5",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 9
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "5c4d523a2c33bdda",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 35
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "5722955cd8975f31",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 53
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "a5dd2d9ec3ce574c",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 60
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "e722a5e1f1664038",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 45
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "e5fec826b36f1397",
+      "raw_labels": {
+        "BENIGN": 2,
+        "DoS Hulk": 45
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "1375297bd8c76434",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS slowloris": 1
+      },
+      "survived_label": "DoS slowloris"
+    },
+    {
+      "vector_hash": "f1d23d18449675a8",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 28
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "cf5a9508a62c7815",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 24
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "a5f76faa381bb3b5",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 19
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "b08d2f225038dc6b",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 11
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "c4d5c0f32dc17f3b",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 6
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "2964f8136c5cf87d",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 13
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "63d67e5630e0753d",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 14
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "caef680c45abf24b",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 9
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "64e28164661f9308",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 12
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "4fb0f16aad64f9fd",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 3
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "2011ee77f643ca2d",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 7
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "e61d8983c203462b",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 8
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "712789fd45767b1d",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 2
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "0aac200230df71f0",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 8
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "384516006267cb07",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 7
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "a06e82268e4d0b54",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 1
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "051e1905af1fa443",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 1
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "1b62dd5aea4cd9ea",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 1
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "cc5fbf712750de4a",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 3
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "fc49357bd8156c05",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 1
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "dc11777020b76ec3",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 1
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "d548d63efe95754a",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 15
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "2a6a529e39b201be",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 27
+      },
+      "survived_label": "DoS Hulk"
+    },
+    {
+      "vector_hash": "92e65dd52956e7de",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DoS Hulk": 80
+      },
+      "survived_label": "DoS Hulk"
+    }
+  ],
+  "test_vector_details": [
+    {
+      "vector_hash": "055993c938f5f4e9",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 57
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "619906d276a6bce5",
+      "raw_labels": {
+        "BENIGN": 5,
+        "PortScan": 232
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "5711ec74a0ec18fa",
+      "raw_labels": {
+        "BENIGN": 1,
+        "Bot": 3
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "536ad0bad92b9f5a",
+      "raw_labels": {
+        "BENIGN": 2,
+        "PortScan": 187
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "669287f9d69be022",
+      "raw_labels": {
+        "BENIGN": 1,
+        "Bot": 2
+      },
+      "survived_label": "PURGED"
+    },
+    {
+      "vector_hash": "fe7e5711b4d46f47",
+      "raw_labels": {
+        "BENIGN": 10,
+        "PortScan": 234
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "39df876c6835d248",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DDoS": 1
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "5dc7748ae0627d8c",
+      "raw_labels": {
+        "BENIGN": 12,
+        "PortScan": 198
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "c32971aeb13e5bc8",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DDoS": 4
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "a7243191dae182dc",
+      "raw_labels": {
+        "BENIGN": 4,
+        "PortScan": 180
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "79fb420ddf0fe5e5",
+      "raw_labels": {
+        "BENIGN": 2,
+        "PortScan": 173
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "bab167706d5b72f5",
+      "raw_labels": {
+        "BENIGN": 1,
+        "DDoS": 1
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "05e420ed9c000a1d",
+      "raw_labels": {
+        "BENIGN": 4,
+        "PortScan": 151
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "84eeb6ed1fbd2230",
+      "raw_labels": {
+        "BENIGN": 8,
+        "PortScan": 211
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "53737f96461a4231",
+      "raw_labels": {
+        "BENIGN": 1,
+        "Bot": 5
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "69ccf95b963b35dd",
+      "raw_labels": {
+        "BENIGN": 7,
+        "PortScan": 238
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "a1a67bb7ad41037a",
+      "raw_labels": {
+        "BENIGN": 2,
+        "PortScan": 353
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "43cb48351ae28cd2",
+      "raw_labels": {
+        "BENIGN": 3,
+        "PortScan": 567
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "929d84212e3e75a6",
+      "raw_labels": {
+        "BENIGN": 4,
+        "PortScan": 759
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "933fdc4f2c19a105",
+      "raw_labels": {
+        "BENIGN": 5,
+        "PortScan": 806
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "a8e3d72c9d96580c",
+      "raw_labels": {
+        "BENIGN": 3,
+        "PortScan": 554
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "eb1278b3382a79f0",
+      "raw_labels": {
+        "BENIGN": 3,
+        "PortScan": 421
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "ad5f57414d500bdc",
+      "raw_labels": {
+        "BENIGN": 8,
+        "PortScan": 483
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "45095ae67693d759",
+      "raw_labels": {
+        "BENIGN": 8,
+        "PortScan": 585
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "b8c5abcb8a77c4d7",
+      "raw_labels": {
+        "BENIGN": 1,
+        "Bot": 10
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "da216cae5def30b1",
+      "raw_labels": {
+        "BENIGN": 13,
+        "PortScan": 654
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "474e105a44f97a7e",
+      "raw_labels": {
+        "BENIGN": 20,
+        "PortScan": 547
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "63e409cf65023644",
+      "raw_labels": {
+        "BENIGN": 23,
+        "PortScan": 467
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "ea844cf367c3ec03",
+      "raw_labels": {
+        "BENIGN": 20,
+        "PortScan": 481
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "d21e3681007a1220",
+      "raw_labels": {
+        "BENIGN": 25,
+        "PortScan": 445
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "72711f0ff2feae3b",
+      "raw_labels": {
+        "BENIGN": 19,
+        "PortScan": 509
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "6492a7ba52df8027",
+      "raw_labels": {
+        "BENIGN": 9,
+        "PortScan": 515
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "10f038249e8689e4",
+      "raw_labels": {
+        "BENIGN": 13,
+        "PortScan": 540
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "7e17ec5ec145e7d8",
+      "raw_labels": {
+        "BENIGN": 11,
+        "PortScan": 530
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "0720de5964f54da3",
+      "raw_labels": {
+        "BENIGN": 12,
+        "PortScan": 510
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "45602b768b430cb6",
+      "raw_labels": {
+        "BENIGN": 6,
+        "PortScan": 516
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "f5df16b83ebc773d",
+      "raw_labels": {
+        "BENIGN": 7,
+        "PortScan": 468
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "65f36a7229f5f70a",
+      "raw_labels": {
+        "BENIGN": 5,
+        "PortScan": 468
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "5778cc1c05bf8827",
+      "raw_labels": {
+        "BENIGN": 1,
+        "Bot": 5
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "cc342f0bcba0839a",
+      "raw_labels": {
+        "BENIGN": 5,
+        "PortScan": 487
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "d7fd5a8fd7692b90",
+      "raw_labels": {
+        "BENIGN": 1,
+        "Bot": 7
+      },
+      "survived_label": "Bot"
+    },
+    {
+      "vector_hash": "027339cdeb2d8912",
+      "raw_labels": {
+        "BENIGN": 6,
+        "PortScan": 544
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "6a8e937c787d0007",
+      "raw_labels": {
+        "BENIGN": 1,
+        "Bot": 17
+      },
+      "survived_label": "Bot"
+    },
+    {
+      "vector_hash": "5b28ee34b41b5b62",
+      "raw_labels": {
+        "BENIGN": 14,
+        "PortScan": 539
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "f9e75dc98cc961fe",
+      "raw_labels": {
+        "BENIGN": 4,
+        "PortScan": 506
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "86ad3b31f44867dc",
+      "raw_labels": {
+        "BENIGN": 2,
+        "PortScan": 528
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "dfb5d3505a3e47a5",
+      "raw_labels": {
+        "BENIGN": 6,
+        "PortScan": 514
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "7f9d844b63748974",
+      "raw_labels": {
+        "BENIGN": 6,
+        "PortScan": 615
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "e88bc00b5ee9b770",
+      "raw_labels": {
+        "BENIGN": 6,
+        "PortScan": 640
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "865618ee928cf281",
+      "raw_labels": {
+        "BENIGN": 11,
+        "PortScan": 645
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "ccacd87a37a26846",
+      "raw_labels": {
+        "BENIGN": 1,
+        "Bot": 16
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "ccc0fcd17f56a8cd",
+      "raw_labels": {
+        "BENIGN": 1,
+        "Bot": 1
+      },
+      "survived_label": "Bot"
+    },
+    {
+      "vector_hash": "b0b47f488a29ab77",
+      "raw_labels": {
+        "BENIGN": 7,
+        "PortScan": 686
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "b5a01000b84370b2",
+      "raw_labels": {
+        "BENIGN": 8,
+        "PortScan": 1213
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "24c765ce8ee93d46",
+      "raw_labels": {
+        "BENIGN": 15,
+        "PortScan": 2747
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "1d61bd2807af13af",
+      "raw_labels": {
+        "BENIGN": 10,
+        "PortScan": 6644
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "63f0d3f02c3b7b66",
+      "raw_labels": {
+        "BENIGN": 2,
+        "Bot": 11
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "00019539b2de9908",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 5715
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "82685ab94d581408",
+      "raw_labels": {
+        "BENIGN": 1,
+        "Bot": 7
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "c393dac0ec7b036b",
+      "raw_labels": {
+        "BENIGN": 4,
+        "PortScan": 2116
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "fc1bb86e957609de",
+      "raw_labels": {
+        "BENIGN": 8,
+        "PortScan": 1125
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "e63fb1bb703ddb68",
+      "raw_labels": {
+        "BENIGN": 3,
+        "Bot": 1
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "f9982a50277763aa",
+      "raw_labels": {
+        "BENIGN": 7,
+        "PortScan": 990
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "28882aa94dd674ec",
+      "raw_labels": {
+        "BENIGN": 26,
+        "PortScan": 2509
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "265d61a897280dde",
+      "raw_labels": {
+        "BENIGN": 31,
+        "PortScan": 3735
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "2bdc30b24d9ef9e3",
+      "raw_labels": {
+        "BENIGN": 36,
+        "PortScan": 1350
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "921dcd20a374c818",
+      "raw_labels": {
+        "BENIGN": 59,
+        "PortScan": 984
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "b3ed17b511a2e6a4",
+      "raw_labels": {
+        "BENIGN": 76,
+        "PortScan": 987
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "9aa29051d1192039",
+      "raw_labels": {
+        "BENIGN": 67,
+        "PortScan": 1246
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "efe4f2c07d851529",
+      "raw_labels": {
+        "BENIGN": 44,
+        "PortScan": 1901
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "2b16ebcd68603d3d",
+      "raw_labels": {
+        "BENIGN": 28,
+        "PortScan": 1556
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "899f661dbdfb850e",
+      "raw_labels": {
+        "BENIGN": 2,
+        "Bot": 1
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "1bae64b6e7bdb732",
+      "raw_labels": {
+        "BENIGN": 24,
+        "PortScan": 946
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "325f7abed124f0cd",
+      "raw_labels": {
+        "BENIGN": 15,
+        "PortScan": 828
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "20c634a8ef378fcb",
+      "raw_labels": {
+        "BENIGN": 10,
+        "PortScan": 858
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "3123d5bbd04e1115",
+      "raw_labels": {
+        "BENIGN": 6,
+        "PortScan": 902
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "651b18d98f147e75",
+      "raw_labels": {
+        "BENIGN": 3,
+        "Bot": 2
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "8afccbbd6315e295",
+      "raw_labels": {
+        "BENIGN": 11,
+        "PortScan": 863
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "b44c50110fa9006a",
+      "raw_labels": {
+        "BENIGN": 9,
+        "PortScan": 885
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "55e3c9760f94bc17",
+      "raw_labels": {
+        "BENIGN": 3,
+        "PortScan": 1083
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "c7a3e038fe179044",
+      "raw_labels": {
+        "BENIGN": 3,
+        "PortScan": 1197
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "cece5d841f1a2002",
+      "raw_labels": {
+        "BENIGN": 3,
+        "PortScan": 889
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "9b007ddc8c2f1e73",
+      "raw_labels": {
+        "BENIGN": 4,
+        "PortScan": 662
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "db9864d4b6a5bcd2",
+      "raw_labels": {
+        "BENIGN": 4,
+        "PortScan": 565
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "e854d42d3ba22468",
+      "raw_labels": {
+        "BENIGN": 1,
+        "Bot": 4
+      },
+      "survived_label": "Bot"
+    },
+    {
+      "vector_hash": "db66c08037c55bf4",
+      "raw_labels": {
+        "BENIGN": 3,
+        "PortScan": 619
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "d04f304e38acb571",
+      "raw_labels": {
+        "BENIGN": 1,
+        "Bot": 2
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "27247ba7ebb979c5",
+      "raw_labels": {
+        "BENIGN": 2,
+        "PortScan": 636
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "03048ad8b4bb8d24",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 611
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "98c00f608c9747a7",
+      "raw_labels": {
+        "BENIGN": 4,
+        "PortScan": 649
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "ae972f63d0638924",
+      "raw_labels": {
+        "BENIGN": 1,
+        "Bot": 3
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "2844f3397b8c7536",
+      "raw_labels": {
+        "BENIGN": 2,
+        "PortScan": 717
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "126a953255f134f5",
+      "raw_labels": {
+        "BENIGN": 1,
+        "Bot": 5
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "da16cea5337babde",
+      "raw_labels": {
+        "BENIGN": 2,
+        "PortScan": 895
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "123de084550feadf",
+      "raw_labels": {
+        "BENIGN": 2,
+        "PortScan": 1052
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "0021e8504dfa5634",
+      "raw_labels": {
+        "BENIGN": 3,
+        "PortScan": 886
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "3375038dd996196b",
+      "raw_labels": {
+        "BENIGN": 2,
+        "PortScan": 673
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "239f194f82f6c63b",
+      "raw_labels": {
+        "BENIGN": 2,
+        "PortScan": 433
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "6341fdc039ddd118",
+      "raw_labels": {
+        "BENIGN": 4,
+        "PortScan": 339
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "5577e9c06c377cb2",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 335
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "01790a623f69bcf8",
+      "raw_labels": {
+        "BENIGN": 2,
+        "PortScan": 308
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "86922fbb6f02323f",
+      "raw_labels": {
+        "BENIGN": 6,
+        "PortScan": 283
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "50ecae188517b634",
+      "raw_labels": {
+        "BENIGN": 1,
+        "Bot": 1
+      },
+      "survived_label": "Bot"
+    },
+    {
+      "vector_hash": "aeb36d0d4a4cdbc5",
+      "raw_labels": {
+        "BENIGN": 14,
+        "PortScan": 290
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "1ef6e8d70421d1ea",
+      "raw_labels": {
+        "BENIGN": 13,
+        "PortScan": 286
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "8a569f523f56be62",
+      "raw_labels": {
+        "BENIGN": 15,
+        "PortScan": 295
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "b2a692534f9e0502",
+      "raw_labels": {
+        "BENIGN": 7,
+        "PortScan": 294
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "d185bd1d92849d9f",
+      "raw_labels": {
+        "BENIGN": 3,
+        "PortScan": 306
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "cde7b5c7f629c549",
+      "raw_labels": {
+        "BENIGN": 3,
+        "PortScan": 231
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "e7742a26f1eeafe8",
+      "raw_labels": {
+        "BENIGN": 2,
+        "PortScan": 241
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "2683debac81d85db",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 360
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "650a2e5c49186b06",
+      "raw_labels": {
+        "BENIGN": 1,
+        "Bot": 2
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "64f0490726159d3b",
+      "raw_labels": {
+        "BENIGN": 4,
+        "PortScan": 197
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "c0f1132bedbba574",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 155
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "6a6444e6e4c25ffa",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 160
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "89871dac33466f87",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 321
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "abd5c9263c6ab85e",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 284
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "f0e74c33eb4d0d00",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 90
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "d2d2757b6864d6c1",
+      "raw_labels": {
+        "BENIGN": 1,
+        "Bot": 1
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "da0781c0f2e068ce",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 72
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "3249c81c55686f90",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 18
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "59da29a84b931eff",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 19
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "78cd91b9ca8cec7f",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 12
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "36abee15a2adc586",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 18
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "a843f363c821c4f7",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 20
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "414a6d08d2b0534a",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 4
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "f5144d3ed2a56130",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 6
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "0ce8558937076e19",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 5
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "ed84eed39ec63abe",
+      "raw_labels": {
+        "BENIGN": 1,
+        "PortScan": 7
+      },
+      "survived_label": "BENIGN"
+    },
+    {
+      "vector_hash": "8432adb6a8ed2e88",
+      "raw_labels": {
+        "BENIGN": 2,
+        "PortScan": 6
+      },
+      "survived_label": "BENIGN"
+    }
+  ]
+}
