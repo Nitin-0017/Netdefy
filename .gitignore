@@ -40,9 +40,12 @@ data/interim/*
 data/processed/*
 !data/processed/.gitkeep
 !data/processed/README.md
+# Benchmark Datasets (v1 is tracked: Parquets & large manifests via Git LFS, metadata via normal Git)
+# Unversioned or temporary benchmark scratch files remain excluded
 data/benchmark/*
 !data/benchmark/.gitkeep
 !data/benchmark/README.md
+!data/benchmark/v1/
 
 # Artifacts & Checkpoints
 artifacts/*

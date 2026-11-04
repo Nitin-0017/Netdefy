@@ -1,0 +1,83 @@
+{
+  "execution_timestamp": "2026-11-04T04:47:03Z",
+  "random_seed": 42,
+  "class_distributions": {
+    "oneclass_train": {
+      "BENIGN": 100000
+    },
+    "classifier_train": {
+      "BENIGN": 22973,
+      "DoS Hulk": 6087,
+      "DoS GoldenEye": 271,
+      "FTP-Patator": 209,
+      "SSH-Patator": 155,
+      "DoS slowloris": 153,
+      "DoS Slowhttptest": 145,
+      "Heartbleed": 7
+    },
+    "validation": {
+      "BENIGN": 15315,
+      "DoS Hulk": 4058,
+      "DoS GoldenEye": 181,
+      "FTP-Patator": 139,
+      "SSH-Patator": 104,
+      "DoS slowloris": 102,
+      "DoS Slowhttptest": 97,
+      "Heartbleed": 4
+    },
+    "test": {
+      "BENIGN": 37474,
+      "PortScan": 6837,
+      "DDoS": 5508,
+      "Bot": 85,
+      "Web Attack \ufffd Brute Force": 65,
+      "Web Attack \ufffd XSS": 28,
+      "Infiltration": 2,
+      "Web Attack \ufffd Sql Injection": 1
+    },
+    "rare_class_diagnostic": {
+      "BENIGN": 2000,
+      "Bot": 1966,
+      "Web Attack \ufffd Brute Force": 1507,
+      "Web Attack \ufffd XSS": 652,
+      "Infiltration": 36,
+      "Web Attack \ufffd Sql Injection": 21,
+      "Heartbleed": 11
+    }
+  },
+  "source_day_distributions": {
+    "oneclass_train": {
+      "Monday": 100000
+    },
+    "classifier_train": {
+      "Wednesday": 18249,
+      "Tuesday": 11751
+    },
+    "validation": {
+      "Wednesday": 12245,
+      "Tuesday": 7755
+    },
+    "test": {
+      "Friday": 30330,
+      "Thursday": 19670
+    }
+  },
+  "uniqueness_summary": {
+    "oneclass_train": {
+      "total_rows": 100000,
+      "unique_feature_vectors": 92003
+    },
+    "classifier_train": {
+      "total_rows": 30000,
+      "unique_feature_vectors": 27842
+    },
+    "validation": {
+      "total_rows": 20000,
+      "unique_feature_vectors": 18669
+    },
+    "test": {
+      "total_rows": 50000,
+      "unique_feature_vectors": 40207
+    }
+  }
+}

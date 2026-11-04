@@ -6,9 +6,15 @@ from netdefy.models.device import (
     get_device_diagnostics,
     verify_tensor_computation,
 )
+from netdefy.models.isolation_forest import (
+    IsolationForestConfig,
+    IsolationForestDetector,
+)
 
 __all__ = [
     "DeviceDiagnostics",
+    "IsolationForestConfig",
+    "IsolationForestDetector",
     "get_device",
     "get_device_diagnostics",
     "verify_tensor_computation",

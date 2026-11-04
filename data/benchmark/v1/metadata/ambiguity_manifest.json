@@ -1,0 +1,13 @@
+{
+  "conflicting_vector_count_in_cicids2017": 130,
+  "ambiguity_summary_in_50k_test": {
+    "conflicting_vectors_in_cicids2017": 130,
+    "conflicting_vectors_in_benchmark_test": 100,
+    "ambiguous_rows_in_benchmark_test": 3305,
+    "ambiguous_rows_by_class": {
+      "BENIGN": 49,
+      "Bot": 2,
+      "PortScan": 3254
+    }
+  }
+}

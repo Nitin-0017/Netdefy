@@ -1,0 +1,39 @@
+{
+  "benchmark_version": "v1",
+  "creation_timestamp": "2026-11-04T04:47:04Z",
+  "duration_seconds": 8.78,
+  "peak_memory_mb": 581.55,
+  "total_benchmark_records": 200000,
+  "files": {
+    "oneclass_train": {
+      "path": "data/benchmark/v1/oneclass_train.parquet",
+      "records": 100000,
+      "sha256": "06157578c42449a053190325ecea4c41e999797dbfec033b572f62df789f633c",
+      "size_mb": 10.36
+    },
+    "classifier_train": {
+      "path": "data/benchmark/v1/classifier_train.parquet",
+      "records": 30000,
+      "sha256": "d5d69f75f44612fb455a77c9d03bf88b5d444ed22e123926e4867e88bc3e44c7",
+      "size_mb": 3.07
+    },
+    "validation": {
+      "path": "data/benchmark/v1/validation.parquet",
+      "records": 20000,
+      "sha256": "3116213f1a94f24a2a1b39123fc3a0ac300a231581fc3788045525698f9c72bf",
+      "size_mb": 2.11
+    },
+    "test": {
+      "path": "data/benchmark/v1/test.parquet",
+      "records": 50000,
+      "sha256": "263437c2e7da289ad29246dc923e5b6f41443c4d71f4f00497e0e69928d6e6e1",
+      "size_mb": 4.44
+    },
+    "rare_class_diagnostic": {
+      "path": "data/benchmark/v1/supplementary/rare_class_diagnostic.parquet",
+      "records": 6193,
+      "sha256": "4eb33a3d3b28ff7f3ddb37fd94da2de2fb1d37a07889d28d9c5e16bdb20b29ff",
+      "size_mb": 0.56
+    }
+  }
+}

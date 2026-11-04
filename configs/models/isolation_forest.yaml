@@ -1,0 +1,38 @@
+# NETDEFY — Isolation Forest Baseline Configuration
+# Model Architecture & Hyperparameters
+model:
+  name: "isolation_forest"
+  version: "v1"
+  description: "Scikit-learn Isolation Forest baseline trained exclusively on 100k Monday BENIGN flows"
+  n_estimators: 100
+  max_samples: "auto"        # 256 samples per tree (Liu et al. 2008), prevents masking
+  contamination: "auto"      # Threshold calibrated empirically on benign validation data
+  max_features: 1.0          # Use all 76 continuous features
+  bootstrap: false
+  n_jobs: -1                 # Max CPU parallelism on Apple Silicon M3
+  random_state: 42
+
+# Calibration Strategy (Pure Benign Validation)
+calibration:
+  strategy: "benign_percentile"
+  target_percentiles:
+    - 95.0
+    - 99.0
+    - 99.5
+  default_percentile: 99.0
+
+# Dataset Paths (Phase 3.2 Benchmark)
+data:
+  benchmark_dir: "data/benchmark/v1"
+  train_file: "oneclass_train.parquet"
+  validation_file: "validation.parquet"
+  test_file: "test.parquet"
+  supplementary_file: "supplementary/rare_class_diagnostic.parquet"
+  label_column: "Label"
+  benign_label: "BENIGN"
+
+# Output Locations
+output:
+  artifact_dir: "artifacts/models/isolation_forest/v1"
+  reports_dir: "reports"
+

@@ -1,0 +1,13 @@
+random_seed: 42
+target_sizes:
+  oneclass_train: 100000
+  classifier_train: 30000
+  validation: 20000
+  test: 50000
+  total_benchmark: 200000
+allocation_strategy: Hybrid natural-stratified with rare-class preservation
+source_mapping:
+  oneclass_train: Monday-WorkingHours.pcap_ISCX.csv (100% BENIGN)
+  classifier_train: Tuesday + Wednesday (Multiclass labelled)
+  validation: Tuesday + Wednesday (Disjoint from classifier_train)
+  test: Thursday + Friday (Chronological final holdout)
