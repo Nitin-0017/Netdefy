@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import logging
+import sys
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -178,6 +179,8 @@ class AutoencoderDetector:
     ) -> None:
         self.config = config or AutoencoderArchitectureConfig()
         self.device = torch.device(device) if isinstance(device, str) else device
+        if self.device.type == "cpu" and sys.platform == "darwin":
+            torch.set_num_threads(1)
         self.model = model or DeepAutoencoder(self.config)
         self.model.to(self.device)
         self.feature_names: list[str] = []

@@ -243,3 +243,4 @@ flowchart TD
 | **Confusion Matrix** | `artifacts/models/xgboost_classifier/v1/confusion_matrix.json` | `64d96f27c49e20fa485ac1b8bd5d0ad6f5c49204499f915b971d2f89cce1db3c` |
 | **Error Analysis** | `artifacts/models/xgboost_classifier/v1/error_analysis.json` | `ac961f55bd6c91e5491dfbc7354c4767ae0b0ad35450747d949cbbc78c2e3b50` |
 | **Artifact Manifest** | `artifacts/models/xgboost_classifier/v1/artifact_manifest.json` | `c3527dfa60064fb9e264501a3cfb578c74a00882e3b4a45f782c9748b816223b` |
+
