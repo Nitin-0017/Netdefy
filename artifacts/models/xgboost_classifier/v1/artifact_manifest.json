@@ -1,0 +1,60 @@
+{
+  "model_name": "xgboost_classifier",
+  "model_version": "v1",
+  "model_type": "xgboost_classifier",
+  "created_at": "2026-11-04T08:37:00Z",
+  "source_benchmark_version": "v1",
+  "benchmark_partition_checksums": {
+    "classifier_train": "d5d69f75f44612fb455a77c9d03bf88b5d444ed22e123926e4867e88bc3e44c7",
+    "validation": "3116213f1a94f24a2a1b39123fc3a0ac300a231581fc3788045525698f9c72bf",
+    "test": "263437c2e7da289ad29246dc923e5b6f41443c4d71f4f00497e0e69928d6e6e1"
+  },
+  "feature_schema_fingerprint": "a7f83d5a35bdb418dede8a9359a3d054b65c8129db79a3987753287e0159c9a0",
+  "model_configuration_hash": "575efb8bd383e4b069f0eb57b1eefec670805634ef6cd17a1dbfc67ea4a258aa",
+  "artifacts": {
+    "model_json": {
+      "path": "model.json",
+      "sha256": "18a40ca26425321ca601d7769c053acc077011f39b205dc3176a4a4940b64a72"
+    },
+    "model_ubj": {
+      "path": "model.ubj",
+      "sha256": "e708242901a9f2088804e72960d1bbce272d1921db559aa1fb93e826f86cf30c"
+    },
+    "class_mapping_json": {
+      "path": "class_mapping.json",
+      "sha256": "1a757d7f479c52a9c71d09ad6e897867ef4fcf87d738eefd30c3048a6602a280"
+    },
+    "feature_importance_json": {
+      "path": "feature_importance.json",
+      "sha256": "767943542062b19b7408d42c30f4c88419268be704427c85d9c4988ed993b806"
+    },
+    "validation_metrics_json": {
+      "path": "validation_metrics.json",
+      "sha256": "3185594c71435e375cfe44726d92505882db3e1006485937dff840a8a89bc058"
+    },
+    "test_metrics_json": {
+      "path": "test_metrics.json",
+      "sha256": "b42eea386064c06adc4f83e2653529a93f56e38498f64577ae6f4a4ffe36f376"
+    },
+    "confusion_matrix_json": {
+      "path": "confusion_matrix.json",
+      "sha256": "64d96f27c49e20fa485ac1b8bd5d0ad6f5c49204499f915b971d2f89cce1db3c"
+    },
+    "error_analysis_json": {
+      "path": "error_analysis.json",
+      "sha256": "ac961f55bd6c91e5491dfbc7354c4767ae0b0ad35450747d949cbbc78c2e3b50"
+    },
+    "feature_schema_json": {
+      "path": "feature_schema.json",
+      "sha256": "a7f83d5a35bdb418dede8a9359a3d054b65c8129db79a3987753287e0159c9a0"
+    }
+  },
+  "random_seed": 42,
+  "hardware_environment": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "processor": "arm",
+    "python_version": "3.12.13",
+    "xgboost_version": "3.4.1"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "0": "BENIGN",
+  "1": "DoS GoldenEye",
+  "2": "DoS Hulk",
+  "3": "DoS Slowhttptest",
+  "4": "DoS slowloris",
+  "5": "FTP-Patator",
+  "6": "Heartbleed",
+  "7": "SSH-Patator"
+}

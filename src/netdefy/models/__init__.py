@@ -15,6 +15,10 @@ from netdefy.models.isolation_forest import (
     IsolationForestConfig,
     IsolationForestDetector,
 )
+from netdefy.models.xgboost_classifier import (
+    XGBoostAttackClassifier,
+    XGBoostClassifierConfig,
+)
 
 __all__ = [
     "AutoencoderArchitectureConfig",
@@ -23,6 +27,8 @@ __all__ = [
     "DeviceDiagnostics",
     "IsolationForestConfig",
     "IsolationForestDetector",
+    "XGBoostAttackClassifier",
+    "XGBoostClassifierConfig",
     "get_device",
     "get_device_diagnostics",
     "verify_tensor_computation",

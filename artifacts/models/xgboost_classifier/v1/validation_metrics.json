@@ -1,0 +1,228 @@
+{
+  "validation_report": {
+    "dataset_name": "validation_v1",
+    "total_samples": 20000,
+    "accuracy": 0.9967,
+    "balanced_accuracy": 0.9868,
+    "macro_precision": 0.966,
+    "macro_recall": 0.9868,
+    "macro_f1": 0.9759,
+    "weighted_f1": 0.9967,
+    "log_loss_value": 0.0156,
+    "multiclass_ovr_roc_auc": 0.9998,
+    "classes": [
+      "BENIGN",
+      "DoS GoldenEye",
+      "DoS Hulk",
+      "DoS Slowhttptest",
+      "DoS slowloris",
+      "FTP-Patator",
+      "Heartbleed",
+      "SSH-Patator"
+    ],
+    "per_class_metrics": {
+      "BENIGN": {
+        "precision": 0.9993,
+        "recall": 0.9967,
+        "f1": 0.998,
+        "support": 15315
+      },
+      "DoS GoldenEye": {
+        "precision": 0.9781,
+        "recall": 0.989,
+        "f1": 0.9835,
+        "support": 181
+      },
+      "DoS Hulk": {
+        "precision": 0.9939,
+        "recall": 0.9985,
+        "f1": 0.9962,
+        "support": 4058
+      },
+      "DoS Slowhttptest": {
+        "precision": 0.8532,
+        "recall": 0.9588,
+        "f1": 0.9029,
+        "support": 97
+      },
+      "DoS slowloris": {
+        "precision": 0.9802,
+        "recall": 0.9706,
+        "f1": 0.9754,
+        "support": 102
+      },
+      "FTP-Patator": {
+        "precision": 0.9521,
+        "recall": 1.0,
+        "f1": 0.9754,
+        "support": 139
+      },
+      "Heartbleed": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4
+      },
+      "SSH-Patator": {
+        "precision": 0.9714,
+        "recall": 0.9808,
+        "f1": 0.9761,
+        "support": 104
+      }
+    },
+    "confusion_matrix_data": {
+      "labels": [
+        "BENIGN",
+        "DoS GoldenEye",
+        "DoS Hulk",
+        "DoS Slowhttptest",
+        "DoS slowloris",
+        "FTP-Patator",
+        "Heartbleed",
+        "SSH-Patator"
+      ],
+      "matrix": [
+        [
+          15265,
+          3,
+          23,
+          14,
+          0,
+          7,
+          0,
+          3
+        ],
+        [
+          1,
+          179,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          6,
+          0,
+          4052,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          93,
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          2,
+          99,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          139,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          4,
+          0
+        ],
+        [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          102
+        ]
+      ]
+    },
+    "unknown_count": 0,
+    "unknown_rate": 0.0
+  },
+  "confidence_curve": [
+    {
+      "threshold": 0.1,
+      "coverage": 1.0,
+      "accepted_count": 20000,
+      "rejected_count": 0,
+      "accuracy_on_accepted": 0.9967
+    },
+    {
+      "threshold": 0.3,
+      "coverage": 1.0,
+      "accepted_count": 19999,
+      "rejected_count": 1,
+      "accuracy_on_accepted": 0.9966
+    },
+    {
+      "threshold": 0.5,
+      "coverage": 0.9996,
+      "accepted_count": 19992,
+      "rejected_count": 8,
+      "accuracy_on_accepted": 0.9969
+    },
+    {
+      "threshold": 0.6,
+      "coverage": 0.9986,
+      "accepted_count": 19972,
+      "rejected_count": 28,
+      "accuracy_on_accepted": 0.9974
+    },
+    {
+      "threshold": 0.7,
+      "coverage": 0.9967,
+      "accepted_count": 19933,
+      "rejected_count": 67,
+      "accuracy_on_accepted": 0.9979
+    },
+    {
+      "threshold": 0.8,
+      "coverage": 0.9942,
+      "accepted_count": 19884,
+      "rejected_count": 116,
+      "accuracy_on_accepted": 0.9984
+    },
+    {
+      "threshold": 0.9,
+      "coverage": 0.9878,
+      "accepted_count": 19756,
+      "rejected_count": 244,
+      "accuracy_on_accepted": 0.9989
+    },
+    {
+      "threshold": 0.95,
+      "coverage": 0.9761,
+      "accepted_count": 19522,
+      "rejected_count": 478,
+      "accuracy_on_accepted": 0.9994
+    }
+  ]
+}

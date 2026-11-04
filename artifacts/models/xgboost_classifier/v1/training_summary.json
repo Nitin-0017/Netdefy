@@ -1,0 +1,35 @@
+{
+  "status": "SUCCESS",
+  "model_type": "xgboost_classifier",
+  "model_artifact": "artifacts/models/xgboost_classifier/v1/model.json",
+  "model_sha256": "e708242901a9f2088804e72960d1bbce272d1921db559aa1fb93e826f86cf30c",
+  "train_sample_count": 30000,
+  "validation_sample_count": 20000,
+  "fit_duration_seconds": 3.87,
+  "total_duration_seconds": 4.35,
+  "peak_memory_mb": 388.56,
+  "best_iteration": 149,
+  "class_mapping": {
+    "0": "BENIGN",
+    "1": "DoS GoldenEye",
+    "2": "DoS Hulk",
+    "3": "DoS Slowhttptest",
+    "4": "DoS slowloris",
+    "5": "FTP-Patator",
+    "6": "Heartbleed",
+    "7": "SSH-Patator"
+  },
+  "use_class_weights": true,
+  "validation_accuracy": 0.9967,
+  "validation_balanced_accuracy": 0.9868,
+  "validation_macro_f1": 0.9759,
+  "validation_weighted_f1": 0.9967,
+  "validation_log_loss": 0.0156,
+  "top_5_features_gain": {
+    "Bwd Packet Length Max": 549.4696655273438,
+    "Min Packet Length": 493.6567687988281,
+    "Bwd IAT Std": 343.92864990234375,
+    "Bwd Packet Length Min": 216.3593292236328,
+    "Fwd IAT Std": 215.9435272216797
+  }
+}

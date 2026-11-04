@@ -1,0 +1,35 @@
+model:
+  name: xgboost_classifier
+  version: v1
+  description: XGBoost multiclass gradient boosted decision trees trained on 30k Tuesday/Wednesday
+    flows
+  n_estimators: 150
+  max_depth: 6
+  learning_rate: 0.05
+  subsample: 0.8
+  colsample_bytree: 0.8
+  min_child_weight: 1.0
+  gamma: 0.1
+  reg_alpha: 0.01
+  reg_lambda: 1.0
+  objective: multi:softprob
+  eval_metric: mlogloss
+  tree_method: hist
+  random_state: 42
+  n_jobs: 4
+  early_stopping_rounds: 15
+  confidence_threshold: 0.5
+training:
+  use_class_weights: true
+  weighting_strategy: balanced
+data:
+  benchmark_dir: data/benchmark/v1
+  train_file: classifier_train.parquet
+  validation_file: validation.parquet
+  test_file: test.parquet
+  supplementary_file: supplementary/rare_class_diagnostic.parquet
+  label_column: Label
+  benign_label: BENIGN
+output:
+  artifact_dir: artifacts/models/xgboost_classifier/v1
+  reports_dir: reports

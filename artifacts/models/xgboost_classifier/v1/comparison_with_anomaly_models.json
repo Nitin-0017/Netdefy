@@ -1,0 +1,49 @@
+{
+  "paradigm_overview": {
+    "isolation_forest": {
+      "name": "Isolation Forest (Phase 4A)",
+      "task": "Unsupervised Anomaly Detection",
+      "training_data": "100k Monday pure BENIGN flows",
+      "output": "Continuous Anomaly Score (higher = more anomalous)",
+      "holdout_capability": "Detects anomalous deviations without class identity",
+      "model_size_kb": 180.92,
+      "latency_ms": 0.0026,
+      "throughput_flows_sec": 382771.0
+    },
+    "deep_autoencoder": {
+      "name": "Deep Autoencoder (Phase 4B)",
+      "task": "Unsupervised Representation / Reconstruction Error",
+      "training_data": "100k Monday pure BENIGN flows",
+      "output": "Continuous Reconstruction MSE (higher = more anomalous)",
+      "holdout_capability": "Detects complex multivariate anomalies without class identity",
+      "model_size_kb": 68.11,
+      "latency_ms": 0.0026,
+      "throughput_flows_sec": 391261.4
+    },
+    "xgboost_classifier": {
+      "name": "XGBoost Classifier (Phase 4C)",
+      "task": "Supervised Multiclass Attack Classification",
+      "training_data": "30k Tuesday/Wednesday flows (8 classes: Benign + 7 Attacks)",
+      "output": "Class probabilities across known classes + Open-set Rejection",
+      "holdout_capability": "Accurately classifies known attacks; rejects/flags unseen attacks",
+      "model_size_kb": 1688.0,
+      "latency_ms": 0.0028,
+      "throughput_flows_sec": 359338.4
+    }
+  },
+  "validation_known_attacks_performance": {
+    "isolation_forest_val_roc_auc": 0.829688,
+    "autoencoder_val_roc_auc": 0.873618,
+    "xgboost_val_accuracy": 0.9967,
+    "xgboost_val_balanced_accuracy": 0.9868,
+    "xgboost_val_macro_f1": 0.9759,
+    "xgboost_val_weighted_f1": 0.9967
+  },
+  "test_holdout_detection_and_classification": {
+    "isolation_forest_test_roc_auc": 0.655789,
+    "autoencoder_test_roc_auc": 0.830709,
+    "xgboost_test_closed_set_accuracy": 0.7475,
+    "xgboost_test_open_set_accuracy": 0.7474,
+    "xgboost_test_unknown_rate": 0.0012
+  }
+}

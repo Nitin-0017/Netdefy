@@ -1,0 +1,136 @@
+{
+  "top_confused_class_pairs": [
+    {
+      "true_label": "PortScan",
+      "predicted_label": "BENIGN",
+      "error_count": 6823,
+      "fraction_of_total_errors": 0.5403
+    },
+    {
+      "true_label": "DDoS",
+      "predicted_label": "DoS Hulk",
+      "error_count": 3520,
+      "fraction_of_total_errors": 0.2787
+    },
+    {
+      "true_label": "DDoS",
+      "predicted_label": "BENIGN",
+      "error_count": 1943,
+      "fraction_of_total_errors": 0.1539
+    },
+    {
+      "true_label": "Bot",
+      "predicted_label": "BENIGN",
+      "error_count": 85,
+      "fraction_of_total_errors": 0.0067
+    },
+    {
+      "true_label": "Web Attack \ufffd Brute Force",
+      "predicted_label": "BENIGN",
+      "error_count": 64,
+      "fraction_of_total_errors": 0.0051
+    },
+    {
+      "true_label": "BENIGN",
+      "predicted_label": "DoS Hulk",
+      "error_count": 52,
+      "fraction_of_total_errors": 0.0041
+    },
+    {
+      "true_label": "DDoS",
+      "predicted_label": "UNKNOWN",
+      "error_count": 45,
+      "fraction_of_total_errors": 0.0036
+    },
+    {
+      "true_label": "Web Attack \ufffd XSS",
+      "predicted_label": "BENIGN",
+      "error_count": 28,
+      "fraction_of_total_errors": 0.0022
+    },
+    {
+      "true_label": "BENIGN",
+      "predicted_label": "DoS Slowhttptest",
+      "error_count": 17,
+      "fraction_of_total_errors": 0.0013
+    },
+    {
+      "true_label": "BENIGN",
+      "predicted_label": "SSH-Patator",
+      "error_count": 10,
+      "fraction_of_total_errors": 0.0008
+    }
+  ],
+  "confidence_rejection_curve": [
+    {
+      "threshold": 0.1,
+      "coverage": 1.0,
+      "accepted_count": 50000,
+      "rejected_count": 0,
+      "accuracy_on_accepted": 0.7475
+    },
+    {
+      "threshold": 0.3,
+      "coverage": 1.0,
+      "accepted_count": 50000,
+      "rejected_count": 0,
+      "accuracy_on_accepted": 0.7475
+    },
+    {
+      "threshold": 0.5,
+      "coverage": 0.9988,
+      "accepted_count": 49940,
+      "rejected_count": 60,
+      "accuracy_on_accepted": 0.7483
+    },
+    {
+      "threshold": 0.6,
+      "coverage": 0.9975,
+      "accepted_count": 49875,
+      "rejected_count": 125,
+      "accuracy_on_accepted": 0.7489
+    },
+    {
+      "threshold": 0.7,
+      "coverage": 0.9949,
+      "accepted_count": 49746,
+      "rejected_count": 254,
+      "accuracy_on_accepted": 0.7492
+    },
+    {
+      "threshold": 0.8,
+      "coverage": 0.9923,
+      "accepted_count": 49614,
+      "rejected_count": 386,
+      "accuracy_on_accepted": 0.7493
+    },
+    {
+      "threshold": 0.9,
+      "coverage": 0.9731,
+      "accepted_count": 48654,
+      "rejected_count": 1346,
+      "accuracy_on_accepted": 0.7508
+    },
+    {
+      "threshold": 0.95,
+      "coverage": 0.9615,
+      "accepted_count": 48075,
+      "rejected_count": 1925,
+      "accuracy_on_accepted": 0.7523
+    }
+  ],
+  "ambiguity_classification_impact": {
+    "ambiguous_count": 3305,
+    "unambiguous_count": 46695,
+    "true_label_distribution": {
+      "BENIGN": 49,
+      "Bot": 2,
+      "PortScan": 3254
+    },
+    "predicted_label_distribution": {
+      "BENIGN": 3305
+    },
+    "correct_predictions_in_ambiguous": 49,
+    "accuracy_in_ambiguous": 0.0148
+  }
+}
