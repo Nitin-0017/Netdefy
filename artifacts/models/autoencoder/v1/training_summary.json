@@ -1,0 +1,47 @@
+{
+  "status": "SUCCESS",
+  "model_type": "deep_autoencoder",
+  "model_artifact": "artifacts/models/autoencoder/v1/best_model.pt",
+  "model_sha256": "5ea72c57213f6ae6c41b0d1f8f8126fd6dadf1a45bc78d7de0f594b0089b5be7",
+  "parameter_count": 15412,
+  "train_sample_count": 100000,
+  "validation_sample_count": 20000,
+  "fit_duration_seconds": 33.19,
+  "total_duration_seconds": 34.56,
+  "peak_memory_mb": 311.69,
+  "inference_latency_ms_per_flow": 0.0007,
+  "throughput_flows_per_second": 1376569.1,
+  "best_epoch": 58,
+  "best_val_loss": 0.10244935,
+  "stopped_early": true,
+  "thresholds": {
+    "p95.0": 0.09655800461769104,
+    "p99.0": 0.7084327936172485,
+    "p99.5": 1.9510524272918701
+  },
+  "validation_roc_auc": 0.873618,
+  "validation_pr_auc": 0.77887,
+  "validation_metrics_summary": {
+    "p95.0": {
+      "precision": 0.799634,
+      "recall": 0.652508,
+      "f1": 0.718618,
+      "benign_fpr": 0.050016,
+      "false_alarms_per_1000": 50.0163
+    },
+    "p99.0": {
+      "precision": 0.947242,
+      "recall": 0.590181,
+      "f1": 0.727249,
+      "benign_fpr": 0.010056,
+      "false_alarms_per_1000": 10.0555
+    },
+    "p99.5": {
+      "precision": 0.952557,
+      "recall": 0.329989,
+      "f1": 0.490171,
+      "benign_fpr": 0.005028,
+      "false_alarms_per_1000": 5.0278
+    }
+  }
+}

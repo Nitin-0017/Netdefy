@@ -1,1 +1,13 @@
-"""Model training workflows and optimization routines for NETDEFY (Phase 2)."""
+"""Model training engines for NETDEFY."""
+
+from netdefy.training.autoencoder_trainer import (
+    AutoencoderTrainer,
+    AutoencoderTrainingConfig,
+    TrainingHistory,
+)
+
+__all__ = [
+    "AutoencoderTrainer",
+    "AutoencoderTrainingConfig",
+    "TrainingHistory",
+]

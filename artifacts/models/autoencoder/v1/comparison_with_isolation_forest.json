@@ -1,0 +1,281 @@
+{
+  "models": {
+    "isolation_forest": {
+      "name": "Isolation Forest (Phase 4A)",
+      "type": "Tree Ensemble (Unsupervised)",
+      "model_size_kb": 180.92,
+      "fit_duration_seconds": 0.16,
+      "inference_latency_ms": 0.0026,
+      "throughput_flows_sec": 382771.0,
+      "validation": {
+        "roc_auc": 0.8297,
+        "pr_auc": 0.6778
+      },
+      "test_full": {
+        "roc_auc": 0.6558,
+        "pr_auc": 0.3487,
+        "p95": {
+          "threshold_key": "p95.0",
+          "threshold_value": 0.5635585784912109,
+          "true_positives": 1002,
+          "false_positives": 2012,
+          "true_negatives": 35462,
+          "false_negatives": 11524,
+          "precision": 0.332449,
+          "recall": 0.079994,
+          "f1": 0.128958,
+          "benign_fpr": 0.053691,
+          "false_alarms_per_1000_benign": 53.6906,
+          "total_samples": 50000,
+          "total_attacks": 12526,
+          "total_benign": 37474
+        },
+        "p99": {
+          "threshold_key": "p99.0",
+          "threshold_value": 0.6501826643943787,
+          "true_positives": 165,
+          "false_positives": 519,
+          "true_negatives": 36955,
+          "false_negatives": 12361,
+          "precision": 0.241228,
+          "recall": 0.013173,
+          "f1": 0.024981,
+          "benign_fpr": 0.01385,
+          "false_alarms_per_1000_benign": 13.8496,
+          "total_samples": 50000,
+          "total_attacks": 12526,
+          "total_benign": 37474
+        },
+        "p99.5": {
+          "threshold_key": "p99.5",
+          "threshold_value": 0.6943576335906982,
+          "true_positives": 0,
+          "false_positives": 245,
+          "true_negatives": 37229,
+          "false_negatives": 12526,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "benign_fpr": 0.006538,
+          "false_alarms_per_1000_benign": 6.5379,
+          "total_samples": 50000,
+          "total_attacks": 12526,
+          "total_benign": 37474
+        }
+      },
+      "test_disambiguated": {
+        "roc_auc": 0.7317,
+        "pr_auc": 0.3478,
+        "p95": {
+          "threshold_key": "p95.0",
+          "threshold_value": 0.5635585784912109,
+          "true_positives": 1002,
+          "false_positives": 2012,
+          "true_negatives": 35413,
+          "false_negatives": 8268,
+          "precision": 0.332449,
+          "recall": 0.108091,
+          "f1": 0.163139,
+          "benign_fpr": 0.053761,
+          "false_alarms_per_1000_benign": 53.7609,
+          "total_samples": 46695,
+          "total_attacks": 9270,
+          "total_benign": 37425
+        },
+        "p99": {
+          "threshold_key": "p99.0",
+          "threshold_value": 0.6501826643943787,
+          "true_positives": 165,
+          "false_positives": 519,
+          "true_negatives": 36906,
+          "false_negatives": 9105,
+          "precision": 0.241228,
+          "recall": 0.017799,
+          "f1": 0.033153,
+          "benign_fpr": 0.013868,
+          "false_alarms_per_1000_benign": 13.8677,
+          "total_samples": 46695,
+          "total_attacks": 9270,
+          "total_benign": 37425
+        },
+        "p99.5": {
+          "threshold_key": "p99.5",
+          "threshold_value": 0.6943576335906982,
+          "true_positives": 0,
+          "false_positives": 245,
+          "true_negatives": 37180,
+          "false_negatives": 9270,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "benign_fpr": 0.006546,
+          "false_alarms_per_1000_benign": 6.5464,
+          "total_samples": 46695,
+          "total_attacks": 9270,
+          "total_benign": 37425
+        }
+      }
+    },
+    "deep_autoencoder": {
+      "name": "Deep Autoencoder (Phase 4B)",
+      "type": "Neural Representation (Unsupervised MSE)",
+      "model_size_kb": 68.11,
+      "parameter_count": 15412,
+      "fit_duration_seconds": 33.19,
+      "inference_latency_ms": 0.0026,
+      "throughput_flows_sec": 391261.4,
+      "validation": {
+        "roc_auc": 0.8736,
+        "pr_auc": 0.7789
+      },
+      "test_full": {
+        "roc_auc": 0.8307,
+        "pr_auc": 0.603,
+        "p95": {
+          "threshold_key": "p95.0",
+          "threshold_value": 0.09655800461769104,
+          "true_positives": 4374,
+          "false_positives": 3385,
+          "true_negatives": 34089,
+          "false_negatives": 8152,
+          "precision": 0.563732,
+          "recall": 0.349194,
+          "f1": 0.431255,
+          "benign_fpr": 0.090329,
+          "false_alarms_per_1000_benign": 90.3293,
+          "total_samples": 50000,
+          "total_attacks": 12526,
+          "total_benign": 37474
+        },
+        "p99": {
+          "threshold_key": "p99.0",
+          "threshold_value": 0.7084327936172485,
+          "true_positives": 3344,
+          "false_positives": 900,
+          "true_negatives": 36574,
+          "false_negatives": 9182,
+          "precision": 0.787936,
+          "recall": 0.266965,
+          "f1": 0.398807,
+          "benign_fpr": 0.024017,
+          "false_alarms_per_1000_benign": 24.0167,
+          "total_samples": 50000,
+          "total_attacks": 12526,
+          "total_benign": 37474
+        },
+        "p99.5": {
+          "threshold_key": "p99.5",
+          "threshold_value": 1.9510524272918701,
+          "true_positives": 2594,
+          "false_positives": 666,
+          "true_negatives": 36808,
+          "false_negatives": 9932,
+          "precision": 0.795706,
+          "recall": 0.207089,
+          "f1": 0.328646,
+          "benign_fpr": 0.017772,
+          "false_alarms_per_1000_benign": 17.7723,
+          "total_samples": 50000,
+          "total_attacks": 12526,
+          "total_benign": 37474
+        }
+      },
+      "test_disambiguated": {
+        "roc_auc": 0.8265,
+        "pr_auc": 0.58,
+        "p95": {
+          "threshold_key": "p95.0",
+          "threshold_value": 0.09655800461769104,
+          "true_positives": 3870,
+          "false_positives": 3372,
+          "true_negatives": 34053,
+          "false_negatives": 5400,
+          "precision": 0.534383,
+          "recall": 0.417476,
+          "f1": 0.46875,
+          "benign_fpr": 0.0901,
+          "false_alarms_per_1000_benign": 90.1002,
+          "total_samples": 46695,
+          "total_attacks": 9270,
+          "total_benign": 37425
+        },
+        "p99": {
+          "threshold_key": "p99.0",
+          "threshold_value": 0.7084327936172485,
+          "true_positives": 3344,
+          "false_positives": 900,
+          "true_negatives": 36525,
+          "false_negatives": 5926,
+          "precision": 0.787936,
+          "recall": 0.360734,
+          "f1": 0.494894,
+          "benign_fpr": 0.024048,
+          "false_alarms_per_1000_benign": 24.0481,
+          "total_samples": 46695,
+          "total_attacks": 9270,
+          "total_benign": 37425
+        },
+        "p99.5": {
+          "threshold_key": "p99.5",
+          "threshold_value": 1.9510524272918701,
+          "true_positives": 2594,
+          "false_positives": 666,
+          "true_negatives": 36759,
+          "false_negatives": 6676,
+          "precision": 0.795706,
+          "recall": 0.279827,
+          "f1": 0.414046,
+          "benign_fpr": 0.017796,
+          "false_alarms_per_1000_benign": 17.7956,
+          "total_samples": 46695,
+          "total_attacks": 9270,
+          "total_benign": 37425
+        }
+      }
+    }
+  },
+  "attack_wise_comparison_p99": {
+    "Bot": {
+      "support": 85,
+      "isolation_forest_recall": 0.0,
+      "autoencoder_recall": 0.0471,
+      "delta_recall": 0.0471
+    },
+    "DDoS": {
+      "support": 5508,
+      "isolation_forest_recall": 0.03,
+      "autoencoder_recall": 0.6058,
+      "delta_recall": 0.5759
+    },
+    "Infiltration": {
+      "support": 2,
+      "isolation_forest_recall": 0.0,
+      "autoencoder_recall": 0.5,
+      "delta_recall": 0.5
+    },
+    "PortScan": {
+      "support": 6837,
+      "isolation_forest_recall": 0.0,
+      "autoencoder_recall": 0.0003,
+      "delta_recall": 0.0003
+    },
+    "Web Attack \ufffd Brute Force": {
+      "support": 65,
+      "isolation_forest_recall": 0.0,
+      "autoencoder_recall": 0.0,
+      "delta_recall": 0.0
+    },
+    "Web Attack \ufffd Sql Injection": {
+      "support": 1,
+      "isolation_forest_recall": 0.0,
+      "autoencoder_recall": 0.0,
+      "delta_recall": 0.0
+    },
+    "Web Attack \ufffd XSS": {
+      "support": 28,
+      "isolation_forest_recall": 0.0,
+      "autoencoder_recall": 0.0,
+      "delta_recall": 0.0
+    }
+  }
+}

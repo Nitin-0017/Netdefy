@@ -1,0 +1,56 @@
+# NETDEFY — Deep Autoencoder Anomaly Detection Baseline Configuration
+# Model Architecture & Hyperparameters
+model:
+  name: "deep_autoencoder"
+  version: "v1"
+  description: "PyTorch Deep Autoencoder (76-64-32-16-8-16-32-64-76) trained exclusively on 100k Monday BENIGN flows"
+  input_dim: 76
+  encoder_dims: [64, 32, 16]
+  latent_dim: 8
+  decoder_dims: [16, 32, 64]
+  activation: "relu"
+  dropout_rate: 0.0          # Clean baseline architecture without dropout
+  use_batch_norm: false      # Clean continuous normalization without batch norm drift
+  random_seed: 42
+
+# Training Configuration
+training:
+  optimizer: "adamw"
+  learning_rate: 0.001
+  weight_decay: 0.00001
+  epochs: 100
+  batch_size: 512
+  early_stopping_patience: 10
+  min_delta: 0.00001
+  device: "cpu"              # CPU preferred on M3 due to zero kernel-dispatch latency for small MLPs
+  fallback_to_cpu: true
+  num_workers: 0
+
+# Calibration Strategy (Pure Benign Validation)
+calibration:
+  strategy: "benign_percentile"
+  target_percentiles:
+    - 95.0
+    - 99.0
+    - 99.5
+  default_percentile: 99.0
+
+# Inference Configuration
+inference:
+  batch_size: 1024
+
+# Dataset Paths (Phase 3.2 Benchmark)
+data:
+  benchmark_dir: "data/benchmark/v1"
+  train_file: "oneclass_train.parquet"
+  validation_file: "validation.parquet"
+  test_file: "test.parquet"
+  supplementary_file: "supplementary/rare_class_diagnostic.parquet"
+  label_column: "Label"
+  benign_label: "BENIGN"
+
+# Output Locations
+output:
+  artifact_dir: "artifacts/models/autoencoder/v1"
+  reports_dir: "reports"
+

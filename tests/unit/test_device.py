@@ -11,6 +11,15 @@ from netdefy.models.device import (
     get_device_diagnostics,
     verify_tensor_computation,
 )
+from netdefy.utils import device as utils_device
+
+
+def test_utils_device_reexports() -> None:
+    """Verify utils.device re-exports all primary device functions."""
+    assert utils_device.get_device is get_device
+    assert utils_device.get_device_diagnostics is get_device_diagnostics
+    assert utils_device.verify_tensor_computation is verify_tensor_computation
+    assert utils_device.DeviceDiagnostics is DeviceDiagnostics
 
 
 def test_verify_tensor_computation_cpu() -> None:

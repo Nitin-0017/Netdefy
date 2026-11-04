@@ -56,12 +56,14 @@ checkpoints/
 *.pkl
 
 # Preserve versioned model and preprocessing artifacts
-# (Binary .joblib files are tracked via Git LFS in .gitattributes)
+# (Binary .joblib and .pt files in artifacts/ are tracked via Git LFS in .gitattributes)
 artifacts/*
 !artifacts/.gitkeep
 !artifacts/README.md
 !artifacts/preprocessing/
 !artifacts/models/
+!artifacts/models/**/*.pt
+!artifacts/models/**/*.joblib
 
 # MLflow Experiment Tracking
 mlruns/

@@ -1,5 +1,9 @@
 """Evaluation metrics, threshold calibration, and error analysis for NETDEFY."""
 
+from netdefy.evaluation.autoencoder_evaluator import (
+    AutoencoderEvaluationBundle,
+    AutoencoderEvaluator,
+)
 from netdefy.evaluation.error_analysis import (
     analyze_ambiguity_impact,
     analyze_false_negatives,
@@ -20,6 +24,8 @@ from netdefy.evaluation.thresholds import (
 
 __all__ = [
     "AnomalyEvaluationReport",
+    "AutoencoderEvaluationBundle",
+    "AutoencoderEvaluator",
     "BenignThresholdCalibrator",
     "BinaryEvaluationMetrics",
     "ThresholdCalibrationResult",

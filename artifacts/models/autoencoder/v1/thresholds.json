@@ -1,0 +1,37 @@
+{
+  "strategy": "benign_validation_percentile",
+  "calibration_timestamp": "2026-11-04T06:30:26Z",
+  "benign_sample_count": 15315,
+  "score_statistics": {
+    "min": 0.0002306488313479349,
+    "max": 816.4168090820312,
+    "mean": 0.10271867364645004,
+    "std": 6.626550674438477,
+    "median": 0.0020139061380177736,
+    "q25": 0.0006521101458929479,
+    "q75": 0.014196252450346947,
+    "iqr": 0.013544142246246338
+  },
+  "thresholds": {
+    "p95.0": 0.09655800461769104,
+    "p99.0": 0.7084327936172485,
+    "p99.5": 1.9510524272918701
+  },
+  "threshold_entries": [
+    {
+      "percentile": 95.0,
+      "threshold_value": 0.09655800461769104,
+      "benign_fpr_nominal": 0.05
+    },
+    {
+      "percentile": 99.0,
+      "threshold_value": 0.7084327936172485,
+      "benign_fpr_nominal": 0.01
+    },
+    {
+      "percentile": 99.5,
+      "threshold_value": 1.9510524272918701,
+      "benign_fpr_nominal": 0.005
+    }
+  ]
+}

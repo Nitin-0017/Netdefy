@@ -1,0 +1,53 @@
+{
+  "model_name": "deep_autoencoder",
+  "model_version": "v1",
+  "model_type": "deep_autoencoder",
+  "created_at": "2026-11-04T06:33:19Z",
+  "source_benchmark_version": "v1",
+  "benchmark_partition_checksums": {
+    "oneclass_train": "06157578c42449a053190325ecea4c41e999797dbfec033b572f62df789f633c",
+    "validation": "3116213f1a94f24a2a1b39123fc3a0ac300a231581fc3788045525698f9c72bf",
+    "test": "263437c2e7da289ad29246dc923e5b6f41443c4d71f4f00497e0e69928d6e6e1"
+  },
+  "feature_schema_fingerprint": "a7f83d5a35bdb418dede8a9359a3d054b65c8129db79a3987753287e0159c9a0",
+  "model_configuration_hash": "d10196770b9146f7400a5a50af1422568be35ef6137593b47fcc92a5df08d70b",
+  "artifacts": {
+    "best_model_pt": {
+      "path": "best_model.pt",
+      "sha256": "5ea72c57213f6ae6c41b0d1f8f8126fd6dadf1a45bc78d7de0f594b0089b5be7"
+    },
+    "thresholds_json": {
+      "path": "thresholds.json",
+      "sha256": "454b60a6efbe8301fac6a3e67286d80ff9338c61483cbff708211b6f3c0db973"
+    },
+    "training_history_json": {
+      "path": "training_history.json",
+      "sha256": "2947652a7a29e0d50653494715c436d92d19636581a0486d0db1c0f2b9921bd6"
+    },
+    "validation_metrics_json": {
+      "path": "validation_metrics.json",
+      "sha256": "532d2ecd0b22e18b2f95d8e72a4eb2ddd9ff910887c7d6c10eab29e27900c0cc"
+    },
+    "test_metrics_json": {
+      "path": "test_metrics.json",
+      "sha256": "032f1296e10ea8b0b0aa81658ffe9ecbae29996a2d340b5a3a5cbc2e1ecb003f"
+    },
+    "error_analysis_json": {
+      "path": "error_analysis.json",
+      "sha256": "1768a7bf848d20f5b7a471678ab0f0b013a94d6132c398d212b56925d0718c05"
+    },
+    "feature_schema_json": {
+      "path": "feature_schema.json",
+      "sha256": "a7f83d5a35bdb418dede8a9359a3d054b65c8129db79a3987753287e0159c9a0"
+    }
+  },
+  "random_seed": 42,
+  "training_device": "cpu",
+  "hardware_environment": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "processor": "arm",
+    "python_version": "3.12.13",
+    "torch_version": "2.15.0"
+  }
+}

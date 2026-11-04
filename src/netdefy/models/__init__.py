@@ -1,5 +1,10 @@
 """Models and hardware device interfaces for NETDEFY."""
 
+from netdefy.models.autoencoder import (
+    AutoencoderArchitectureConfig,
+    AutoencoderDetector,
+    DeepAutoencoder,
+)
 from netdefy.models.device import (
     DeviceDiagnostics,
     get_device,
@@ -12,6 +17,9 @@ from netdefy.models.isolation_forest import (
 )
 
 __all__ = [
+    "AutoencoderArchitectureConfig",
+    "AutoencoderDetector",
+    "DeepAutoencoder",
     "DeviceDiagnostics",
     "IsolationForestConfig",
     "IsolationForestDetector",
