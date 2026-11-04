@@ -273,3 +273,4 @@ All Phase 4B artifacts are stored under `artifacts/models/autoencoder/v1/` and t
 2. **Zero Leakage:** Strictly trained on Monday pure BENIGN data; calibrated exclusively on benign validation flows; holdout tested on Thursday/Friday.
 3. **Reproducibility:** 100% deterministic training, fully verified hashes, complete artifact manifest, and 0 warnings or failures across all test suites.
 4. **Production Readiness:** Ultra-compact model footprint ($66.5\text{ KB}$), sub-millisecond inference ($0.0026\text{ ms/flow}$), and high throughput ($391,261\text{ flows/s}$).
+
