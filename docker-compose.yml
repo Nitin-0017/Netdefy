@@ -1,0 +1,58 @@
+services:
+  redis:
+    image: redis:7.2-alpine
+    container_name: netdefy-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy noeviction
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    container_name: netdefy-api
+    ports:
+      - "8000:8000"
+    environment:
+      - NETDEFY_ENV=production
+      - NETDEFY_USE_REDIS=true
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=sqlite:////app/reports/netdefy_soc.db
+    volumes:
+      - soc_data:/app/reports
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  consumer:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.consumer
+    container_name: netdefy-consumer
+    environment:
+      - NETDEFY_ENV=production
+      - NETDEFY_USE_REDIS=true
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=sqlite:////app/reports/netdefy_soc.db
+    volumes:
+      - soc_data:/app/reports
+    depends_on:
+      redis:
+        condition: service_healthy
+      api:
+        condition: service_started
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+  soc_data:
+

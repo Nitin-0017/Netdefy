@@ -74,6 +74,12 @@ artifacts/*
 mlruns/
 mlartifacts/
 
+# Databases & SIEM runtime dumps
+*.db
+*.db-shm
+*.db-wal
+reports/siem_exports/
+
 # Logs & Diagnostics
 *.log
 logs/

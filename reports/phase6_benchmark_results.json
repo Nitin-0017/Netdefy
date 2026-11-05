@@ -1,0 +1,35 @@
+{
+  "validation": {
+    "count": 10000,
+    "elapsed_sec": 0.0095,
+    "throughput_fps": 1052311.71,
+    "mean_latency_us": 0.95
+  },
+  "broker_producer": {
+    "count": 10000,
+    "elapsed_sec": 0.2584,
+    "throughput_fps": 38701.02,
+    "mean_latency_us": 25.84
+  },
+  "broker_consumer": {
+    "count": 10000,
+    "elapsed_sec": 0.4209,
+    "throughput_fps": 23759.01,
+    "mean_latency_us": 42.09
+  },
+  "alert_persistence": {
+    "count": 2000,
+    "elapsed_sec": 0.4544,
+    "throughput_alerts_sec": 4401.61,
+    "mean_latency_ms": 0.227
+  },
+  "end_to_end": {
+    "count": 1000,
+    "elapsed_sec": 4.8939,
+    "sustained_throughput_fps": 204.33,
+    "p50_latency_ms": 4.798,
+    "p95_latency_ms": 5.418,
+    "p99_latency_ms": 5.908,
+    "peak_rss_mb": 430.88
+  }
+}
