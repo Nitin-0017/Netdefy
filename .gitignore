@@ -29,6 +29,9 @@ wheels/
 venv/
 ENV/
 env/
+node_modules/
+frontend/node_modules/
+frontend/dist/
 
 # Datasets (never commit raw or processed datasets, preserve structure via README.md/.gitkeep)
 data/raw/*

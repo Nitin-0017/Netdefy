@@ -119,6 +119,20 @@ def get_hybrid_pipeline() -> BehavioralHybridPipeline | None:
     return _HYBRID_PIPELINE
 
 
+def get_raw_hybrid_pipeline() -> HybridInferencePipeline | None:
+    """Return the underlying HybridInferencePipeline directly for raw feature prediction."""
+    beh = get_hybrid_pipeline()
+    if beh is not None:
+        return beh.hybrid
+    config_path = Path("configs") / "hybrid.yaml"
+    if config_path.exists():
+        try:
+            return HybridInferencePipeline.from_config(config_path)
+        except Exception as e:
+            logger.warning("Could not load HybridInferencePipeline: %s", e)
+    return None
+
+
 def get_consumer() -> StreamConsumer:
     """Return shared StreamConsumer instance."""
     global _CONSUMER

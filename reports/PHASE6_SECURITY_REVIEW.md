@@ -23,3 +23,4 @@ NETDEFY is strictly a defensive network monitoring and intelligence platform. It
 | **8. SQL Injection** | Attacker crafts malicious strings in sensor IDs or threat labels. | Storage layer uses SQLAlchemy ORM with parameterized SQL statements; raw string concatenation is prohibited. |
 | **9. Broker / Worker Disconnect** | Stream consumer or broker process crashes midway through a batch. | At-least-once delivery with Pending Entry List (PEL). Replayed events are deduplicated via unique primary keys on `soc_alerts.alert_id`. |
 | **10. Poison Pill Loop** | A message crashes downstream inference on every retry. | `DeadLetterQueue` quarantines permanently failing messages to `netdefy:dlq:stream` after max retry attempts, issuing an `XACK` on the main stream to prevent deadlocks. |
+

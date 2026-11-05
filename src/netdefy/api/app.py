@@ -11,13 +11,14 @@ import time
 import uuid
 from collections.abc import AsyncGenerator, Callable
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 from netdefy.api.dependencies import get_db_manager
-from netdefy.api.routes import alerts, events, health, models, stream
+from netdefy.api.routes import alerts, events, health, models, playground, research, stream
 
 logger = logging.getLogger(__name__)
 
@@ -71,6 +72,17 @@ def create_app() -> FastAPI:
     app.include_router(alerts.router, prefix=api_v1_prefix)
     app.include_router(models.router, prefix=api_v1_prefix)
     app.include_router(stream.router, prefix=api_v1_prefix)
+    app.include_router(research.router, prefix=api_v1_prefix)
+    app.include_router(playground.router, prefix=api_v1_prefix)
+
+    # 4. Mount Frontend Static Files if built
+    frontend_dist = Path("frontend/dist")
+    if frontend_dist.exists():
+        from fastapi.staticfiles import StaticFiles
+
+        app.mount(
+            "/workbench", StaticFiles(directory=str(frontend_dist), html=True), name="workbench"
+        )
 
     # Top-level root probe
     @app.get("/", tags=["Root"])
@@ -80,6 +92,7 @@ def create_app() -> FastAPI:
             "tagline": "Detect Anomalies. Understand Network Behaviour.",
             "version": "0.1.0",
             "docs": "/docs",
+            "workbench": "/workbench" if frontend_dist.exists() else "not built",
         }
 
     return app

@@ -27,3 +27,4 @@ Phase 6 subjected the NETDEFY real-time stream processor to deliberate adversari
 1. **Deadlock Immunity:** No unprocessable message can permanently stall the consumer group; unparseable payloads are boundedly retried and quarantined to the Dead-Letter Queue.
 2. **At-Least-Once Delivery:** Offsets are committed only after successful persistence or quarantine.
 3. **Idempotence Invariant:** The database layer enforces unique cryptographic alert IDs, preventing alert duplication under replayed messages.
+

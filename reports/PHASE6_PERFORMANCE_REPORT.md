@@ -56,3 +56,4 @@ Our empirical measurements reveal the exact performance landscape:
    - To achieve $50,000\text{ flows/second}$ across a production deployment, the architecture requires:
      - Deploying a cluster of **$250\text{ parallel stream consumer worker containers}$** across a Kubernetes cluster partitioned by Redis Streams or Kafka consumer groups.
      - Or migrating model execution to an optimized GPU-accelerated inference server (e.g. Triton Inference Server with ONNX Runtime and TensorRT), which batches matrix evaluations across thousands of parallel tensor cores.
+

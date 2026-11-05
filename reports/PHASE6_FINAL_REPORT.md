@@ -122,3 +122,4 @@ The complete ingestion, buffering, stream processing, hybrid model scoring, beha
 - The stream processor, database models, SIEM serializers, and REST API are fully functional, test-verified, and hardened against crash scenarios.
 - For single-sensor and medium-volume enterprise perimeter deployments ($< 2,000\text{ flows/sec}$ peak), a single worker process or small cluster provides real-time threat detection.
 - For high-volume campus/core network backbones ($50,000+\text{ flows/sec}$), horizontal partitioning across multiple stream consumer containers or dedicated GPU/Triton inference acceleration is recommended.
+
