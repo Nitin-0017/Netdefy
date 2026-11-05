@@ -70,6 +70,7 @@ artifacts/*
 !artifacts/README.md
 !artifacts/preprocessing/
 !artifacts/models/
+!artifacts/research/
 !artifacts/models/**/*.pt
 !artifacts/models/**/*.joblib
 
