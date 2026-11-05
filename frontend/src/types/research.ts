@@ -185,3 +185,4 @@ export interface PredictionResponse {
   scientific_note?: string | null;
   is_synthetic?: boolean;
 }
+

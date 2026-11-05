@@ -109,3 +109,4 @@ The entire repository was subjected to rigorous end-to-end quality validation:
 ## 6. Milestone Certification
 
 Phase 6.1 is certified complete. The NETDEFY platform stands as a mathematically grounded, highly performant, and reproducible AI/ML portfolio artifact demonstrating multi-paradigm anomaly detection, score calibration, open-set error diagnostics, and explainability.
+

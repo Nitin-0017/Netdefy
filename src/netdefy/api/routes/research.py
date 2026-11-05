@@ -285,6 +285,8 @@ def get_model_comparison() -> dict[str, Any]:
                 ),
             },
             "holdout_test_view_a": {
+                "binary_roc_auc": 0.8505,
+                "binary_pr_auc": 0.6745,
                 "precision": view_a.get("xgboost", {}).get("precision", 0.9731),
                 "recall": view_a.get("xgboost", {}).get("recall", 0.2829),
                 "f1": view_a.get("xgboost", {}).get("f1", 0.4383),
@@ -306,7 +308,11 @@ def get_model_comparison() -> dict[str, Any]:
             "trained_on": "Unified Ensemble across Monday-Wednesday",
             "latency_ms": 4.86,
             "holdout_test_view_a": {
+                "fused_score_roc_auc": view_a.get("fusion", {}).get("roc_auc", 0.7377),
+                "fused_score_pr_auc": view_a.get("fusion", {}).get("pr_auc", 0.4318),
                 "operational_alert_precision": 0.8473,
+                "operational_attack_recall": 0.2773,
+                "operational_f1": 0.4178,
                 "benign_false_alarm_rate_per_1000": 16.70,
                 "false_alarm_reduction_vs_ae": "-46.5%",
                 "false_alarm_reduction_vs_if": "-20.3%",

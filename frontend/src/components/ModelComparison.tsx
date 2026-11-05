@@ -50,7 +50,7 @@ export const ModelComparison: React.FC = () => {
     );
   }
 
-  // Prepare chart data for View A
+  // Prepare chart data for View A with verified empirical metrics
   const chartDataViewA = [
     {
       name: 'Isolation Forest',
@@ -69,17 +69,17 @@ export const ModelComparison: React.FC = () => {
       F1: 0.4153,
     },
     {
-      name: 'XGBoost (Closed Set)',
-      'ROC-AUC': 0.85,
-      'PR-AUC': 0.62,
+      name: 'XGBoost (Binary Detection)',
+      'ROC-AUC': 0.8505,
+      'PR-AUC': 0.6745,
       Precision: 0.9731,
       Recall: 0.2829,
       F1: 0.4383,
     },
     {
-      name: 'NETDEFY Hybrid',
-      'ROC-AUC': 0.88,
-      'PR-AUC': 0.71,
+      name: 'NETDEFY Hybrid (Triage)',
+      'ROC-AUC': 0.7377,
+      'PR-AUC': 0.4318,
       Precision: 0.8473,
       Recall: 0.2773,
       F1: 0.4178,
