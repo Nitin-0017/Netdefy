@@ -60,13 +60,15 @@ The following 7 categories from the full 15-class CICIDS2017 distribution were d
 | Evaluation Metric | Isolation Forest | Deep Autoencoder | XGBoost (Closed-Set) | NETDEFY Hybrid Engine |
 | :--- | :---: | :---: | :---: | :---: |
 | **Model Paradigm** | Unsupervised Trees | Nonlinear Latent PyTorch | Supervised GBDT | Multi-Paradigm Fusion |
-| **ROC-AUC** | $0.6558$ | $0.8307$ | $0.8500$ | **$0.8800$** |
-| **PR-AUC** | $0.3423$ | $0.6021$ | $0.6200$ | **$0.7100$** |
+| **ROC-AUC** | $0.6558$ | $0.8307$ | $0.8505$ (Binary Prob) | **$0.7377$** (Continuous Fusion)$^*$ |
+| **PR-AUC** | $0.3423$ | $0.6021$ | $0.6745$ (Binary Prob) | **$0.4318$** (Continuous Fusion)$^*$ |
 | **Operational Precision** | $51.06\%$ | $75.42\%$ | $97.31\%$ | **$84.73\%$** |
 | **Attack Detection Recall** | $6.54\%$ | $28.65\%$ | $28.29\%$ | **$27.73\%$** |
 | **F1 Score** | $0.1159$ | $0.4153$ | $0.4383$ | **$0.4178$** |
 | **False Alarms / 1,000 Benign** | $20.95$ | $31.22$ | $2.62$ | **$16.70$ (-46.5% vs AE)** |
 | **Inference Latency** | **$1.12\text{ ms}$** | $1.84\text{ ms}$ | $1.25\text{ ms}$ | $4.86\text{ ms}$ |
+
+$^*$*Scientific Note on Hybrid Engine Metrics:* The continuous equal-weight score fusion baseline achieves ROC-AUC $0.7377$ and PR-AUC $0.4318$ (`artifacts/models/hybrid/v1/test_metrics.json`). In Phase 5 Tier B with multi-flow temporal tracking, contextual ROC-AUC reaches $0.8712$ and PR-AUC reaches $0.6940$. The production Hybrid Decision Engine operates as a 4-state discrete triage policy (`NORMAL`, `SUSPICIOUS_KNOWN`, `SUSPICIOUS_UNKNOWN`, `REVIEW_REQUIRED`), achieving an operational alert precision of **$84.73\%$** at **$27.73\%$** recall.
 
 ### Disambiguation Impact (View A vs. View B)
 Removing 3,305 ambiguous test records sharing identical 5-tuples and feature values due to packet capture overlap revealed substantial latent performance:

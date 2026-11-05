@@ -352,14 +352,18 @@ def get_threshold_calibration() -> dict[str, Any]:
         _safe_load_json(ARTIFACTS_DIR / "models" / "hybrid" / "v1" / "thresholds.json") or {}
     )
 
+    ae_map: dict[str, float] = ae_thresh.get("thresholds", {})
+    if_map: dict[str, float] = if_thresh.get("thresholds", {})
+    hy_map: dict[str, float] = hybrid_thresh.get("thresholds", {})
+
     tiers = [
         {
             "tier": "p95.0",
             "name": "High Sensitivity (Forensic Capture)",
             "description": "Flags top 5% of benign validation calibration errors. Maximum attack recall.",
-            "autoencoder_mse_threshold": ae_thresh.get("p95", 0.0571),
-            "isolation_forest_threshold": if_thresh.get("p95", 0.4412),
-            "hybrid_fused_threshold": hybrid_thresh.get("p95", 0.9421),
+            "autoencoder_mse_threshold": ae_map.get("p95.0", ae_thresh.get("p95", 0.096558)),
+            "isolation_forest_threshold": if_map.get("p95.0", if_thresh.get("p95", 0.563559)),
+            "hybrid_fused_threshold": hy_map.get("p95.0", hybrid_thresh.get("p95", 0.937041)),
             "benign_fpr": "4.8% - 5.2%",
             "operational_use": "Deep forensic investigation, post-incident triage, honeynet capture.",
         },
@@ -367,9 +371,9 @@ def get_threshold_calibration() -> dict[str, Any]:
             "tier": "p99.0",
             "name": "Balanced Operational (Default Production Policy)",
             "description": "Calibrated at 99th percentile of benign validation distribution. Optimal precision-recall balance.",
-            "autoencoder_mse_threshold": ae_thresh.get("p99", 0.1428),
-            "isolation_forest_threshold": if_thresh.get("p99", 0.5108),
-            "hybrid_fused_threshold": hybrid_thresh.get("p99", 0.9821),
+            "autoencoder_mse_threshold": ae_map.get("p99.0", ae_thresh.get("p99", 0.708433)),
+            "isolation_forest_threshold": if_map.get("p99.0", if_thresh.get("p99", 0.650183)),
+            "hybrid_fused_threshold": hy_map.get("p99.0", hybrid_thresh.get("p99", 0.982084)),
             "benign_fpr": "1.67% (16.7 alarms / 1,000 flows)",
             "operational_use": "Standard SOC automated alerting, real-time blocking with review.",
         },
@@ -377,9 +381,9 @@ def get_threshold_calibration() -> dict[str, Any]:
             "tier": "p99.5",
             "name": "High Specificity (Critical Threat Priority)",
             "description": "Ultra-conservative alert threshold. Drastically eliminates false alarms for high-volume networks.",
-            "autoencoder_mse_threshold": ae_thresh.get("p99.5", 0.2854),
-            "isolation_forest_threshold": if_thresh.get("p99.5", 0.5621),
-            "hybrid_fused_threshold": hybrid_thresh.get("p99.5", 0.9912),
+            "autoencoder_mse_threshold": ae_map.get("p99.5", ae_thresh.get("p99.5", 1.951052)),
+            "isolation_forest_threshold": if_map.get("p99.5", if_thresh.get("p99.5", 0.694358)),
+            "hybrid_fused_threshold": hy_map.get("p99.5", hybrid_thresh.get("p99.5", 0.992959)),
             "benign_fpr": "0.5% (5 alarms / 1,000 flows)",
             "operational_use": "Automated firewall rule injection, executive escalation, low-noise monitoring.",
         },

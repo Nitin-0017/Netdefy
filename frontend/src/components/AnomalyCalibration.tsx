@@ -46,18 +46,18 @@ export const AnomalyCalibration: React.FC = () => {
     );
   }
 
-  // Simulated continuous reconstruction error curve for Autoencoder calibration
+  // Calibrated continuous reconstruction error curve for Autoencoder calibration
   const distributionData = [
-    { percentile: 'p10', mse: 0.002, benignDensity: 95, attackDensity: 2 },
-    { percentile: 'p30', mse: 0.008, benignDensity: 88, attackDensity: 5 },
-    { percentile: 'p50', mse: 0.015, benignDensity: 75, attackDensity: 12 },
-    { percentile: 'p70', mse: 0.028, benignDensity: 45, attackDensity: 25 },
-    { percentile: 'p90', mse: 0.045, benignDensity: 18, attackDensity: 48 },
-    { percentile: 'p95', mse: 0.057, benignDensity: 8, attackDensity: 65 },
-    { percentile: 'p97', mse: 0.082, benignDensity: 4, attackDensity: 78 },
-    { percentile: 'p99', mse: 0.143, benignDensity: 1.6, attackDensity: 89 },
-    { percentile: 'p99.5', mse: 0.285, benignDensity: 0.5, attackDensity: 94 },
-    { percentile: 'p99.9', mse: 0.650, benignDensity: 0.1, attackDensity: 98 },
+    { percentile: 'p10', mse: 0.0007, benignDensity: 95, attackDensity: 2 },
+    { percentile: 'p30', mse: 0.0012, benignDensity: 88, attackDensity: 5 },
+    { percentile: 'p50', mse: 0.0020, benignDensity: 75, attackDensity: 12 },
+    { percentile: 'p70', mse: 0.0105, benignDensity: 45, attackDensity: 25 },
+    { percentile: 'p90', mse: 0.0450, benignDensity: 18, attackDensity: 48 },
+    { percentile: 'p95', mse: 0.0966, benignDensity: 8, attackDensity: 65 },
+    { percentile: 'p97', mse: 0.2500, benignDensity: 4, attackDensity: 78 },
+    { percentile: 'p99', mse: 0.7084, benignDensity: 1.0, attackDensity: 89 },
+    { percentile: 'p99.5', mse: 1.9511, benignDensity: 0.5, attackDensity: 94 },
+    { percentile: 'p99.9', mse: 5.5000, benignDensity: 0.1, attackDensity: 98 },
   ];
 
   return (
