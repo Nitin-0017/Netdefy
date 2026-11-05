@@ -1,0 +1,22 @@
+{
+  "dataset": "data/benchmark/v1/test.parquet",
+  "total_test_flows": 50000,
+  "sample_evaluated_flows": 2000,
+  "tier_a_extraction_latency_us_per_flow": 71.5,
+  "end_to_end_latency_us_per_flow": 4564.7,
+  "portscan_evaluation": {
+    "total_portscan_flows": 6837,
+    "detected_by_rst_signature": 6791,
+    "portscan_recall": 0.9933,
+    "benign_flows": 37474,
+    "benign_false_positives": 1678,
+    "benign_false_positive_rate": 0.0448
+  },
+  "sample_decision_distribution": {
+    "NORMAL": 1877,
+    "SUSPICIOUS_KNOWN": 106,
+    "SUSPICIOUS_UNKNOWN": 15,
+    "REVIEW_REQUIRED": 2
+  },
+  "timestamp": "2026-11-05T03:44:41Z"
+}
