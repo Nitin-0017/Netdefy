@@ -138,11 +138,11 @@ KernelSHAP evaluates background sampling across $M \ge 1,000$ permutations ($O(M
 - **Finding:**
   ```python
   ScalerMetadata(
-      scaler_type='standard',
+      scaler_type="standard",
       feature_count=76,
-      fitted_partition='train (Monday)',
-      numeric_precision='float32',
-      epsilon=1e-08
+      fitted_partition="train (Monday)",
+      numeric_precision="float32",
+      epsilon=1e-08,
   )
   ```
 - **Verdict:** **Zero Preprocessing Leakage.** The scaler was fitted strictly on $459,112$ deduplicated Monday benign flows. No validation or test flows contributed to feature mean or variance calculations.
@@ -210,3 +210,4 @@ For complete scientific honesty, the following research boundaries are documente
 ## 9. Final Certification
 
 NETDEFY is certified as **reproducible, leak-free, and scientifically rigorous**. All metrics are reconciled with exact mathematical definitions, the 8-class classifier scope is formally documented, and the platform stands ready as a premier AI/ML engineering portfolio artifact.
+
