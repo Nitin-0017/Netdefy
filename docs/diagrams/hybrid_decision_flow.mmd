@@ -1,0 +1,36 @@
+flowchart TD
+    START["Input Flow: x in R^76"] --> PARALLEL["Parallel Feature Scoring"]
+
+    PARALLEL --> S_IF["Isolation Forest Score s_IF"]
+    PARALLEL --> S_AE["Autoencoder MSE Score s_AE"]
+    PARALLEL --> S_XGB["XGBoost 8-Class Softmax P"]
+
+    S_IF --> CAL_IF["ECDF Calibrator: c_IF = P(S_IF <= s_IF | Benign)"]
+    S_AE --> CAL_AE["ECDF Calibrator: c_AE = P(S_AE <= s_AE | Benign)"]
+
+    CAL_IF --> FUSED["Equal-Weight Score Fusion:\ns_fused = 0.5 * (c_IF + c_AE)"]
+    CAL_AE --> FUSED
+
+    S_XGB --> XGB_EVAL["Extract Classifier Signals:\n- Attributed Class: k_top = argmax(P)\n- Confidence: P_top = max(P)\n- Decision Margin: M = P_1st - P_2nd\n- Normalized Entropy: H = -sum(P*log P) / log(8)"]
+
+    CAL_IF --> CONFLICT_CHECK{"Detector Conflict Check:\n|c_IF - c_AE| > 0.50 ?"}
+    CAL_AE --> CONFLICT_CHECK
+
+    FUSED --> THRESH_CHECK{"Threshold Evaluation:\nBalanced p99 Policy (tau = 0.9821)"}
+
+    CONFLICT_CHECK -->|"YES (Severe Conflict)"| STATE_REV["REVIEW_REQUIRED\n(Conflicting detector signals; queue for analyst inspection)"]
+    
+    CONFLICT_CHECK -->|"NO (Agreement)"| THRESH_CHECK
+
+    THRESH_CHECK -->|"s_fused < 0.9370 (Below p95)"| CHECK_BENIGN{"Is Classifier Confident in BENIGN?\nk_top == 0 AND P_top >= 0.85 ?"}
+    
+    CHECK_BENIGN -->|"YES"| STATE_NORM["NORMAL\n(Nominal Benign Network Traffic)"]
+    CHECK_BENIGN -->|"NO (Supervised Alarm)"| STATE_REV
+
+    THRESH_CHECK -->|"0.9370 <= s_fused < 0.9821 (Between p95 & p99)"| STATE_REV
+
+    THRESH_CHECK -->|"s_fused >= 0.9821 (p99 Breach: Clear Anomaly)"| OPEN_SET_GATE{"Open-Set & Attribution Gate:\nIs k_top != BENIGN AND P_top >= 0.70 AND M >= 0.30 ?"}
+
+    OPEN_SET_GATE -->|"YES (High-Confidence Attribution)"| STATE_KNOWN["SUSPICIOUS_KNOWN\n(Confirmed Known Attack; e.g. DoS Slowloris, Heartbleed)"]
+    
+    OPEN_SET_GATE -->|"NO (Open-Set / Unseen Attack)"| STATE_UNK["SUSPICIOUS_UNKNOWN\n(Novel Anomaly or Out-of-Distribution Threat; e.g. PortScan, Botnet)"]

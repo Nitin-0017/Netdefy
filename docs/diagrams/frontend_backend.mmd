@@ -1,0 +1,49 @@
+sequenceDiagram
+    autonumber
+    actor Analyst as AI/ML Researcher / Evaluator
+    participant UI as React 19 Research Workbench (Vite + Tailwind)
+    participant Client as Frontend API Client (services/api.ts)
+    participant API as FastAPI Research Endpoints (/api/v1/*)
+    participant Registry as Model Registry & Artifact Store (artifacts/)
+    participant Engine as Hybrid Inference & Decision Engine (hybrid/)
+    participant Samples as Benchmark Samples Store (artifacts/research/)
+
+    Note over Analyst,UI: Tab 1: Head-to-Head Model Comparison
+    Analyst->>UI: Select "Model Comparison" Tab
+    UI->>Client: getComparison()
+    Client->>API: GET /api/v1/research/comparison
+    API->>Registry: Load artifacts/models/hybrid/v1/test_metrics.json
+    API-->>Client: Return View A vs View B Metrics (ROC-AUC, Recall, F1)
+    Client-->>UI: Render Metric Cards, Bar Charts & Disambiguation Table
+
+    Note over Analyst,UI: Tab 2: Anomaly Threshold Calibration
+    Analyst->>UI: Select "Anomaly Calibration" Tab
+    UI->>Client: getThresholds()
+    Client->>API: GET /api/v1/research/thresholds
+    API->>Registry: Read ECDF thresholds.json (Autoencoder, Isolation Forest, Hybrid)
+    API-->>Client: Return p95, p99, p99.5 cutoffs & false alarm rates
+    Client-->>UI: Render Calibrated Threshold Cards & Interactive Error AreaChart
+
+    Note over Analyst,UI: Tab 3: Classification & Open-Set Diagnostics
+    Analyst->>UI: Select "Classification Diagnostics" Tab
+    UI->>Client: getConfusionMatrices() & getFeatureImportance()
+    Client->>API: GET /api/v1/research/confusion-matrix
+    API->>Registry: Load validation 8x8 & holdout open-set 14-class matrices
+    API-->>Client: Return label matrices & tree split gain rankings
+    Client-->>UI: Render Interactive Confusion Matrices & Gain Bar Chart
+
+    Note over Analyst,UI: Tab 4: Interactive Inference Playground
+    Analyst->>UI: Select "Inference Playground" Tab
+    UI->>Client: getPlaygroundSamples()
+    Client->>API: GET /api/v1/playground/samples
+    API->>Samples: Read curated_benchmark_samples.json (11 Verified Flows)
+    API-->>Client: Return 11 Flows with Ground-Truth metadata
+    Client-->>UI: Populate Sample Selector dropdown
+    Analyst->>UI: Modify Feature Slider (e.g. Flow Duration, Packet Length)
+    Analyst->>UI: Click "Run Live Inference"
+    UI->>Client: predictPlaygroundFlow({features, is_synthetic})
+    Client->>API: POST /api/v1/playground/predict
+    API->>Engine: Execute Full Hybrid Inference Pipeline
+    Engine-->>API: Return Decision, Scores, Class Probabilities & Attributions
+    API-->>Client: Return Comprehensive Result Payload
+    Client-->>UI: Render Decision Banner, Confidence Meters & Explanations

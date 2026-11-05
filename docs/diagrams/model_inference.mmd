@@ -1,0 +1,44 @@
+flowchart TD
+    IN["Input Network Flow Vector x (76 Continuous Features)"] --> PRE["Robust/Standard Scaler Normalization"]
+    
+    subgraph BRANCH1["Branch 1: Isolation Forest (v1)"]
+        PRE --> IF_MODEL["Isolation Forest Ensemble (100 Trees)"]
+        IF_MODEL --> IF_RAW["Raw Average Path Length Score s_IF"]
+        IF_RAW --> IF_CAL["Benign ECDF Quantile Calibration"]
+        IF_CAL --> IF_SCORE["Calibrated Percentile c_IF in [0, 1]"]
+    end
+
+    subgraph BRANCH2["Branch 2: Deep Autoencoder (v1)"]
+        PRE --> AE_ENC["Encoder: [76 -> 32 -> 16] (Mish Activation)"]
+        AE_ENC --> AE_LAT["Latent Representation z in R^16"]
+        AE_LAT --> AE_DEC["Decoder: [16 -> 32 -> 76]"]
+        AE_DEC --> AE_REC["Reconstructed Vector x_hat in R^76"]
+        PRE --> AE_MSE["Mean Squared Error: ||x - x_hat||^2"]
+        AE_REC --> AE_MSE
+        AE_MSE --> AE_RAW["Raw Reconstruction Error s_AE"]
+        AE_RAW --> AE_CAL["Benign ECDF Quantile Calibration"]
+        AE_CAL --> AE_SCORE["Calibrated Percentile c_AE in [0, 1]"]
+        AE_MSE --> AE_EXP["Top-3 Reconstruction Error Feat Attributions"]
+    end
+
+    subgraph BRANCH3["Branch 3: XGBoost Classifier (v1)"]
+        PRE --> XGB_MODEL["Supervised GBDT (150 Trees, 8 Classes)"]
+        XGB_MODEL --> XGB_PROBA["Softmax Probabilities P = [P_0, ..., P_7]"]
+        XGB_PROBA --> XGB_CONF["Top Class Attribution & Probability P_top"]
+        XGB_PROBA --> XGB_ENT["Normalized Shannon Entropy H(P)"]
+        XGB_PROBA --> XGB_MAR["Decision Margin: P_1st - P_2nd"]
+        XGB_MODEL --> XGB_GAIN["Tree Split Gain Feature Attribution"]
+    end
+
+    IF_SCORE --> FUSION["Continuous Percentile Fusion: s_fused = 0.5 * (c_IF + c_AE)"]
+    AE_SCORE --> FUSION
+
+    FUSION --> DECISION{"NETDEFY Hybrid Decision Matrix (p99 Operational Policy)"}
+    XGB_CONF --> DECISION
+    XGB_ENT --> DECISION
+    XGB_MAR --> DECISION
+
+    DECISION -->|"s_fused < 0.9821 AND Class = BENIGN (P_0 >= 0.85)"| V_NORM["NORMAL (Clean Traffic)"]
+    DECISION -->|"s_fused >= 0.9821 AND Class != BENIGN AND Margin >= 0.30"| V_KNOWN["SUSPICIOUS_KNOWN (High-Confidence Threat)"]
+    DECISION -->|"s_fused >= 0.9821 AND (Class = BENIGN OR Margin < 0.30)"| V_UNK["SUSPICIOUS_UNKNOWN (Novel / Zero-Day Anomaly)"]
+    DECISION -->|"Detector Conflict OR Intermediate Score (0.937 <= s_fused < 0.9821)"| V_REV["REVIEW_REQUIRED (Analyst Triage Queue)"]

@@ -1,0 +1,41 @@
+sequenceDiagram
+    autonumber
+    participant Sensor as Network Sensor / Event Client
+    participant API as FastAPI Ingestion Gateway (/api/v1/events)
+    participant Backpressure as Adaptive Backpressure Controller
+    participant Broker as Redis Streams / Event Broker
+    participant Consumer as Stream Consumer Worker
+    participant Dedupe as LRU Deduplicator & Validator
+    participant Engine as Hybrid Inference & Behaviour Engine
+    participant DB as SOC Alert Repository (SQLAlchemy / SQLite)
+    participant SIEM as SIEM Integrations (CEF / STIX)
+
+    Sensor->>API: POST /api/v1/events/ingest (Event Batch)
+    API->>Backpressure: Check Queue Lag & Memory Threshold
+    alt Queue Lag > 5000 or Memory Critical
+        Backpressure-->>API: Reject / Throttle (429 Too Many Requests)
+        API-->>Sensor: HTTP 429 Retry-After: 5s
+    else Admission Granted
+        Backpressure-->>API: Proceed (Admission Allowed)
+        API->>Broker: XADD netdefy:events (Event Payload)
+        API-->>Sensor: HTTP 202 Accepted (Batch Queued)
+    end
+
+    loop Event Processing Loop
+        Consumer->>Broker: XREADGROUP netdefy:consumers (Block: 1000ms)
+        Broker-->>Consumer: Stream Batch (Messages)
+        Consumer->>Dedupe: Check Event Hash & Timestamp Validity
+        alt Duplicate or Malformed Event
+            Dedupe-->>Consumer: Discard / Route to Dead Letter Queue (DLQ)
+            Consumer->>Broker: XACK netdefy:events (Acknowledge)
+        else Valid Unique Event
+            Dedupe-->>Consumer: Validated 76-Feature Event
+            Consumer->>Engine: Run Hybrid Inference + Streaming Behaviour Tracking
+            Engine-->>Consumer: Verdict (NORMAL / SUSPICIOUS_KNOWN / SUSPICIOUS_UNKNOWN / REVIEW_REQUIRED)
+            alt Threat Escalated (Non-NORMAL Verdict)
+                Consumer->>DB: Persist Alert (Verdict, Probabilities, Feature Attributions)
+                Consumer->>SIEM: Format & Export (Syslog CEF / STIX 2.1 Bundle)
+            end
+            Consumer->>Broker: XACK netdefy:events (Commit Stream Checkpoint)
+        end
+    end

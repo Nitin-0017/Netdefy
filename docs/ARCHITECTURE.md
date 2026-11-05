@@ -1,125 +1,263 @@
-# NETDEFY System Architecture
+# NETDEFY — System Architecture & Component Design
 
-**Network Defense Intelligence (NETDEFY)** is an AI-powered defensive network anomaly detection platform engineered to investigate temporal generalization, operational latency, and statistical behavior in network traffic.
+> **Document Type:** Technical Architecture Specification  
+> **Target Audience:** Systems Engineers, AI/ML Engineers, Technical Reviewers  
+> **Source Directory:** `src/netdefy/`  
+> **Frontend Directory:** `frontend/`  
 
 ---
 
-## 1. End-to-End System Pipeline
+## 1. High-Level Architectural Overview
+
+NETDEFY is structured as a modular, decoupled cybersecurity platform that unifies offline batch machine learning research with real-time stream ingestion and interactive visualization.
 
 ```mermaid
-flowchart TD
-    subgraph Data Layer
-        A1["Raw Network Traffic (CICIDS2017)"] --> A2["Data Ingestion & Validation Engine"]
-        A2 --> A3["Interim Validated Dataset"]
-        A3 --> A4["Temporal Train / Val / Test Splitter"]
+flowchart TB
+    subgraph DATA["Research Telemetry & Benchmarks"]
+        D1["CICIDS2017 Dataset\n(8 Flow CSVs, July 3-7)"]
+        D2["CSE-CIC-IDS2018\n(Independent Cross-Validation)"]
+        VAL["Validation & Cleaning Engine\n(Dedup, float32, NaN Imputation)"]
+        BM["Temporal Benchmark (v1)\n- oneclass_train: 100k Mon (Benign)\n- classifier_train: 30k Tue/Wed\n- validation: 20k Tue/Wed\n- test: 50k Thu/Fri (Holdout)"]
+        D1 --> VAL
+        VAL --> BM
     end
 
-    subgraph Feature Engineering
-        A4 --> B1["Leakage-Free Preprocessing Pipeline"]
-        B1 -->|Fit on Train Only| B2["Fitted Scalers & Column Transformers"]
-        B2 --> B3["Standardized Feature Matrices (float32)"]
+    subgraph MODELS["Model Zoo & Anomaly Detectors"]
+        IF["Isolation Forest (v1)\n(Tree-based Anomaly Detector)\nCalibrated Percentile: c_IF"]
+        AE["Deep Autoencoder (v1)\n(Latent Compression [76->32->16->32->76])\nCalibrated Percentile: c_AE"]
+        XGB["XGBoost GBDT (v1)\n(8-Class Supervised Attributor)\nP(Class), Margin, Entropy"]
+        BM -->|"Monday Benign"| IF
+        BM -->|"Monday Benign"| AE
+        BM -->|"Tue/Wed 8 Classes"| XGB
     end
 
-    subgraph Modeling & Scoring
-        B3 --> C1["Deep Autoencoder (PyTorch)"]
-        B3 --> C2["Isolation Forest Baseline (Scikit-Learn)"]
-        C1 --> D1["Reconstruction Error Scoring (MSE / MAE)"]
-        C2 --> D2["Anomaly Path-Length Scoring"]
-        D1 --> D3["Threshold Calibration (Validation Set)"]
-        D2 --> D3
-        D3 -->|Frozen Threshold| D4["Binary / Risk Anomaly Decision"]
+    subgraph BEHAVIOUR["Behavioural Intelligence Layer"]
+        BEH_A["Tier A: Intra-Flow Analysis\n(Packet Ratios, Burst Dynamics, Header Entropy)"]
+        BEH_B["Tier B: Streaming Multi-Flow Context\n(Sliding Windows, Port Diversity Ratio, Beacon Periodicity)"]
     end
 
-    subgraph Evaluation & MLOps
-        D4 --> E1["Temporal Evaluation Suite (PR-AUC, Attack Recall, FAR)"]
-        E1 --> E2["MLflow Experiment Tracking & Registry"]
-        E2 --> E3["Exported Model Artifacts & Schemas"]
+    subgraph ENGINE["Hybrid Decision Engine (Phase 4D)"]
+        FUSE["Empirical Percentile Score Fusion\ns_fused = 0.5 * (c_IF + c_AE)"]
+        POLICY["Decision Triage Policy\n- Margin & Entropy Checks\n- Open-Set Rejection Gate\n- Model Conflict Resolution"]
+        TRIAGE["4-State Discrete Verdict:\n1. NORMAL\n2. REVIEW_REQUIRED\n3. SUSPICIOUS_KNOWN\n4. SUSPICIOUS_UNKNOWN"]
+        IF --> FUSE
+        AE --> FUSE
+        FUSE --> POLICY
+        XGB --> POLICY
+        POLICY --> TRIAGE
     end
 
-    subgraph Serving & Observability
-        E3 --> F1["FastAPI Inference Engine (Uvicorn)"]
-        F1 --> F2["Runtime Traffic Scoring API"]
-        F2 --> G1["Statistical Drift Monitoring"]
-        F2 --> G2["React Cybersecurity Dashboard"]
+    subgraph BACKEND["FastAPI Platform & Stream Processor"]
+        API["FastAPI REST Application (/api/v1/*)\n- /research: Metrics & Thresholds\n- /playground: Live Inference & What-If\n- /events & /stream: Flow Ingestion\n- /alerts: SOC Alert Repository"]
+        REDIS["Redis Streams / Memory Broker\n(Event Ingestion, DLQ, Backpressure)"]
+        DB["SQLite / SQLAlchemy\n(Audit Trail, Alert Persistence)"]
+        API <--> REDIS
+        API <--> DB
+        TRIAGE --> API
+        BEHAVIOUR --> API
+    end
+
+    subgraph FRONTEND["AI/ML Research Workbench (React 19 + Vite + TS)"]
+        UI_OV["Research Overview\n(Scientific Context & Architecture)"]
+        UI_COMP["Head-to-Head Model Comparison\n(AUROC, PR-AUC, Disambiguation)"]
+        UI_CAL["Anomaly Threshold Calibration\n(p95, p99, p99.5 ECDF Curves)"]
+        UI_CONF["Classification & Open-Set Diagnostics\n(8x8 Validation, 14-Class Test)"]
+        UI_PLAY["Interactive Inference Playground\n(Curated Benchmark & Feature Sliders)"]
+        FRONTEND <-->|"HTTP / JSON REST"| API
     end
 ```
 
 ---
 
-## 2. Architectural Components
+## 2. Core Subsystems & Module Breakdown
 
-### 2.1 Data Validation Engine (`src/netdefy/data/`)
-- **Status:** **Implemented in Phase 1.**
-- Validates structural and numerical integrity of incoming network flow records.
-- Checks:
-  - Missing mandatory schema columns.
-  - Zero-row or truncated datasets.
-  - Duplicate flow rows.
-  - Presence of missing (`NaN`, `None`, empty string) values.
-  - Infinite (`+inf`, `-inf`) numerical values caused by flow duration division.
-  - Invalid numerical data types.
-  - Column schema consistency across partitioned days.
+### 2.1 Data & Forensic Inspection Subsystem (`src/netdefy/data/`)
+- **[`acquisition.py`](../src/netdefy/data/acquisition.py):** Implements safe extraction with Zip Slip path-traversal prevention, SHA-256 cryptographic verification, and manifest registration.
+- **[`inspection.py`](../src/netdefy/data/inspection.py):** Performs deep telemetry auditing across raw flow CSVs, detecting rate infinities (`Flow Bytes/s`, `Flow Packets/s`), irregular whitespace, and bitwise row duplicates.
+- **[`validation.py`](../src/netdefy/data/validation.py):** Verifies 20 strict benchmark invariants including partition disjointness, zero temporal leakage, float32 precision, and feature schema purity.
+- **[`manifest.py`](../src/netdefy/data/manifest.py):** Generates reproducible dataset manifests with cryptographic hashes and row count tracking.
 
-### 2.2 Leakage-Free Preprocessing Engine (`src/netdefy/preprocessing/`)
-- **Status:** *Planned for Phase 2.*
-- Enforces strict data-hygiene boundaries:
-  - Scalers (`StandardScaler`, `RobustScaler`) fit strictly on training partitions; validation and test splits are strictly transformed.
-  - Drops operational identifiers that cause shortcut learning: `Source IP`, `Destination IP`, `Timestamp`, `Flow ID`, `Source Port`.
-  - Imputes numerical anomalies using training set medians.
-  - Casts features to `float32` to guarantee memory efficiency on Apple Silicon unified memory (8 GB M3).
+### 2.2 Preprocessing & Feature Engineering Subsystem (`src/netdefy/preprocessing/`)
+- **[`cleaner.py`](../src/netdefy/preprocessing/cleaner.py):** Canonicalizes column headers, replaces `+inf`/`-inf` with `NaN`, and performs median imputation using parameters derived exclusively from training data.
+- **[`deduplication.py`](../src/netdefy/preprocessing/deduplication.py):** Removes bitwise identical rows generated by dual-homed network taps while preserving legitimate duplicate connection events.
+- **[`scaler.py`](../src/netdefy/preprocessing/scaler.py):** Fits `RobustScaler` (median & IQR) and `StandardScaler` on pure training partitions, enforcing zero test information leakage.
+- **[`schema.py`](../src/netdefy/preprocessing/schema.py):** Maintains canonical 76-continuous-feature mapping and standardizes network port services.
 
-### 2.3 Model Architecture & Acceleration (`src/netdefy/models/`)
-- **Status:** **Device Management Implemented in Phase 1; Model Training Planned for Phase 2.**
-- **Device Management (`device.py`):**
-  - Auto-detects Apple Silicon Metal Performance Shaders (`mps`), NVIDIA CUDA (`cuda`), or fallback `cpu`.
-  - Executes active tensor verification before device assignment.
-- **Deep Autoencoder (PyTorch):**
-  - Symmetric multi-layer encoder-decoder architecture with bottleneck compression.
-  - Trained exclusively on benign network traffic to learn normal baseline behavior.
-  - Anomaly metric: Reconstruction error $\mathcal{L}(x, \hat{x}) = \|x - \hat{x}\|_2^2$.
-- **Isolation Forest Baseline (Scikit-learn):**
-  - Tree-based isolation ensemble to benchmark classical machine learning against deep learning.
+### 2.3 Model Zoo & Acceleration Subsystem (`src/netdefy/models/`)
+- **[`isolation_forest.py`](../src/netdefy/models/isolation_forest.py):** Unsupervised isolation tree ensemble (100 trees) detecting outliers via path length compression.
+- **[`autoencoder.py`](../src/netdefy/models/autoencoder.py):** Fully-connected PyTorch bottleneck architecture ($76 \to 32 \to 16 \to 32 \to 76$) with Mish non-linear activation and Batch Normalization.
+- **[`xgboost_classifier.py`](../src/netdefy/models/xgboost_classifier.py):** Multi-class gradient boosted trees (150 estimators, max depth 6) attributing known threats across 8 training classes.
+- **[`device.py`](../src/netdefy/models/device.py):** Hardware accelerator manager auto-detecting Apple Silicon (MPS), NVIDIA (CUDA), or CPU with runtime tensor verification.
 
-### 2.4 Anomaly Scoring & Threshold Calibration (`src/netdefy/evaluation/`)
-- **Status:** *Planned for Phase 2/3.*
-- Uses the temporal validation set to select a decision boundary (e.g., 99th percentile of benign validation reconstruction errors).
-- Freezes threshold prior to evaluating on unseen future temporal test sets.
+### 2.4 Hybrid Intelligence & Decision Engine (`src/netdefy/hybrid/`)
+- **[`score_calibration.py`](../src/netdefy/hybrid/score_calibration.py):** Maps raw, unnormalized detector outputs ($s_{\text{IF}} \in [0.3, 0.75]$, $s_{\text{AE}} \in [0.0, 816.0]$) to calibrated empirical percentiles in $[0.0, 1.0]$ using ECDF estimation on $15,315$ benign validation flows.
+- **[`score_fusion.py`](../src/netdefy/hybrid/score_fusion.py):** Computes equal-weight and weighted score fusions: $s_{\text{fused}} = 0.5(c_{\text{IF}} + c_{\text{AE}})$.
+- **[`decision_engine.py`](../src/netdefy/hybrid/decision_engine.py):** Implements multi-factor triage logic incorporating supervised confidence, decision margins, normalized entropy, and detector disagreement thresholds.
+- **[`explanation.py`](../src/netdefy/hybrid/explanation.py):** Produces model-native feature attributions (squared reconstruction residuals for Autoencoder, tree split gains for XGBoost).
+- **[`model_registry.py`](../src/netdefy/hybrid/model_registry.py):** Manages concurrent loading, caching, and health verification for all model artifacts.
 
-### 2.5 Experiment Tracking & Governance (`mlruns/`)
-- **Status:** **Configuration & Schema Implemented in Phase 1; Tracking Planned for Phase 2.**
-- MLflow logs:
-  - Dataset source checksums and temporal split boundaries.
-  - Preprocessing parameters and feature list schemas.
-  - Model hyper-parameters, optimizer configs, random seeds.
-  - Multi-metric evaluation (PR-AUC, ROC-AUC, Attack-wise recall, False alarm rate per 1,000 flows).
-  - Profiling metrics: CPU/MPS peak memory usage and latency per 1,000 inferences.
+### 2.5 Behavioural Intelligence Layer (`src/netdefy/behaviour/`)
+- **Tier A (Intra-Flow Behaviour):** Computes directional payload ratios, inter-arrival jitter, and TCP flag combinations from isolated flow metrics.
+- **Tier B (Streaming Multi-Flow Context):** Memory-bounded sliding windows tracking destination port diversity (detecting stealthy horizontal port scans) and inter-connection periodicity (detecting low-frequency botnet beaconing).
 
-### 2.6 FastAPI Inference Service (`src/netdefy/inference/`)
-- **Status:** *Planned for Phase 3.*
-- High-throughput asynchronous REST API for single-flow and batch anomaly scoring.
-- Validates input payloads against Pydantic flow schemas before scoring.
-- Returns binary prediction (`ANOMALY` vs `BENIGN`), reconstruction error, and calibrated confidence score.
-
-### 2.7 Observability & Drift Monitoring (`src/netdefy/monitoring/`)
-- **Status:** *Planned for Phase 4.*
-- Monitors feature distributions and reconstruction error drift over time.
-- Triggers alert flags when feature drift (Kolmogorov-Smirnov / Wasserstein distance) surpasses warning thresholds.
-
-### 2.8 Cyber Defense Analytics Dashboard
-- **Status:** *Planned for Phase 4.*
-- React 18, TypeScript, Vite, TailwindCSS, and Recharts.
-- Visualizes:
-  - Real-time flow telemetry and anomaly timeline.
-  - Attack category distribution.
-  - Feature attribution / reconstruction error heatmaps.
-  - Operational hardware metrics (throughput, latency, memory).
+### 2.6 Streaming Processor & SOC Engine (`src/netdefy/streaming/` & `src/netdefy/storage/`)
+- **[`redis_streams.py`](../src/netdefy/streaming/redis_streams.py):** High-throughput event ingestion using Redis Consumer Groups with PEL acknowledgment and crash recovery.
+- **[`in_memory_broker.py`](../src/netdefy/streaming/in_memory_broker.py):** Zero-dependency streaming broker used for local testing, CI, and lightweight standalone execution.
+- **[`backpressure.py`](../src/netdefy/streaming/backpressure.py):** Dynamic admission controller evaluating stream depth and worker latency, rejecting input (`HTTP 429`) under saturation.
+- **[`dead_letter_queue.py`](../src/netdefy/streaming/dead_letter_queue.py):** Automatically isolates poison pills and schema-invalid events after exponential backoff retries.
+- **[`alert_repository.py`](../src/netdefy/storage/alert_repository.py):** Thread-safe SQLAlchemy persistence of alerts, verdicts, probabilities, and attributions to SQLite.
 
 ---
 
-## 3. Engineering Constraints & Resource Awareness
-- **Target Hardware:** Apple M3 with 8 GB Unified Memory.
-- **Memory Preservation:**
-  - Chunk-based CSV loading (e.g., 50,000 rows/chunk).
-  - Explicit garbage collection and `torch.mps.empty_cache()` hooks.
-  - Single-precision (`float32`) tensors to halve memory footprints compared to standard 64-bit doubles.
+## 3. Model Inference Pipeline Flow
 
+```mermaid
+flowchart TD
+    IN["Input Network Flow Vector x (76 Continuous Features)"] --> PRE["Robust/Standard Scaler Normalization"]
+    
+    subgraph BRANCH1["Branch 1: Isolation Forest (v1)"]
+        PRE --> IF_MODEL["Isolation Forest Ensemble (100 Trees)"]
+        IF_MODEL --> IF_RAW["Raw Average Path Length Score s_IF"]
+        IF_RAW --> IF_CAL["Benign ECDF Quantile Calibration"]
+        IF_CAL --> IF_SCORE["Calibrated Percentile c_IF in [0, 1]"]
+    end
+
+    subgraph BRANCH2["Branch 2: Deep Autoencoder (v1)"]
+        PRE --> AE_ENC["Encoder: [76 -> 32 -> 16] (Mish Activation)"]
+        AE_ENC --> AE_LAT["Latent Representation z in R^16"]
+        AE_LAT --> AE_DEC["Decoder: [16 -> 32 -> 76]"]
+        AE_DEC --> AE_REC["Reconstructed Vector x_hat in R^76"]
+        PRE --> AE_MSE["Mean Squared Error: ||x - x_hat||^2"]
+        AE_REC --> AE_MSE
+        AE_MSE --> AE_RAW["Raw Reconstruction Error s_AE"]
+        AE_RAW --> AE_CAL["Benign ECDF Quantile Calibration"]
+        AE_CAL --> AE_SCORE["Calibrated Percentile c_AE in [0, 1]"]
+        AE_MSE --> AE_EXP["Top-3 Reconstruction Error Feat Attributions"]
+    end
+
+    subgraph BRANCH3["Branch 3: XGBoost Classifier (v1)"]
+        PRE --> XGB_MODEL["Supervised GBDT (150 Trees, 8 Classes)"]
+        XGB_MODEL --> XGB_PROBA["Softmax Probabilities P = [P_0, ..., P_7]"]
+        XGB_PROBA --> XGB_CONF["Top Class Attribution & Probability P_top"]
+        XGB_PROBA --> XGB_ENT["Normalized Shannon Entropy H(P)"]
+        XGB_PROBA --> XGB_MAR["Decision Margin: P_1st - P_2nd"]
+        XGB_MODEL --> XGB_GAIN["Tree Split Gain Feature Attribution"]
+    end
+
+    IF_SCORE --> FUSION["Continuous Percentile Fusion: s_fused = 0.5 * (c_IF + c_AE)"]
+    AE_SCORE --> FUSION
+
+    FUSION --> DECISION{"NETDEFY Hybrid Decision Matrix (p99 Operational Policy)"}
+    XGB_CONF --> DECISION
+    XGB_ENT --> DECISION
+    XGB_MAR --> DECISION
+
+    DECISION -->|"s_fused < 0.9821 AND Class = BENIGN (P_0 >= 0.85)"| V_NORM["NORMAL (Clean Traffic)"]
+    DECISION -->|"s_fused >= 0.9821 AND Class != BENIGN AND Margin >= 0.30"| V_KNOWN["SUSPICIOUS_KNOWN (High-Confidence Threat)"]
+    DECISION -->|"s_fused >= 0.9821 AND (Class = BENIGN OR Margin < 0.30)"| V_UNK["SUSPICIOUS_UNKNOWN (Novel / Zero-Day Anomaly)"]
+    DECISION -->|"Detector Conflict OR Intermediate Score (0.937 <= s_fused < 0.9821)"| V_REV["REVIEW_REQUIRED (Analyst Triage Queue)"]
+```
+
+---
+
+## 4. Real-Time Streaming Sequence
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Sensor as Network Sensor / Event Client
+    participant API as FastAPI Ingestion Gateway (/api/v1/events)
+    participant Backpressure as Adaptive Backpressure Controller
+    participant Broker as Redis Streams / Event Broker
+    participant Consumer as Stream Consumer Worker
+    participant Dedupe as LRU Deduplicator & Validator
+    participant Engine as Hybrid Inference & Behaviour Engine
+    participant DB as SOC Alert Repository (SQLAlchemy / SQLite)
+    participant SIEM as SIEM Integrations (CEF / STIX)
+
+    Sensor->>API: POST /api/v1/events/ingest (Event Batch)
+    API->>Backpressure: Check Queue Lag & Memory Threshold
+    alt Queue Lag > 5000 or Memory Critical
+        Backpressure-->>API: Reject / Throttle (429 Too Many Requests)
+        API-->>Sensor: HTTP 429 Retry-After: 5s
+    else Admission Granted
+        Backpressure-->>API: Proceed (Admission Allowed)
+        API->>Broker: XADD netdefy:events (Event Payload)
+        API-->>Sensor: HTTP 202 Accepted (Batch Queued)
+    end
+
+    loop Event Processing Loop
+        Consumer->>Broker: XREADGROUP netdefy:consumers (Block: 1000ms)
+        Broker-->>Consumer: Stream Batch (Messages)
+        Consumer->>Dedupe: Check Event Hash & Timestamp Validity
+        alt Duplicate or Malformed Event
+            Dedupe-->>Consumer: Discard / Route to Dead Letter Queue (DLQ)
+            Consumer->>Broker: XACK netdefy:events (Acknowledge)
+        else Valid Unique Event
+            Dedupe-->>Consumer: Validated 76-Feature Event
+            Consumer->>Engine: Run Hybrid Inference + Streaming Behaviour Tracking
+            Engine-->>Consumer: Verdict (NORMAL / SUSPICIOUS_KNOWN / SUSPICIOUS_UNKNOWN / REVIEW_REQUIRED)
+            alt Threat Escalated (Non-NORMAL Verdict)
+                Consumer->>DB: Persist Alert (Verdict, Probabilities, Feature Attributions)
+                Consumer->>SIEM: Format & Export (Syslog CEF / STIX 2.1 Bundle)
+            end
+            Consumer->>Broker: XACK netdefy:events (Commit Stream Checkpoint)
+        end
+    end
+```
+
+---
+
+## 5. Research Workbench Interaction Architecture
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Analyst as AI/ML Researcher / Evaluator
+    participant UI as React 19 Research Workbench (Vite + Tailwind)
+    participant Client as Frontend API Client (services/api.ts)
+    participant API as FastAPI Research Endpoints (/api/v1/*)
+    participant Registry as Model Registry & Artifact Store (artifacts/)
+    participant Engine as Hybrid Inference & Decision Engine (hybrid/)
+    participant Samples as Benchmark Samples Store (artifacts/research/)
+
+    Note over Analyst,UI: Tab 1: Head-to-Head Model Comparison
+    Analyst->>UI: Select "Model Comparison" Tab
+    UI->>Client: getComparison()
+    Client->>API: GET /api/v1/research/comparison
+    API->>Registry: Load artifacts/models/hybrid/v1/test_metrics.json
+    API-->>Client: Return View A vs View B Metrics (ROC-AUC, Recall, F1)
+    Client-->>UI: Render Metric Cards, Bar Charts & Disambiguation Table
+
+    Note over Analyst,UI: Tab 2: Anomaly Threshold Calibration
+    Analyst->>UI: Select "Anomaly Calibration" Tab
+    UI->>Client: getThresholds()
+    Client->>API: GET /api/v1/research/thresholds
+    API->>Registry: Read ECDF thresholds.json (Autoencoder, Isolation Forest, Hybrid)
+    API-->>Client: Return p95, p99, p99.5 cutoffs & false alarm rates
+    Client-->>UI: Render Calibrated Threshold Cards & Interactive Error AreaChart
+
+    Note over Analyst,UI: Tab 3: Classification & Open-Set Diagnostics
+    Analyst->>UI: Select "Classification Diagnostics" Tab
+    UI->>Client: getConfusionMatrices() & getFeatureImportance()
+    Client->>API: GET /api/v1/research/confusion-matrix
+    API->>Registry: Load validation 8x8 & holdout open-set 14-class matrices
+    API-->>Client: Return label matrices & tree split gain rankings
+    Client-->>UI: Render Interactive Confusion Matrices & Gain Bar Chart
+
+    Note over Analyst,UI: Tab 4: Interactive Inference Playground
+    Analyst->>UI: Select "Inference Playground" Tab
+    UI->>Client: getPlaygroundSamples()
+    Client->>API: GET /api/v1/playground/samples
+    API->>Samples: Read curated_benchmark_samples.json (11 Verified Flows)
+    API-->>Client: Return 11 Flows with Ground-Truth metadata
+    Client-->>UI: Populate Sample Selector dropdown
+    Analyst->>UI: Modify Feature Slider (e.g. Flow Duration, Packet Length)
+    Analyst->>UI: Click "Run Live Inference"
+    UI->>Client: predictPlaygroundFlow({features, is_synthetic})
+    Client->>API: POST /api/v1/playground/predict
+    API->>Engine: Execute Full Hybrid Inference Pipeline
+    Engine-->>API: Return Decision, Scores, Class Probabilities & Attributions
+    API-->>Client: Return Comprehensive Result Payload
+    Client-->>UI: Render Decision Banner, Confidence Meters & Explanations
+```

@@ -1,142 +1,117 @@
-# NETDEFY Local Development Guide
+# NETDEFY — Developer & Engineering Standards
 
-This guide describes how to configure, develop, test, and verify the **NETDEFY** codebase locally.
-
----
-
-## 1. Prerequisites
-
-- **Operating System:** macOS (Apple Silicon arm64 recommended) or Linux x86_64.
-- **Python Version:** Python 3.12 (`>=3.12`).
-- **Package Manager:** [`uv`](https://github.com/astral-sh/uv) (strongly recommended) or standard `pip`/`venv`.
-- **Hardware Target:** Optimized for Apple Silicon (M-series with unified memory) using Metal Performance Shaders (MPS), with CUDA and CPU fallback support.
+> **Document Type:** Developer Guide & Quality Standards  
+> **Source Directory:** `src/netdefy/`  
+> **Test Directory:** `tests/`  
+> **Frontend Directory:** `frontend/`  
 
 ---
 
-## 2. Environment Setup
+## 1. Development Philosophy
 
-### Option A: Using `uv` (Recommended)
+NETDEFY is an applied machine learning and cybersecurity engineering platform built under strict production-grade standards:
 
-1. Clone the repository (or navigate to the workspace):
-   ```bash
-   cd /path/to/Netdefy
-   ```
-
-2. Create virtual environment with Python 3.12:
-   ```bash
-   uv venv --python 3.12 .venv
-   source .venv/bin/activate
-   ```
-
-3. Install project dependencies in editable mode with development tools:
-   ```bash
-   uv pip install -e ".[dev]"
-   ```
-
-### Option B: Using standard Python `venv`
-
-1. Create and activate a Python 3.12 virtual environment:
-   ```bash
-   python3.12 -m venv .venv
-   source .venv/bin/activate
-   ```
-
-2. Upgrade packaging tools and install:
-   ```bash
-   pip install --upgrade pip
-   pip install -e ".[dev]"
-   ```
+1. **Type Safety Throughout:** All Python code enforces strict type checking (`mypy --strict`, zero untyped definitions). All frontend code enforces TypeScript compilation with zero errors.
+2. **Deterministic & Reproducible:** All random seeds, dataset splits, and evaluation metrics must be completely deterministic and reproducible.
+3. **Defense-in-Depth Testing:** Testing spans unit tests, component integration tests, schema contract verification, and automated 20-invariant benchmark auditing.
+4. **Zero-Leakage Science:** No test set information (labels, feature distributions, or thresholds) may ever leak into training or calibration routines.
 
 ---
 
-## 3. Environment Verification Script
+## 2. Local Environment Setup
 
-Run the automated diagnostic utility to verify hardware detection, accelerator availability, and dependency installations:
-
+### 2.1 Backend Setup (`uv`)
 ```bash
-python scripts/check_environment.py
+# Clone the repository
+git clone https://github.com/Nitin-0017/Netdefy.git
+cd Netdefy
+
+# Pull Git LFS assets
+git lfs pull
+
+# Create virtual environment and install dev dependencies
+uv venv
+uv pip install -e ".[dev]"
+
+# Configure environment variables
+cp .env.example .env
 ```
 
-This checks:
-- Python version and interpreter path.
-- Operating system and CPU architecture.
-- Total and available system memory.
-- PyTorch installation and device detection (MPS / CUDA / CPU) with live tensor execution.
-- Key dependency import statuses.
-- Configuration file schema validation.
-
----
-
-## 4. Code Quality & Verification Commands
-
-All pull requests and code modifications must satisfy the following checks:
-
-### 4.1 Ruff Linting
-Check for code style violations, bug hazards, and import hygiene:
+### 2.2 Frontend Setup (`npm`)
 ```bash
-ruff check .
-```
-To automatically apply safe fixes:
-```bash
-ruff check --fix .
-```
-
-### 4.2 Ruff Formatting
-Verify code formatting against the 100-character line limit and double-quote standard:
-```bash
-ruff format --check .
-```
-To apply formatting:
-```bash
-ruff format .
-```
-
-### 4.3 MyPy Strict Type Checking
-Ensure 100% type annotations with zero implicit optionals or untyped definitions:
-```bash
-mypy src tests scripts
-```
-
-### 4.4 Automated Testing with PyTest
-Run the full test suite with verbose output:
-```bash
-pytest
-```
-To run with coverage reporting:
-```bash
-pytest --cov=netdefy --cov-report=term-missing
+cd frontend
+npm ci
+npm run build
+cd ..
 ```
 
 ---
 
-## 5. Phase Implementation Status
+## 3. Code Quality & Automated Tooling
 
-| Component | Status | Phase |
-| :--- | :--- | :--- |
-| Modular Directory Structure | **Implemented** | Phase 1 |
-| Pydantic Configuration System (`settings.py`) | **Implemented** | Phase 1 |
-| Hardware & Device Manager with MPS/CUDA (`device.py`) | **Implemented** | Phase 1 |
-| Reproducibility & Seeding Utilities (`reproducibility.py`) | **Implemented** | Phase 1 |
-| Structured Logging Utility (`logging.py`) | **Implemented** | Phase 1 |
-| Dataset Validation Engine (`validation.py`) | **Implemented** | Phase 1 |
-| Environment Diagnostic Script (`check_environment.py`) | **Implemented** | Phase 1 |
-| CI GitHub Actions Workflow (`tests.yml`) | **Implemented** | Phase 1 |
-| CICIDS2017 Dataset Ingestion & Partitioning | *Pending* | Phase 2 |
-| Leakage-Free Preprocessing Pipeline | *Pending* | Phase 2 |
-| PyTorch Autoencoder Architecture & Training | *Pending* | Phase 2 |
-| Isolation Forest Baseline Training | *Pending* | Phase 2 |
-| Temporal Generalization Evaluation Suite | *Pending* | Phase 2 |
-| MLflow Experiment Tracking & Logging | *Pending* | Phase 2 |
-| FastAPI Model Serving & Inference | *Pending* | Phase 3 |
-| Statistical Data Drift & Model Monitoring | *Pending* | Phase 4 |
-| React Analytics Dashboard | *Pending* | Phase 4 |
+Every contribution must satisfy the five automated quality gates:
+
+### 3.1 Ruff Linter
+Enforces pycodestyle, pyflakes, isort, flake8-bugbear, pyupgrade, and modern idioms:
+```bash
+uv run ruff check .
+```
+
+### 3.2 Ruff Formatter
+Enforces deterministic black-compatible code formatting (100 character line length):
+```bash
+uv run ruff format --check .
+# To auto-format files:
+uv run ruff format .
+```
+
+### 3.3 Strict MyPy Type Checking
+Enforces zero missing types, no implicit optionals, and checked function definitions:
+```bash
+uv run mypy src tests scripts
+```
+
+### 3.4 Pytest Suite
+Executes all unit and integration tests with coverage tracking:
+```bash
+uv run pytest
+```
+
+### 3.5 Frontend Verification
+Ensures TypeScript compiles without warnings or errors:
+```bash
+cd frontend
+npm test       # runs tsc --noEmit
+npm run build  # compiles production bundle to dist/
+cd ..
+```
 
 ---
 
-## 6. Development Conventions
+## 4. Test Organization & Philosophy
 
-1. **Defensive Cyber Scope:** NETDEFY is strictly defensive. Do not commit exploit scripts, automated attacking harnesses, or unauthorized packet injectors.
-2. **Deterministic Execution:** Always seed RNGs using `set_seed(seed, deterministic=True)` from `netdefy.utils.reproducibility`.
-3. **Memory Guardrails:** Keep batch sizes $\le 512$ and cast feature matrices to `np.float32` / `torch.float32` to avoid OOM faults on 8 GB systems.
-4. **No Test Leakage:** Transformations (scalers, encoders) must be fitted on training sets only. Never fit on full datasets or evaluation partitions.
+Tests are partitioned into two directories in `tests/`:
 
+- **`tests/unit/` (Fast Unit Tests):**
+  - Feature scaling & imputation (`test_scaler.py`, `test_cleaner.py`)
+  - Anomaly scoring mathematics (`test_isolation_forest.py`, `test_autoencoder_model.py`)
+  - Supervised GBDT mechanics (`test_xgboost_classifier.py`)
+  - Quantile threshold calibration (`test_thresholds.py`)
+  - Streaming components & backpressure (`test_streaming_components.py`)
+  - API routers and playground schema contracts (`test_research_api.py`)
+  - Hardware device detection (`test_device.py`)
+- **`tests/integration/` (End-to-End System Tests):**
+  - Benchmark v1 dataset integrity & invariants (`test_benchmark_v1.py`)
+  - Preprocessing pipeline reproducibility (`test_pipeline_sanity.py`, `test_phase3_sanity.py`)
+  - Model pipeline training and loading (`test_autoencoder_pipeline.py`, `test_classifier_pipeline.py`)
+  - Hybrid engine decision determinism (`test_hybrid_pipeline.py`)
+  - Real-time streaming and dead-letter queue recovery (`test_stream_reliability.py`, `test_streaming_pipeline.py`)
+
+---
+
+## 5. Clean Git & Commit Workflow
+
+- **Branching Policy:** Work on feature branches and submit PRs targeting `main`.
+- **Commit Messages:** Use clear, concise commit messages (2–4 words preferred).
+- **History Preservation:** Never force-push or rewrite public history.
+- **CI Verification:** Ensure both Ubuntu and macOS GitHub Actions workflows pass before merging.

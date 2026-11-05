@@ -1,0 +1,30 @@
+flowchart TD
+    subgraph RAW["Raw Capture & Quality Audit"]
+        CSV["CICIDS2017 Raw Telemetry (8 CSVs, 2.8 GB)\n2,830,743 Raw Records (July 3-7, 2017)"]
+        INSP["Data Quality Inspection (scripts/inspect_dataset.py)\n- Strip Header Whitespace\n- Impute Rate Infiinities (Flow Bytes/s, Packets/s)\n- Remove SPAN Ingress/Egress Duplicates"]
+        CSV --> INSP
+    end
+
+    subgraph PARTITION["Chronological Benchmark Partitioning (scripts/create_benchmark.py)"]
+        INSP --> MONDAY["Monday (July 3)\nPure Benign Baseline"]
+        INSP --> TUE_WED["Tuesday & Wednesday (July 4-5)\nKnown Training Attacks"]
+        INSP --> THU_FRI["Thursday & Friday (July 6-7)\nTemporal Holdout Telemetry"]
+
+        MONDAY --> P1["oneclass_train (100,000 flows)\n- 100% BENIGN\n- Fits Isolation Forest & Autoencoder"]
+        TUE_WED --> P2["classifier_train (30,000 flows)\n- 8 Classes (BENIGN, DoS, Brute Force)\n- Fits Supervised XGBoost Classifier"]
+        TUE_WED --> P3["validation (20,000 flows)\n- Zero overlap with classifier_train\n- Fits Empirical ECDF Percentile Calibrators"]
+        THU_FRI --> P4["test (50,000 flows)\n- Full Benchmark Holdout (View A)\n- 37,474 Benign, 12,526 Attack (14 Classes)\n- Evaluates Real-World Temporal Decay"]
+    end
+
+    subgraph DISAMBIGUATION["Ambiguity Tracking & Dual Evaluation Views"]
+        P4 --> AMB["Ambiguity Audit (scripts/audit_duplicate_label_integrity.py)\nIdentifies 3,305 rows sharing exact 76 features across conflicting labels\n(3,254 PortScan, 49 Benign, 2 Bot)"]
+        AMB --> VIEW_A["View A: Full Test Holdout (50,000 Flows)\nUnadjusted real-world benchmark\nHybrid Recall: 27.73%, F1: 0.4178"]
+        AMB --> VIEW_B["View B: Disambiguated Test (46,695 Flows)\nExcludes 3,305 collision rows\nHybrid Recall: 37.46% (+35.1%), F1: 0.5196"]
+    end
+
+    subgraph CROSS_DOMAIN["Independent Cross-Domain Validation"]
+        EXT["CSE-CIC-IDS2018 Telemetry (March 1, 2018)\nIndependent network architecture, operating systems, and capture tools"]
+        P1 --> MODEL_TEST["Cross-Environment Generalization Testing (Phase 5.1)\nDemonstrated sharp performance degradation on foreign topologies"]
+        P2 --> MODEL_TEST
+        EXT --> MODEL_TEST
+    end

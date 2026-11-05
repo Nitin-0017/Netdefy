@@ -1,0 +1,53 @@
+flowchart TB
+    subgraph DATA["Research Telemetry & Benchmarks"]
+        D1["CICIDS2017 Dataset\n(8 Flow CSVs, July 3-7)"]
+        D2["CSE-CIC-IDS2018\n(Independent Cross-Validation)"]
+        VAL["Validation & Cleaning Engine\n(Dedup, float32, NaN Imputation)"]
+        BM["Temporal Benchmark (v1)\n- oneclass_train: 100k Mon (Benign)\n- classifier_train: 30k Tue/Wed\n- validation: 20k Tue/Wed\n- test: 50k Thu/Fri (Holdout)"]
+        D1 --> VAL
+        VAL --> BM
+    end
+
+    subgraph MODELS["Model Zoo & Anomaly Detectors"]
+        IF["Isolation Forest (v1)\n(Tree-based Anomaly Detector)\nCalibrated Percentile: c_IF"]
+        AE["Deep Autoencoder (v1)\n(Latent Compression [76->32->16->32->76])\nCalibrated Percentile: c_AE"]
+        XGB["XGBoost GBDT (v1)\n(8-Class Supervised Attributor)\nP(Class), Margin, Entropy"]
+        BM -->|"Monday Benign"| IF
+        BM -->|"Monday Benign"| AE
+        BM -->|"Tue/Wed 8 Classes"| XGB
+    end
+
+    subgraph BEHAVIOUR["Behavioural Intelligence Layer"]
+        BEH_A["Tier A: Intra-Flow Analysis\n(Packet Ratios, Burst Dynamics, Header Entropy)"]
+        BEH_B["Tier B: Streaming Multi-Flow Context\n(Sliding Windows, Port Diversity Ratio, Beacon Periodicity)"]
+    end
+
+    subgraph ENGINE["Hybrid Decision Engine (Phase 4D)"]
+        FUSE["Empirical Percentile Score Fusion\ns_fused = 0.5 * (c_IF + c_AE)"]
+        POLICY["Decision Triage Policy\n- Margin & Entropy Checks\n- Open-Set Rejection Gate\n- Model Conflict Resolution"]
+        TRIAGE["4-State Discrete Verdict:\n1. NORMAL\n2. REVIEW_REQUIRED\n3. SUSPICIOUS_KNOWN\n4. SUSPICIOUS_UNKNOWN"]
+        IF --> FUSE
+        AE --> FUSE
+        FUSE --> POLICY
+        XGB --> POLICY
+        POLICY --> TRIAGE
+    end
+
+    subgraph BACKEND["FastAPI Platform & Stream Processor"]
+        API["FastAPI REST Application (/api/v1/*)\n- /research: Metrics & Thresholds\n- /playground: Live Inference & What-If\n- /events & /stream: Flow Ingestion\n- /alerts: SOC Alert Repository"]
+        REDIS["Redis Streams / Memory Broker\n(Event Ingestion, DLQ, Backpressure)"]
+        DB["SQLite / SQLAlchemy\n(Audit Trail, Alert Persistence)"]
+        API <--> REDIS
+        API <--> DB
+        TRIAGE --> API
+        BEHAVIOUR --> API
+    end
+
+    subgraph FRONTEND["AI/ML Research Workbench (React 19 + Vite + TS)"]
+        UI_OV["Research Overview\n(Scientific Context & Architecture)"]
+        UI_COMP["Head-to-Head Model Comparison\n(AUROC, PR-AUC, Disambiguation)"]
+        UI_CAL["Anomaly Threshold Calibration\n(p95, p99, p99.5 ECDF Curves)"]
+        UI_CONF["Classification & Open-Set Diagnostics\n(8x8 Validation, 14-Class Test)"]
+        UI_PLAY["Interactive Inference Playground\n(Curated Benchmark & Feature Sliders)"]
+        FRONTEND <-->|"HTTP / JSON REST"| API
+    end
