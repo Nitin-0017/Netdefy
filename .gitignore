@@ -34,6 +34,9 @@ env/
 data/raw/*
 !data/raw/.gitkeep
 !data/raw/README.md
+data/external/*
+!data/external/.gitkeep
+!data/external/README.md
 data/interim/*
 !data/interim/.gitkeep
 !data/interim/README.md
@@ -46,6 +49,8 @@ data/benchmark/*
 !data/benchmark/.gitkeep
 !data/benchmark/README.md
 !data/benchmark/v1/
+!data/benchmark/phase5_1/
+data/benchmark/phase5_1/*.parquet
 
 # Artifacts & Checkpoints
 # Exclude temporary checkpoints and unversioned scratch model dumps
