@@ -34,7 +34,7 @@ flowchart TB
     end
 
     subgraph BACKEND["FastAPI Platform & Stream Processor"]
-        API["FastAPI REST Application (/api/v1/*)\n- /research: Metrics & Thresholds\n- /playground: Live Inference & What-If\n- /events & /stream: Flow Ingestion\n- /alerts: SOC Alert Repository"]
+        API["FastAPI REST Application (/api/v1/*)\n- /detection: Ingestion, Batch & History\n- /research: Metrics & Thresholds\n- /playground: Live Inference & What-If\n- /events & /stream: Flow Ingestion\n- /alerts: SOC Alert Repository"]
         REDIS["Redis Streams / Memory Broker\n(Event Ingestion, DLQ, Backpressure)"]
         DB["SQLite / SQLAlchemy\n(Audit Trail, Alert Persistence)"]
         API <--> REDIS
@@ -43,11 +43,20 @@ flowchart TB
         BEHAVIOUR --> API
     end
 
-    subgraph FRONTEND["AI/ML Research Workbench (React 19 + Vite + TS)"]
-        UI_OV["Research Overview\n(Scientific Context & Architecture)"]
-        UI_COMP["Head-to-Head Model Comparison\n(AUROC, PR-AUC, Disambiguation)"]
-        UI_CAL["Anomaly Threshold Calibration\n(p95, p99, p99.5 ECDF Curves)"]
-        UI_CONF["Classification & Open-Set Diagnostics\n(8x8 Validation, 14-Class Test)"]
-        UI_PLAY["Interactive Inference Playground\n(Curated Benchmark & Feature Sliders)"]
+    subgraph FRONTEND["NETDEFY UI Platform (React 19 + Vite + TypeScript)"]
+        subgraph CONSOLE["Area A: Threat Detection Console (Default)"]
+            UI_CON_OV["Console Overview\n(Live Triage Distribution & Active Models)"]
+            UI_CON_AN["Traffic Analysis Engine\n(CSV Batch Upload & 76-Feature Manual Form)"]
+            UI_CON_RES["Detection Assessment\n(4-State Verdict, Supervised Attribution & Residuals)"]
+            UI_CON_HIST["Detection History\n(Persistent Audit Log & CSV Export)"]
+            UI_CON_TI["Threat Intelligence\n(8 Trained Classes & 7 Open-Set Vectors)"]
+        end
+        subgraph WORKBENCH["Area B: AI/ML Research Workbench"]
+            UI_RES_COMP["Head-to-Head Model Comparison\n(AUROC, PR-AUC, Disambiguation)"]
+            UI_RES_CAL["Anomaly Threshold Calibration\n(p95, p99, p99.5 ECDF Curves)"]
+            UI_RES_CONF["Classification & Open-Set Diagnostics\n(8x8 Validation, 14-Class Test)"]
+            UI_RES_PLAY["Interactive Inference Playground\n(Curated Benchmark & Feature Sliders)"]
+        end
         FRONTEND <-->|"HTTP / JSON REST"| API
     end
+

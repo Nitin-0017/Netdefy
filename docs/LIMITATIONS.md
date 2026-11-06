@@ -58,3 +58,4 @@ When models trained on CICIDS2017 were evaluated against **CSE-CIC-IDS2018**:
 
 - **Prototype Status:** NETDEFY is an applied research prototype. It does not provide automated firewall rule injection, kernel-level packet filtering, or distributed high-availability clustering.
 - **Resource Constraints:** Designed for local evaluation on Apple Silicon (M-series) or standard Linux x86_64 machines with 8 GB RAM. High-volume stream ingestion requires Redis Streams with external horizontal scaling.
+

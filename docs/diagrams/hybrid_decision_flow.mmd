@@ -34,3 +34,4 @@ flowchart TD
     OPEN_SET_GATE -->|"YES (High-Confidence Attribution)"| STATE_KNOWN["SUSPICIOUS_KNOWN\n(Confirmed Known Attack; e.g. DoS Slowloris, Heartbleed)"]
     
     OPEN_SET_GATE -->|"NO (Open-Set / Unseen Attack)"| STATE_UNK["SUSPICIOUS_UNKNOWN\n(Novel Anomaly or Out-of-Distribution Threat; e.g. PortScan, Botnet)"]
+

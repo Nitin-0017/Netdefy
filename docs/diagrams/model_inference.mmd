@@ -42,3 +42,4 @@ flowchart TD
     DECISION -->|"s_fused >= 0.9821 AND Class != BENIGN AND Margin >= 0.30"| V_KNOWN["SUSPICIOUS_KNOWN (High-Confidence Threat)"]
     DECISION -->|"s_fused >= 0.9821 AND (Class = BENIGN OR Margin < 0.30)"| V_UNK["SUSPICIOUS_UNKNOWN (Novel / Zero-Day Anomaly)"]
     DECISION -->|"Detector Conflict OR Intermediate Score (0.937 <= s_fused < 0.9821)"| V_REV["REVIEW_REQUIRED (Analyst Triage Queue)"]
+

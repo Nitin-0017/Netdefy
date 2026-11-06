@@ -83,6 +83,7 @@ mlartifacts/
 *.db-shm
 *.db-wal
 reports/siem_exports/
+reports/detection_history.json
 
 # Logs & Diagnostics
 *.log

@@ -9,18 +9,102 @@ import {
   PredictionResponse,
 } from '../types/research';
 
+import {
+  DetectionSchemaResponse,
+  SingleFlowAnalyzeResponse,
+  BatchAnalyzeResponse,
+  CsvUploadResponse,
+  DetectionSessionSummary,
+  DetectionSessionDetail,
+  DetectionStats,
+} from '../types/detection';
+
 const API_BASE = '/api/v1';
 
-async function fetchJson<T>(url: string): Promise<T> {
-  const res = await fetch(url);
+async function fetchJson<T>(url: string, init?: RequestInit): Promise<T> {
+  const res = await fetch(url, init);
   if (!res.ok) {
-    const errorText = await res.text();
-    throw new Error(`API error ${res.status}: ${errorText}`);
+    let errorDetail = res.statusText;
+    try {
+      const errObj = await res.json();
+      if (errObj && errObj.detail) {
+        errorDetail =
+          typeof errObj.detail === 'string'
+            ? errObj.detail
+            : JSON.stringify(errObj.detail);
+      }
+    } catch {
+      // Ignore JSON parse failure on raw error text
+    }
+    throw new Error(errorDetail || `API request failed with status ${res.status}`);
   }
   return res.json();
 }
 
 export const apiService = {
+  // ==========================================
+  // DETECTION CONSOLE APIS
+  // ==========================================
+  getDetectionSchema: (): Promise<DetectionSchemaResponse> =>
+    fetchJson<DetectionSchemaResponse>(`${API_BASE}/detection/schema`),
+
+  getDetectionStats: (): Promise<DetectionStats> =>
+    fetchJson<DetectionStats>(`${API_BASE}/detection/stats`),
+
+  analyzeFlow: (payload: {
+    features: Record<string, number>;
+    flow_id?: string | null;
+    source?: string | null;
+    is_synthetic?: boolean;
+  }): Promise<SingleFlowAnalyzeResponse> =>
+    fetchJson<SingleFlowAnalyzeResponse>(`${API_BASE}/detection/analyze-flow`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }),
+
+  analyzeBatch: (payload: {
+    flows: Array<{ flow_id?: string | number | null; features: Record<string, number>; label?: string | null }>;
+    source_name?: string;
+  }): Promise<BatchAnalyzeResponse> =>
+    fetchJson<BatchAnalyzeResponse>(`${API_BASE}/detection/analyze-batch`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }),
+
+  uploadCsv: async (file: File, maxRows: number = 500): Promise<CsvUploadResponse> => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('max_rows', maxRows.toString());
+
+    return fetchJson<CsvUploadResponse>(`${API_BASE}/detection/upload-csv`, {
+      method: 'POST',
+      body: formData,
+    });
+  },
+
+  getDetectionHistory: (
+    limit: number = 50,
+    offset: number = 0
+  ): Promise<{ sessions: DetectionSessionSummary[]; total_count: number; limit: number; offset: number }> =>
+    fetchJson<{ sessions: DetectionSessionSummary[]; total_count: number; limit: number; offset: number }>(
+      `${API_BASE}/detection/history?limit=${limit}&offset=${offset}`
+    ),
+
+  getDetectionSession: (sessionId: string): Promise<DetectionSessionDetail> =>
+    fetchJson<DetectionSessionDetail>(`${API_BASE}/detection/history/${sessionId}`),
+
+  clearDetectionHistory: (): Promise<{ message: string }> =>
+    fetchJson<{ message: string }>(`${API_BASE}/detection/history`, {
+      method: 'DELETE',
+    }),
+
+  getSampleCsvUrl: (): string => `${API_BASE}/detection/sample-csv`,
+
+  // ==========================================
+  // RESEARCH WORKBENCH APIS (PRESERVED)
+  // ==========================================
   getOverview: (): Promise<ResearchOverview> =>
     fetchJson<ResearchOverview>(`${API_BASE}/research/overview`),
 
@@ -61,18 +145,12 @@ export const apiService = {
     flow_id?: string | number | null;
     is_synthetic?: boolean;
   }): Promise<PredictionResponse> => {
-    const res = await fetch(`${API_BASE}/playground/predict`, {
+    return fetchJson<PredictionResponse>(`${API_BASE}/playground/predict`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
     });
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({ detail: res.statusText }));
-      throw new Error(err.detail || `Inference error: ${res.status}`);
-    }
-    return res.json();
   },
 };
-

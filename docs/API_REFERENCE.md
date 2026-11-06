@@ -251,3 +251,51 @@ Content-Type: application/json
 GET /api/v1/stream/metrics
 ```
 * **Response `200 OK`:** Returns stream depth, pending entry list (PEL) count, consumer lag, and DLQ message counts.
+
+## 5. Network Threat Detection Platform Endpoints
+
+### 5.1 Detection Schema & Metadata
+```http
+GET /api/v1/detection/schema
+```
+* **Response `200 OK`:** Returns metadata for all 76 continuous features (grouped into 9 operational categories with physical units and default values), 8 trained attack classes, and 7 absent open-set categories.
+
+### 5.2 Single-Flow Inference
+```http
+POST /api/v1/detection/analyze-flow
+Content-Type: application/json
+```
+* **Request Payload:** `{ "features": { ... }, "flow_id": "...", "source": "..." }`
+* **Response `200 OK`:** Returns 4-state operational triage decision (`NORMAL`, `SUSPICIOUS_KNOWN`, `SUSPICIOUS_UNKNOWN`, `REVIEW_REQUIRED`), model score breakdown (Isolation Forest, Autoencoder MSE, Fused Score), supervised class attribution, confidence margin, top contributing feature residuals, and audit session ID.
+
+### 5.3 Batch Inference
+```http
+POST /api/v1/detection/analyze-batch
+Content-Type: application/json
+```
+* **Request Payload:** `{ "flows": [ { "features": { ... }, "flow_id": "..." } ], "source_name": "..." }`
+* **Response `200 OK`:** Returns vectorized multi-model predictions, decision distribution summary, and persistent audit record.
+
+### 5.4 CSV Telemetry Upload
+```http
+POST /api/v1/detection/upload-csv
+Content-Type: multipart/form-data
+```
+* **Form Data:** `file: <traffic.csv>`, `max_rows: 250`
+* **Response `200 OK`:** Validates 76 continuous features, isolates ground-truth `Label` column if present (never fed to models), evaluates batch, persists analysis session, and returns comprehensive prediction breakdown.
+
+### 5.5 Download Sample Benchmark CSV
+```http
+GET /api/v1/detection/sample-csv
+```
+* **Response `200 OK`:** Serves `netdefy_sample_network_traffic.csv` containing 28 verified CICIDS2017 benchmark flows.
+
+### 5.6 Forensic Detection History
+```http
+GET /api/v1/detection/history
+GET /api/v1/detection/history/{session_id}
+DELETE /api/v1/detection/history
+GET /api/v1/detection/stats
+```
+* Provides persistent audit logging, flow-level inspection of historical analyses, and aggregated operational triage statistics.
+

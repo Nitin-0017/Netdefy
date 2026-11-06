@@ -156,3 +156,4 @@ NETDEFY enforces model-native attribution methods without ungrounded approximati
 2. **XGBoost Split Gain:**
    Quantifies supervised class attribution using the average reduction in training loss achieved across all tree splits on feature $j$:
    $$\text{Gain}(j) = \frac{1}{|T_j|} \sum_{t \in T_j} \Delta \mathcal{L}(t)$$
+

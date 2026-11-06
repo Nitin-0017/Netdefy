@@ -48,7 +48,7 @@ flowchart TB
     end
 
     subgraph BACKEND["FastAPI Platform & Stream Processor"]
-        API["FastAPI REST Application (/api/v1/*)\n- /research: Metrics & Thresholds\n- /playground: Live Inference & What-If\n- /events & /stream: Flow Ingestion\n- /alerts: SOC Alert Repository"]
+        API["FastAPI REST Application (/api/v1/*)\n- /detection: Ingestion, Batch & History\n- /research: Metrics & Thresholds\n- /playground: Live Inference & What-If\n- /events & /stream: Flow Ingestion\n- /alerts: SOC Alert Repository"]
         REDIS["Redis Streams / Memory Broker\n(Event Ingestion, DLQ, Backpressure)"]
         DB["SQLite / SQLAlchemy\n(Audit Trail, Alert Persistence)"]
         API <--> REDIS
@@ -57,12 +57,20 @@ flowchart TB
         BEHAVIOUR --> API
     end
 
-    subgraph FRONTEND["AI/ML Research Workbench (React 19 + Vite + TS)"]
-        UI_OV["Research Overview\n(Scientific Context & Architecture)"]
-        UI_COMP["Head-to-Head Model Comparison\n(AUROC, PR-AUC, Disambiguation)"]
-        UI_CAL["Anomaly Threshold Calibration\n(p95, p99, p99.5 ECDF Curves)"]
-        UI_CONF["Classification & Open-Set Diagnostics\n(8x8 Validation, 14-Class Test)"]
-        UI_PLAY["Interactive Inference Playground\n(Curated Benchmark & Feature Sliders)"]
+    subgraph FRONTEND["NETDEFY UI Platform (React 19 + Vite + TypeScript)"]
+        subgraph CONSOLE["Area A: Threat Detection Console (Default)"]
+            UI_CON_OV["Console Overview\n(Live Triage Distribution & Active Models)"]
+            UI_CON_AN["Traffic Analysis Engine\n(CSV Batch Upload & 76-Feature Manual Form)"]
+            UI_CON_RES["Detection Assessment\n(4-State Verdict, Supervised Attribution & Residuals)"]
+            UI_CON_HIST["Detection History\n(Persistent Audit Log & CSV Export)"]
+            UI_CON_TI["Threat Intelligence\n(8 Trained Classes & 7 Open-Set Vectors)"]
+        end
+        subgraph WORKBENCH["Area B: AI/ML Research Workbench"]
+            UI_RES_COMP["Head-to-Head Model Comparison\n(AUROC, PR-AUC, Disambiguation)"]
+            UI_RES_CAL["Anomaly Threshold Calibration\n(p95, p99, p99.5 ECDF Curves)"]
+            UI_RES_CONF["Classification & Open-Set Diagnostics\n(8x8 Validation, 14-Class Test)"]
+            UI_RES_PLAY["Interactive Inference Playground\n(Curated Benchmark & Feature Sliders)"]
+        end
         FRONTEND <-->|"HTTP / JSON REST"| API
     end
 ```
@@ -106,6 +114,23 @@ flowchart TB
 - **[`backpressure.py`](../src/netdefy/streaming/backpressure.py):** Dynamic admission controller evaluating stream depth and worker latency, rejecting input (`HTTP 429`) under saturation.
 - **[`dead_letter_queue.py`](../src/netdefy/streaming/dead_letter_queue.py):** Automatically isolates poison pills and schema-invalid events after exponential backoff retries.
 - **[`alert_repository.py`](../src/netdefy/storage/alert_repository.py):** Thread-safe SQLAlchemy persistence of alerts, verdicts, probabilities, and attributions to SQLite.
+- **[`detection_history.py`](../src/netdefy/storage/detection_history.py):** Persistent JSON storage of user-facing forensic sessions, batch evaluations, and triage outcomes.
+
+### 2.7 Frontend Architecture & Routing (`frontend/src/`)
+- **Dual-Area Shell (`App.tsx`, `Header.tsx`):** Provides smooth navigation between the primary **Threat Detection Console** (`?area=console`) and the **AI/ML Research Workbench** (`?area=research`), maintaining URL deep-linking and state preservation.
+- **Detection Console Components:**
+  - `ConsoleOverview.tsx`: Aggregate flow metrics, triage distribution pie chart, and live backend model indicators.
+  - `AnalyzeTraffic.tsx`: CSV batch upload with schema validation, progress indicator, downloadable analysis CSV report, and 76-feature manual form with curated sample presets.
+  - `DetectionHistory.tsx`: Persistent audit log, session detail inspection, and flow-level diagnostic breakdowns.
+  - `ThreatIntelligence.tsx`: Architecture breakdown, 8 trained attack classes, 7 open-set threat vectors, and single-flow limitations.
+- **Research Workbench Components:**
+  - `ResearchOverview.tsx`: Scientific goals, methodology, and pipeline architecture.
+  - `ModelComparison.tsx`: Head-to-head metrics (View A vs View B) with disambiguation tables.
+  - `AnomalyCalibration.tsx`: Empirical quantile threshold cards ($p_{95}, p_{99}, p_{99.5}$) and error distributions.
+  - `ClassificationDiagnostics.tsx`: Confusion matrices (8-class validation & 14-class open-set test) and XGBoost tree gain ranking.
+  - `HybridDecision.tsx`: Discrete triage policies, conflict resolution gates, and four-state decision matrix.
+  - `ExplainabilitySpec.tsx`: Autoencoder per-feature squared residuals and tree split gain specifications.
+  - `Playground.tsx`: Interactive what-if inference sliders evaluating 11 verified benchmark flows.
 
 ---
 

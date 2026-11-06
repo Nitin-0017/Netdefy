@@ -18,7 +18,16 @@ from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 from netdefy.api.dependencies import get_db_manager
-from netdefy.api.routes import alerts, events, health, models, playground, research, stream
+from netdefy.api.routes import (
+    alerts,
+    detection,
+    events,
+    health,
+    models,
+    playground,
+    research,
+    stream,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -74,6 +83,7 @@ def create_app() -> FastAPI:
     app.include_router(stream.router, prefix=api_v1_prefix)
     app.include_router(research.router, prefix=api_v1_prefix)
     app.include_router(playground.router, prefix=api_v1_prefix)
+    app.include_router(detection.router, prefix=api_v1_prefix)
 
     # 4. Mount Frontend Static Files if built
     frontend_dist = Path("frontend/dist")

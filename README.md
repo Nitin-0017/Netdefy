@@ -1,7 +1,7 @@
-# NETDEFY — Network Defense Intelligence
+# NETDEFY — Network Threat Detection Platform & Research Workbench
 
 > **Tagline:** Detect Anomalies. Understand Network Behaviour.  
-> **Category:** Research-Grade Defensive Network Anomaly Detection & Threat Intelligence Platform  
+> **Category:** Network Threat Detection Platform & Research-Grade Evaluation Workbench  
 > **Status:** Open-Source AI/ML Portfolio Release & Applied Research Prototype  
 
 [![CI Quality Gate](https://github.com/Nitin-0017/Netdefy/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/Nitin-0017/Netdefy/actions/workflows/tests.yml)
@@ -15,25 +15,88 @@
 
 ## 1. Project Introduction
 
-**NETDEFY** is an applied machine learning research and engineering platform designed to investigate network anomaly detection, attack attribution, and behavioral traffic analysis.
+**NETDEFY** is an applied machine learning platform that unifies a **user-facing network threat detection console** with a **reproducible AI/ML research and evaluation workbench**.
 
-Operating strictly within a defensive security posture, NETDEFY models realistic enterprise conditions:
-- **Zero Temporal Leakage:** Models are trained chronologically on earlier traffic (Monday–Wednesday) and evaluated on subsequent, unseen days (Thursday–Friday).
-- **Multi-Paradigm Inference:** Combines unsupervised tree ensembles (Isolation Forest), deep non-linear manifold compression (PyTorch Autoencoder), and supervised gradient boosting (XGBoost).
-- **Calibrated Operational Triage:** Employs empirical cumulative distribution functions (ECDF) to calibrate detector outputs into a four-state triage policy (`NORMAL`, `SUSPICIOUS_KNOWN`, `SUSPICIOUS_UNKNOWN`, `REVIEW_REQUIRED`), suppressing benign false alarms by **$46.5\%$** relative to individual anomaly detectors.
-- **Interactive Research Workbench:** Features a single-page React 19 application providing head-to-head model comparisons, calibrated threshold curves, open-set confusion diagnostics, and an interactive inference playground with verified physical flows.
+Operating strictly within a defensive posture, NETDEFY bridges the gap between academic model evaluation and operational threat detection:
+
+1. **User-Facing Threat Detection Console (Default Interface):**
+   - **Batch Ingestion via CSV:** Upload packet flow vectors, validate against the 76 continuous model features, isolate any ground-truth `Label` column (never fed to models), and execute vectorized multi-model inference.
+   - **Manual Flow Vector Formulation:** Interactive input for all 76 continuous features grouped into 9 logical sections with physical units (`microseconds`, `bytes`, `packets`, `bytes/s`, `packets/s`) and 1-click loading of verified physical benchmark captures.
+   - **Four-State Operational Triage:** Classifies incoming flows into `NORMAL`, `SUSPICIOUS_KNOWN`, `SUSPICIOUS_UNKNOWN`, or `REVIEW_REQUIRED`, combining supervised attack attribution with unsupervised outlier calibration and model-native feature residuals.
+   - **Persistent Detection History:** Local forensic audit trail recorded to disk with flow-level inspection, aggregate statistics, and downloadable CSV analysis reports.
+   - **Threat Intelligence Scope:** Transparent documentation of the 8 trained attack classes, the 7 open-set threat vectors absent from classifier training, and honest single-flow model limitations.
+
+2. **AI/ML Research & Evaluation Workbench (Preserved):**
+   - **Zero Temporal Leakage:** Models trained chronologically on Monday–Wednesday traffic and evaluated strictly on subsequent Thursday–Friday holdout traffic.
+   - **Multi-Paradigm Inference:** Combines unsupervised tree ensembles (Isolation Forest), deep non-linear manifold compression (PyTorch Autoencoder), and supervised gradient boosting (XGBoost).
+   - **Empirical Threshold Calibration:** Calibrates raw detector scores via empirical CDF on pure benign validation traffic ($p_{95}, p_{99}, p_{99.5}$), suppressing benign false alarms by **$46.5\%$** relative to individual anomaly detectors.
+   - **Interactive Diagnostics:** Head-to-head model comparison, open-set confusion diagnostics, grounded explainability, and what-if feature sliders.
 
 ```mermaid
 flowchart LR
-    A["Network Telemetry\n(CICFlowMeter Flows)"] --> B["Data Validation &\nDeduplication Engine"]
-    B --> C["Chronological Benchmark\n(Zero Temporal Leakage)"]
-    C --> D["Multi-Paradigm Models\n(IF + Autoencoder + XGBoost)"]
-    D --> E["Hybrid Decision Engine\n(4-State Triage Policy)"]
-    E --> F["AI/ML Research Workbench\n(Interactive React UI)"]
+    A["Network Telemetry\n(CSV / Manual Flow Vector)"] --> B["Data Validation &\nSchema Verification Engine"]
+    B --> C["Multi-Model Engine\n(IF + Autoencoder + XGBoost)"]
+    C --> D["Hybrid Decision Matrix\n(4-State Operational Triage)"]
+    D --> E["Threat Detection Console\n(Primary User Experience)"]
+    D --> F["Research Workbench\n(Model Diagnostics & Benchmarks)"]
 ```
 
 > [!NOTE]
 > **Research Prototype Scope:** NETDEFY is an applied machine learning research artifact and portfolio engineering demonstration. It is not an enterprise SOC appliance, does not provide automated offensive countermeasures, and does not claim to prevent zero-day attacks without defensive human review.
+
+---
+
+## 2. Visual Platform Walkthrough
+
+### 2.1 Threat Detection Console
+
+#### Operational Overview & System Status
+Displays live triage distribution, flow volume metrics, and active model status without fabricated mock telemetry.
+![Console Overview](docs/screenshots/console_overview.png)
+
+#### Traffic Analysis & Batch Ingestion (CSV Mode)
+Uploads network flow telemetry, validates 76 continuous features, previews data, and runs batch multi-model inference.
+![CSV Batch Ingestion](docs/screenshots/console_analyze.png)
+
+#### Manual Flow Vector Formulation (76 Continuous Features)
+Enables per-flow input grouped into 9 physical categories with instant 1-click loading of verified benchmark flows.
+![Manual Flow Input](docs/screenshots/console_analyze_manual.png)
+
+#### Detection Assessment & Attack Attribution Output
+Detailed 4-state triage decision with plain-English operational assessment, supervised attack attribution with class confidence, unsupervised outlier calibration, and top diagnostic feature residuals.
+![Detection Assessment Result](docs/screenshots/console_detection_result.png)
+
+#### Forensic Detection History & Audit Log
+Persistent archive of past analyses with session summaries, flow-level inspection, and CSV report export.
+![Detection History](docs/screenshots/console_history.png)
+
+#### Threat Intelligence & Attack Vector Scope
+Comprehensive breakdown of the multi-tier architecture, 8 trained attack classes, 7 open-set threat vectors, and single-flow limitations.
+![Threat Intelligence](docs/screenshots/console_threat_intel.png)
+
+---
+
+### 2.2 AI/ML Research & Evaluation Workbench
+
+#### Head-to-Head Model Comparison (View A vs. View B)
+Comparative evaluation across Isolation Forest, Deep Autoencoder, XGBoost, and NETDEFY Hybrid Fusion.
+![Model Comparison](docs/screenshots/page_2_model_comparison.png)
+
+#### Empirical Threshold Calibration
+Non-parametric quantile calibration curves ($p_{95}, p_{99}, p_{99.5}$) on pure benign validation traffic.
+![Anomaly Calibration](docs/screenshots/page_3_anomaly_calibration.png)
+
+#### Classification Diagnostics & Open-Set Confusion
+Validates the 8 trained classes and documents supervised classifier blindness ($71.72\%$ misclassification) on unseen threat vectors.
+![Classification Diagnostics](docs/screenshots/page_4_classification_diagnostics.png)
+
+#### Grounded Feature Explainability
+Autoencoder per-feature squared reconstruction residuals ($e_j = (x_j - \hat{x}_j)^2$) and XGBoost tree split gain metrics.
+![Explainability Specification](docs/screenshots/page_6_explainability_spec.png)
+
+#### Interactive Research Playground
+Live what-if slider inference against 11 verified physical benchmark flows with parameter perturbation.
+![Inference Playground](docs/screenshots/page_7_playground.png)
 
 ---
 
@@ -111,7 +174,7 @@ flowchart TB
     end
 
     subgraph BACKEND["FastAPI Platform & Stream Processor"]
-        API["FastAPI REST Application (/api/v1/*)\n- /research: Metrics & Thresholds\n- /playground: Live Inference & What-If\n- /events & /stream: Flow Ingestion\n- /alerts: SOC Alert Repository"]
+        API["FastAPI REST Application (/api/v1/*)\n- /detection: Ingestion, Batch & History\n- /research: Metrics & Thresholds\n- /playground: Live Inference & What-If\n- /events & /stream: Flow Ingestion\n- /alerts: SOC Alert Repository"]
         REDIS["Redis Streams / Memory Broker\n(Event Ingestion, DLQ, Backpressure)"]
         DB["SQLite / SQLAlchemy\n(Audit Trail, Alert Persistence)"]
         API <--> REDIS
@@ -120,12 +183,20 @@ flowchart TB
         BEHAVIOUR --> API
     end
 
-    subgraph FRONTEND["AI/ML Research Workbench (React 19 + Vite + TS)"]
-        UI_OV["Research Overview\n(Scientific Context & Architecture)"]
-        UI_COMP["Head-to-Head Model Comparison\n(AUROC, PR-AUC, Disambiguation)"]
-        UI_CAL["Anomaly Threshold Calibration\n(p95, p99, p99.5 ECDF Curves)"]
-        UI_CONF["Classification & Open-Set Diagnostics\n(8x8 Validation, 14-Class Test)"]
-        UI_PLAY["Interactive Inference Playground\n(Curated Benchmark & Feature Sliders)"]
+    subgraph FRONTEND["NETDEFY UI Platform (React 19 + Vite + TypeScript)"]
+        subgraph CONSOLE["Area A: Threat Detection Console (Default)"]
+            UI_CON_OV["Console Overview\n(Live Triage Distribution & Active Models)"]
+            UI_CON_AN["Traffic Analysis Engine\n(CSV Batch Upload & 76-Feature Manual Form)"]
+            UI_CON_RES["Detection Assessment\n(4-State Verdict, Supervised Attribution & Residuals)"]
+            UI_CON_HIST["Detection History\n(Persistent Audit Log & CSV Export)"]
+            UI_CON_TI["Threat Intelligence\n(8 Trained Classes & 7 Open-Set Vectors)"]
+        end
+        subgraph WORKBENCH["Area B: AI/ML Research Workbench"]
+            UI_RES_COMP["Head-to-Head Model Comparison\n(AUROC, PR-AUC, Disambiguation)"]
+            UI_RES_CAL["Anomaly Threshold Calibration\n(p95, p99, p99.5 ECDF Curves)"]
+            UI_RES_CONF["Classification & Open-Set Diagnostics\n(8x8 Validation, 14-Class Test)"]
+            UI_RES_PLAY["Interactive Inference Playground\n(Curated Benchmark & Feature Sliders)"]
+        end
         FRONTEND <-->|"HTTP / JSON REST"| API
     end
 ```
@@ -240,20 +311,22 @@ cd ..
 
 ## 11. Running the Platform
 
-### 11.1 Start Backend & Research Workbench
+### 11.1 Start Backend (FastAPI Platform)
 ```bash
-uv run uvicorn netdefy.api.app:app --host 127.0.0.1 --port 8000 --reload
+PYTHONPATH=src uv run uvicorn netdefy.api.app:app --host 127.0.0.1 --port 8000
 ```
-Navigate to:
-- **Interactive Research Workbench:** [http://127.0.0.1:8000/workbench](http://127.0.0.1:8000/workbench)
+- **FastAPI Platform & Production Web App:** [http://127.0.0.1:8000/workbench/](http://127.0.0.1:8000/workbench/)
 - **Interactive OpenAPI Documentation:** [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
-### 11.2 Frontend Development Mode (Hot Reloading)
+### 11.2 Start Frontend (Vite Development Mode with Hot Reloading)
 ```bash
-cd frontend
-npm run dev
+npm --prefix frontend run dev
 ```
-Workbench development server opens at `http://localhost:5173`.
+- **Threat Detection Console (Default Landing):** [http://localhost:5173/](http://localhost:5173/)
+- **Analyze Traffic (CSV & Manual):** [http://localhost:5173/?area=console&tab=analyze](http://localhost:5173/?area=console&tab=analyze)
+- **Detection History:** [http://localhost:5173/?area=console&tab=history](http://localhost:5173/?area=console&tab=history)
+- **Threat Intelligence:** [http://localhost:5173/?area=console&tab=threat-intel](http://localhost:5173/?area=console&tab=threat-intel)
+- **AI/ML Research Workbench:** [http://localhost:5173/?area=research](http://localhost:5173/?area=research)
 
 ---
 
@@ -262,7 +335,7 @@ Workbench development server opens at `http://localhost:5173`.
 Execute the complete quality gate enforced in CI:
 
 ```bash
-# 1. Run full pytest suite (174 tests)
+# 1. Run full pytest suite (184 tests)
 uv run pytest
 
 # 2. Run Ruff linter
@@ -292,7 +365,7 @@ Netdefy/
 ├── artifacts/               # Pretrained weights, threshold calibrators & metadata
 │   ├── models/              # autoencoder, hybrid, isolation_forest, xgboost
 │   ├── preprocessing/       # Scaler metadata and feature schema
-│   └── research/            # 11 curated physical benchmark flows
+│   └── research/            # Curated benchmark flows & sample_network_traffic.csv
 ├── configs/                 # Master application and model YAML configurations
 ├── data/                    # Datasets, manifests, and benchmarks
 │   ├── benchmark/v1/        # Parquet partitions (oneclass, classifier, val, test)
@@ -300,6 +373,7 @@ Netdefy/
 ├── docker/                  # Dockerfiles for API and streaming consumer
 ├── docs/                    # Deep technical and scientific documentation
 │   ├── diagrams/            # Editable Mermaid architecture source files (.mmd)
+│   ├── screenshots/         # Captured PNG screenshots of actual UI interfaces
 │   ├── ARCHITECTURE.md      # Full component & data flow specification
 │   ├── MODEL_METHODOLOGY.md # Mathematical formulation of models & calibration
 │   ├── EXPERIMENTAL_METHODOLOGY.md # Chronological partitioning & leakage controls
@@ -308,23 +382,25 @@ Netdefy/
 │   ├── API_REFERENCE.md     # Endpoint catalog, JSON schemas & error handling
 │   ├── REPRODUCIBILITY.md   # Seed controls, environment setup & replication
 │   └── DEVELOPMENT.md       # Coding standards, quality gates & test philosophy
-├── frontend/                # React 19 + TypeScript + Vite Research Workbench
-│   └── src/components/      # ModelComparison, Calibration, Diagnostics, Playground
+├── frontend/                # React 19 + TypeScript + Vite UI Platform
+│   ├── src/components/      # ConsoleOverview, AnalyzeTraffic, DetectionHistory, ThreatIntel,
+│   │                        # ModelComparison, AnomalyCalibration, Diagnostics, Playground
+│   └── src/types/           # TypeScript interfaces for detection & research APIs
 ├── notebooks/               # Exploratory data analysis & forensic notebooks
 ├── reports/                 # Scientific audit reports across Phases 1–6.2.1
 ├── scripts/                 # Reproducibility, training, and evaluation scripts
 ├── src/netdefy/             # Core Python package
 │   ├── alerts/              # Alert correlation and severity assessment
-│   ├── api/                 # FastAPI routes, schemas, and dependencies
+│   ├── api/                 # FastAPI routes (detection.py, research.py, playground.py)
 │   ├── behaviour/           # Intra-flow and streaming multi-flow intelligence
 │   ├── data/                # Acquisition, inspection, and 20-invariant validation
 │   ├── hybrid/              # Score calibration, fusion, and decision engine
 │   ├── integrations/        # Syslog CEF and STIX 2.1 serialization
 │   ├── models/              # Isolation Forest, Autoencoder, XGBoost, Device manager
 │   ├── preprocessing/       # Cleaner, deduplication, schema, and scalers
-│   ├── storage/             # Alert repository and SQLAlchemy database models
+│   ├── storage/             # Detection history JSON store & SQLAlchemy SQLite alerts
 │   └── streaming/           # Redis Streams, in-memory broker, and backpressure
-├── tests/                   # Pytest suite (174 unit and integration tests)
+├── tests/                   # Pytest suite (184 unit and integration tests)
 ├── pyproject.toml           # Python package configuration & dependencies
 └── README.md                # Project documentation root
 ```
